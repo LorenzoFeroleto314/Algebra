@@ -1,0 +1,50 @@
+% math packages
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}    % Math symbols such as \mathbb
+\usepackage{amsthm}
+
+\usepackage{lipsum}
+
+% Fancy boxes
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{amsthm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Theorem
+\newcounter{theo}[section] \setcounter{theo}{0}
+\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+\newenvironment{theo}[2][]{%
+  \refstepcounter{theo}%
+  \ifstrempty{#1}%
+  % if condition (without title)
+  {\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Theorem~\thetheo};}
+      }%
+  % else condition (with title)
+  }{\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Theorem~\thetheo:~#1};}%
+      }%
+  }%
+  % Both conditions
+  \mdfsetup{%
+      innertopmargin=5pt,linecolor=cyan!20,%
+      linewidth=2pt,topline=true,%
+      frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+  }
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%shortcut to mathbb
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\C}{\mathbb{C}}
