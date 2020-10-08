@@ -4,11 +4,18 @@
 \usepackage{amssymb}    % Math symbols such as \mathbb
 \usepackage{amsthm}
 
+% other packages
 \usepackage{lipsum}
+
+% proper inline math display, adjust height for symbols like \sum
+\everymath{\displaystyle}
 
 % Fancy boxes
 \usepackage[framemethod=TikZ]{mdframed}
-\usepackage{amsthm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ricordati di mettere sempre le label
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Theorem
 \newcounter{theo}[section] \setcounter{theo}{0}
@@ -21,19 +28,79 @@
       frametitle={%
           \tikz[baseline=(current bounding box.east),outer sep=0pt]
           \node[anchor=east,rectangle,fill=cyan!20]
-          {\strut Theorem~\thetheo};}
+          {\strut Teorema~\thetheo};}
       }%
   % else condition (with title)
   }{\mdfsetup{%
       frametitle={%
           \tikz[baseline=(current bounding box.east),outer sep=0pt]
           \node[anchor=east,rectangle,fill=cyan!20]
-          {\strut Theorem~\thetheo:~#1};}%
+          {\strut Teorema~\thetheo:~#1};}%
       }%
   }%
   % Both conditions
   \mdfsetup{%
       innertopmargin=5pt,linecolor=cyan!20,%
+      linewidth=2pt,topline=true,%
+      frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+  }
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma
+\newenvironment{lem}[2][]{%
+  \refstepcounter{theo}%
+  \ifstrempty{#1}%
+  % if condition (without title)
+  {\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Lemma~\thetheo};}
+      }%
+  % else condition (with title)
+  }{\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Lemma~\thetheo:~#1};}%
+      }%
+  }%
+  % Both conditions
+  \mdfsetup{%
+      innertopmargin=5pt,linecolor=cyan!20,%
+      linewidth=2pt,topline=true,%
+      frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+  }
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Definition
+\newenvironment{defn}[2][]{%
+  \refstepcounter{theo}%
+  \ifstrempty{#1}%
+  % if condition (without title)
+  {\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=yellow!40]
+          {\strut Definizione~\thetheo};}
+      }%
+  % else condition (with title)
+  }{\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=yellow!40]
+          {\strut Definizione~\thetheo:~#1};}%
+      }%
+  }%
+  % Both conditions
+  \mdfsetup{%
+      innertopmargin=5pt,linecolor=yellow!40,%
       linewidth=2pt,topline=true,%
       frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
   }
@@ -48,3 +115,8 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\I}{\mathbb{I}}
 \newcommand{\C}{\mathbb{C}}
+
+% Gives begin{dimostrazione} same formating as \begin{proof}
+\newenvironment{dimostrazione}
+  {\begin{proof}[Dimostrazione]}
+  {\end{proof}}
