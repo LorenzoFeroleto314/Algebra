@@ -25,13 +25,13 @@ Siano $f = \sum_{i=0}^{n}r_i \cdot x^i,\ g = \sum_{i=0}^{n}s_i \cdot x^i \in R[x
 Definiamo la \emph{somma}
 
 \begin{equation}
-+ : R[x] \times R[x] \to R[x],\ f + g = \sum\limits_{i=0}^{max\{n,m\}} (r_i + s_i) \cdot x^i
++ : R[x] \times R[x] \to R[x],\ f + g = \sum\limits_{i=0}^{\max\{n,m\}} (r_i + s_i) \cdot x^i
 \end{equation}
 ponendo $r_{n+1} = \dots = r_m = 0$ se $m > n$ e $s_{m+1} = \dots = s_n = 0$ se $n > m$.\\
 Definiamo il \emph{prodotto}
 
 \begin{equation}
-f\cdot g = \sum\limits_{k=0}^{n+m} (\sum\limits_{i=0}^{k} r_i \cdot s_{k-i}) \cdot x^i
+  \cdot : R[x] \times R[x] \to R[x],\ f\cdot g = \sum\limits_{k=0}^{n+m} (\sum\limits_{i=0}^{k} r_i \cdot s_{k-i}) \cdot x^i
 \end{equation}
 Tale scrittura e' la normale moltiplicazione tra i polinomi ma scritta formalmente.
 \end{defn}
@@ -57,20 +57,21 @@ la funzione grado:
       -\infty, & \text{ se } f(x) \equiv 0_R 
       \end{array}\right\} 
 \end{equation}
-e il risultato di $deg^*(f)$ come il \emph{grado} del polinomio $f$.
+e il risultato di $deg^*(f)$ come il \emph{grado} del polinomio $f$. Se $deg^*(f) = 0$ si dice che $f$
+e' un polinomio \emph{costante}.
 \end{defn}
 Tale definizinone coincide con quella classica di grado di un polinomio tranne
 nel caso in cui $f(x)$ sia identicamente nullo. 
 
 \begin{example}[Grado di un polinomio]{exmp grad pol}
-Se consideriamo i polinomi $f(x) = x^2 + 1, g(x) = 1 e h(x) = 0, f,g,h \in \Z[x]$, si ha che
+Se consideriamo i polinomi $f(x) = x^2 + 1, g(x) = 1$ e $h(x) = 0, f,g,h \in \Z[x]$, si ha che
 \[deg*(f) = 2,\ deg*(g) = 0,\ deg*(h) = -\infty.\]
 \end{example}
 Per calcolare il grado di un prodotto di un polinomio e' necessario aritmetizzare
 alcuni simboli.
 
 \begin{defn}[$\N_k$, somma in $\N_k \cup \{-\infty\}$]{N_k}
-Poniamo $\N_k := \{z \in \Z \mid z \geq k \in \Z\}$; ad esempio, $N_0 = \{0, 1, 2, \dots\}$.\\
+Poniamo $\N_k := \{z \in \Z \mid z \geq k \in \Z\}$; ad esempio, $\N_0 = \{0, 1, 2, \dots\}$.\\
 Definiamo la \emph{somma} in $\N_k \cup \{-\infty\}$
 
 \[+ : \N_k \cup \{-\infty\} \times \N_k \cup \{-\infty\} \to \N_k \cup \{-\infty\},\]
@@ -106,7 +107,7 @@ Se $f$ oppure $g$ e' il poliniomio nullo, allora l'uguaglianza e' verificata in 
 Supponendo che
 \[f = \sum_{i=0}^{n}r_ix^i,\ g = \sum_{i=0}^{m}s_ix^i \neq 0_{R[x]}\]
 dove $r_n,s_m \neq 0_R$, e poiche' $R$ e' un dominio di integrita', allora
-$r_ns_m \cdot x^{n+m}$ e' il monomio di grado massimo presente nel prodotto $f\cdot g$, quidi
+$r_ns_m \cdot x^{n+m}$ e' il monomio di grado massimo presente nel prodotto $f\cdot g$, quindi
 
 \[deg^*(f \cdot g) = n + m = deg^*(f) + deg^*(g)\]
 \end{dimostrazione}
