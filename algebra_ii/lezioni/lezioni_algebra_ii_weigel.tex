@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{import}
+% Nota che import parte dalla cartella corrente, e non e'
+% necessario mettere / all'inizio
 
 \import{../}{new_preamble.tex}
 
@@ -26,48 +28,10 @@
 \newpage
 \pagenumbering{arabic}
 
-\section{Introduzione}
+\import{sezione_1/}{sez_1.tex}
+ 
 
-\subsection{Sottosezione}
 
-\lipsum[2]
 
-\begin{defn}[La definizione magica]{n}
-BAAAAAAAAAAAAAAAAAAAAA
-\end{defn}
-
-\lipsum[3]
-
-\begin{theo}[Il teorema grosso piu' grosso]{o}
-CAAAAAAAAAAAAAAAAAAAAAAAAAA
-\[3x + 5y = 5z\]
-\end{theo}
-\begin{dimostrazione}
-prova
-\end{dimostrazione}
-
-\begin{lem}[Il lemmone]{l}
-Il lemma potente
-\end{lem}
-
-\section{Altro capitolo}
-\begin{defn}[La definizione magica]{magica}
-  BAAAAAAAAAAAAAAAAAAAAA
-\end{defn}
-
-\begin{dimostrazione} 
-asdf
-\end{dimostrazione}
-
-\begin{prop}[fatto]{fatto}
-prova
-\end{prop}
-\begin{dimostrazione}
-\lipsum[3]
-\end{dimostrazione}
-
-\begin{coroll}[corollo]{corollo}
-  provare
-\end{coroll}
 
 \end{document}

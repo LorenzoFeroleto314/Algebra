@@ -1,0 +1,213 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ricordati di mettere sempre le label
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Theorem
+\newcounter{theo}[section] \setcounter{theo}{0}
+\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+\newenvironment{theo}[2][]{%
+  \refstepcounter{theo}%
+  \ifstrempty{#1}%
+  % if condition (without title)
+  {\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Teorema~\thetheo};}
+      }%
+  % else condition (with title)
+  }{\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Teorema~\thetheo:~#1};}%
+      }%
+  }%
+  % Both conditions
+  \mdfsetup{%
+      innertopmargin=5pt,linecolor=cyan!20,%
+      linewidth=2pt,topline=true,%
+      frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+  }
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lemma
+\newenvironment{lem}[2][]{%
+  \refstepcounter{theo}%
+  \ifstrempty{#1}%
+  % if condition (without title)
+  {\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Lemma~\thetheo};}
+      }%
+  % else condition (with title)
+  }{\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Lemma~\thetheo:~#1};}%
+      }%
+  }%
+  % Both conditions
+  \mdfsetup{%
+      innertopmargin=5pt,linecolor=cyan!20,%
+      linewidth=2pt,topline=true,%
+      frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+  }
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Proposizione
+\newenvironment{prop}[2][]{%
+  \refstepcounter{theo}%
+  \ifstrempty{#1}%
+  % if condition (without title)
+  {\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Proposizione~\thetheo};}
+      }%
+  % else condition (with title)
+  }{\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Proposizione~\thetheo:~#1};}%
+      }%
+  }%
+  % Both conditions
+  \mdfsetup{%
+      innertopmargin=5pt,linecolor=cyan!20,%
+      linewidth=2pt,topline=true,%
+      frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+  }
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Corollario
+\newenvironment{coroll}[2][]{%
+  \refstepcounter{theo}%
+  \ifstrempty{#1}%
+  % if condition (without title)
+  {\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Corollario~\thetheo};}
+      }%
+  % else condition (with title)
+  }{\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=cyan!20]
+          {\strut Corollario~\thetheo:~#1};}%
+      }%
+  }%
+  % Both conditions
+  \mdfsetup{%
+      innertopmargin=5pt,linecolor=cyan!20,%
+      linewidth=2pt,topline=true,%
+      frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+  }
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition
+\newenvironment{defn}[2][]{%
+  \refstepcounter{theo}%
+  \ifstrempty{#1}%
+  % if condition (without title)
+  {\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=yellow!40]
+          {\strut Definizione~\thetheo};}
+      }%
+  % else condition (with title)
+  }{\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=yellow!40]
+          {\strut Definizione~\thetheo:~#1};}%
+      }%
+  }%
+  % Both conditions
+  \mdfsetup{%
+      innertopmargin=5pt,linecolor=yellow!40,%
+      linewidth=2pt,topline=true,%
+      frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+  }
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Observation
+\newenvironment{observ}[2][]{%
+  \refstepcounter{theo}%
+  \ifstrempty{#1}%
+  % if condition (without title)
+  {\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=blue!20]
+          {\strut Osservazione~\thetheo};}
+      }%
+  % else condition (with title)
+  }{\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=blue!20]
+          {\strut Osservazione~\thetheo:~#1};}%
+      }%
+  }%
+  % Both conditions
+  \mdfsetup{%
+      innertopmargin=5pt,linecolor=blue!20,%
+      linewidth=2pt,topline=true,%
+      frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+  }
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Example
+\newenvironment{example}[2][]{%
+  \refstepcounter{theo}%
+  \ifstrempty{#1}%
+  % if condition (without title)
+  {\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=red!20]
+          {\strut Esempio~\thetheo};}
+      }%
+  % else condition (with title)
+  }{\mdfsetup{%
+      frametitle={%
+          \tikz[baseline=(current bounding box.east),outer sep=0pt]
+          \node[anchor=east,rectangle,fill=red!20]
+          {\strut Esempio~\thetheo:~#1};}%
+      }%
+  }%
+  % Both conditions
+  \mdfsetup{%
+      innertopmargin=5pt,linecolor=red!20,%
+      linewidth=2pt,topline=true,%
+      frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+  }
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

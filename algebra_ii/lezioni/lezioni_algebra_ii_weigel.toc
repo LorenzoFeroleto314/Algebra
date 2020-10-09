@@ -1,3 +1,2 @@
-\contentsline {section}{\numberline {1}Introduzione}{1}%
-\contentsline {subsection}{\numberline {1.1}Sottosezione}{1}%
-\contentsline {section}{\numberline {2}Altro capitolo}{1}%
+\contentsline {section}{\numberline {1}Complementi di teoria degli anelli}{1}%
+\contentsline {subsection}{\numberline {1.1}Anelli di polinomi in una variabile}{1}%
