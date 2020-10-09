@@ -13,6 +13,8 @@ come la seguente struttura algebrica
 \begin{equation}
 R[x] = \{ f:= \sum\limits_{i=0}^{n}a_i x^i \mid a_i \in R, n\in \N\} 
 \end{equation}
+Sia $f$ un polinomio come quello sopracitato; allora il coefficiente $a_n$ viene chiamato 
+\emph{coefficiente direttivo} di $f$. Se $a_n=1$, allora il polinomio viene detto \emph{monico}.
 \end{defn}
 Notiamo come $x^i$ in questo contesto non e' nient'altro che una indeterminata che
 obbedisce alle proprieta' degli esponenti di una potenza. \\
@@ -43,15 +45,97 @@ tali operazioni di somma e prodotto e' un anello commutativo con elemento neutro
 identicamente nullo $0_{R[x]} = 0_R$ e unita' il polinomio costante $1_{R[x]} = 1_R$.\\
 Definiamo ora un imporante funzione che descrive un polinomio.
 
+%%%%%%%%%%%%%%%
 \newpage
+%%%%%%%%%%%%%%%
 \begin{defn}[Funzione grado; grado di un polinomio]{grado polinomio}
 Sia $R$ un anello commutativo e sia $f(x) = f \in R[x]$ definita come in precedenza. Allora definiamo
 la funzione grado:
-\[
+\begin{equation}
   deg^*(f) := \left\{\begin{array}{lr}
       \max\{k \in \N : a_k \neq 0_R\}, & \text{ se } f(x) \not\equiv 0_R\\
       -\infty, & \text{ se } f(x) \equiv 0_R 
       \end{array}\right\} 
-\]
+\end{equation}
 e il risultato di $deg^*(f)$ come il \emph{grado} del polinomio $f$.
 \end{defn}
+Tale definizinone coincide con quella classica di grado di un polinomio tranne
+nel caso in cui $f(x)$ sia identicamente nullo. 
+
+\begin{example}[Grado di un polinomio]{exmp grad pol}
+Se consideriamo i polinomi $f(x) = x^2 + 1, g(x) = 1 e h(x) = 0, f,g,h \in \Z[x]$, si ha che
+\[deg*(f) = 2,\ deg*(g) = 0,\ deg*(h) = -\infty.\]
+\end{example}
+Per calcolare il grado di un prodotto di un polinomio e' necessario aritmetizzare
+alcuni simboli.
+
+\begin{defn}[$\N_k$, somma in $\N_k \cup \{-\infty\}$]{N_k}
+Poniamo $\N_k := \{z \in \Z \mid z \geq k \in \Z\}$; ad esempio, $N_0 = \{0, 1, 2, \dots\}$.\\
+Definiamo la \emph{somma} in $\N_k \cup \{-\infty\}$
+
+\[+ : \N_k \cup \{-\infty\} \times \N_k \cup \{-\infty\} \to \N_k \cup \{-\infty\},\]
+dove per $n, m \in N_k$, $n+m$ coincide con la somma definita su $\Z$, e
+
+\begin{equation}\label{sum_N_k}
+n + (-\infty) = -\infty + n := -\infty
+\end{equation}
+per ogni $n \in N_k$
+\end{defn}
+Riportiamo ora una definizione precedente discussa nel corso di Algebra I
+
+\begin{defn}[Dominio d'integrita']{dom integrita'}
+Un \emph{dominio d'integrita'} e' un anello commutativo $R$ che soddisfa:
+\begin{enumerate}
+  \item $1_R \neq 0_R$,
+  \item $\forall a,b\ (a, b \in R \land a\cdot b = 0 \Rightarrow (a=0 \lor b=0))$.
+\end{enumerate}
+La seconda condizione e' equivalente ad affermare che $R$ e' privo di divisori dello zero.
+\end{defn}
+Riportiamo alcuni fatti che mettono in relazioni i domini di integrita con i polinomi.
+
+\begin{prop}[]{R dom R[x] e grado}
+Sia $R$ un dominio di integrita'. Allora per ogni $f,g \in R[x]$ vale
+
+\begin{equation}
+deg^*(f\cdot g) = deg^*(f) + deg^*(g).
+\end{equation}
+
+\end{prop}
+\begin{dimostrazione}
+Se $f$ oppure $g$ e' il poliniomio nullo, allora l'uguaglianza e' verificata in seguito a (\ref{sum_N_k}). 
+Supponendo che
+\[f = \sum_{i=0}^{n}r_ix^i,\ g = \sum_{i=0}^{m}s_ix^i \neq 0_{R[x]}\]
+dove $r_n,s_m \neq 0_R$, e poiche' $R$ e' un dominio di integrita', allora
+$r_ns_m \cdot x^{n+m}$ e' il monomio di grado massimo presente nel prodotto $f\cdot g$, quidi
+
+\[deg^*(f \cdot g) = n + m = deg^*(f) + deg^*(g)\]
+\end{dimostrazione}
+
+\begin{prop}[]{R dom allora R[x] dom}
+Se $R$ un dominio di integrita', allora lo e' anche $R[x]$.
+\end{prop}
+\begin{dimostrazione}
+Devono essere soddisfatti i due assiomi di dominio di integrita'.
+Il primo deriva da $1_{R[x]} \equiv 1_R \neq 0_R \equiv 0_{R[x]}$.
+Per il secondo assioma siano $f,g \in R[x]$ tali che $f\cdot g = 0$. Allora 
+\[deg^*(f\cdot g) = -\infty \Longrightarrow (deg^*(f) = -\infty \land f=0_{R[x]}) \lor (deg^*(g) = -\infty \land g=0_{R[x]}) \]
+\end{dimostrazione}
+Grazie alle precedenti proposizioni, denotiamo il gruppo dei polinomi invertibili
+
+\begin{defn}[Gruppo dei polinomi invertibili]{R[x]^x}
+Sia $R$ un dominio di integrita'. Allora possiamo definire
+\[R[x]^{\times} = \{ f \in R[x] \mid \exists g\ (g\in R[x] \land f\cdot g = 1_{R[x]}) \} ,\]
+ovvero il \emph{gruppo degli elementi invertibili} in $R[x]$.
+\end{defn}
+
+\begin{prop}[]{R[x]^x = R^x}
+Sia $R$ un dominio di integrita'. Allora $R[x]^{\times} = R^{\times}$
+\end{prop}
+\begin{dimostrazione}
+Siano $f \in R[x]^{\times}, g \in R[x]$ tali che $f\cdot g = 1_{R[x]}$. 
+Allora dalla proposizione \ref{R dom R[x] e grado} segue che
+\[ deg^*(f) + deg^*(g) = 0 \land deg^*(g) = 0 \Longrightarrow deg^*(f) = 0 \Longrightarrow f\in R[x]\]
+\end{dimostrazione}
+
+
+
