@@ -2,22 +2,31 @@
 \vspace{1.75mm}
 \subsection{Anelli di polinomi in una variabile}
 
-Sia $R$ un anello\footnote{Useremo la convenzione secondo cui gli anelli sono commutativi unitari 
-e $\N=\{1,2,...\}$, $\N_0=\N\cup \{0\}$.} 
-e sia $R[x]=\left\{\sum\limits_{i=0}^n a_i x^i : a_i\in R,\, n\in \N_0\right\}$.
-Presi due elementi $f(x)=\sum\limits_{i=0}^m a_i x^i$ e $g(x)=\sum\limits_{j=0}^n b_j x^j$ di $R[x],$ 
-definiamo le operazioni binarie di somma {\setlength{\belowdisplayskip}{4.5pt} 
-\setlength{\abovedisplayskip}{-3.5pt} 
+Introduciamo la struttura algebrica dei polinomi, ponendo la convenzione che 
+$R$ indichera' un anello commutativo unitario e $\N = \{1,2,\dots\}, N_0 = \N\cup\{0\}$.
 
-\[ f(x)+g(x)=\sum\limits_{i=0}^s (a_i+b_i)x^i \] 
+\begin{defn}[Anello di polinomi in una variabile e operazioni]{anello dei polinomi in una var}
+Sia $R$ un anello commutativo unitario. Denotiamo l'\emph{anello dei polinomi a coefficienti in R
+nella variabile x} come il seguente insieme 
 
-\noindent dove abbiamo posto $s=\max\{m,n\}$ e $a_i=b_j=0_R$ per $i>m$ e $j>n$, e prodotto} 
-{\setlength{\belowdisplayskip}{-3.5pt} \setlength{\abovedisplayskip}{3pt} 
+\[ R[x]:=\left\{\sum\limits_{i=0}^n a_i x^i : a_i\in R,\, n\in \N_0\right\}, \]
 
-\[ f(x)\cdot g(x)=\sum\limits_{k=0}^{m+n}c_k x^k\] 
+\noindent dove sono definite due operazioni binarie interne. \\
+Presi infatti due elementi 
+$f(x)=\sum\limits_{i=0}^m a_i x^i$ e $g(x)=\sum\limits_{j=0}^n b_j x^j$ di $R[x],$ 
+definiamo le operazioni binarie di \emph{somma} 
 
-\noindent dove abbiamo posto $c_k=\sum\limits_{i=0}^{k}a_i b_{k-i}$.
-\footnote{È solo un modo formale per definire il classico prodotto tra polinomi, come chiarificato dall'esempio.}}
+\[ + : R[x] \times R[x] \to R[x],\ f(x)+g(x)=\sum\limits_{i=0}^s (a_i+b_i)x^i \] 
+
+\noindent dove abbiamo posto $s=\max\{m,n\}$ e $a_i=b_j=0_R$ per $i>m$ e $j>n$, e \emph{prodotto}
+
+\[ \cdot : R[x] \times R[x] \to R[x],\ f(x)\cdot g(x)=\sum\limits_{k=0}^{m+n} \left(\sum\limits_{i=0}^{k}a_i b_{k-i}\right) x^k\] 
+\end{defn}
+
+\noindent Come visto nel corso di Algebra I, si verifica facilmente che $R[x]$ dotato di tali operazioni di somma e prodotto 
+è un anello commutativo\footnote{Infatti $a_ib_{k-i}=b_{k-i}a_i$ essendo $R$ un anello commutativo per ipotesi, 
+da cui $f(x)\cdot g(x)=g(x)\cdot f(x)$.} con elemento neutro il polinomio identicamente nullo $0_{R[x]}=0_{R}$ 
+e unità il polinomio costante $1_{R[x]}=1_{R}$. Vediamone qualche esempio.
 
 
 \begin{example}[]{exmp1}
@@ -33,22 +42,12 @@ f(x)\cdot g(x)
 \end{align*}}
 \end{example}
 
-\noindent Come visto nel corso di Algebra I, si verifica facilmente che $R[x]$ dotato di tali operazioni di somma e prodotto 
-è un anello commutativo\footnote{Infatti $a_ib_{k-i}=b_{k-i}a_i$ essendo $R$ un anello commutativo per ipotesi, 
-da cui $f(x)\cdot g(x)=g(x)\cdot f(x)$.} con elemento neutro il polinomio identicamente nullo $0_{R[x]}=0_{R}$ 
-e unità il polinomio costante $1_{R[x]}=1_{R}$. 
-
 \vspace{1.5mm}
 
 \noindent Di qui in seguito, denoteremo il prodotto di polinomi semplicemente come $f(x)g(x)$ o $f\cdot g$.
-
-\begin{defn}[Anellod di polinomi in una variabile]{anello dei polinomi in una var}
-Tale insieme $R[x]$ è detto \underline{anello dei polinomi a coefficienti in $R$ nella variabile $x$}.
-\end{defn}
-
 \noindent Possiamo quindi definire su $R[x]$ il concetto di ``grado'' di un polinomio.
 
-\clearpage
+
 \begin{defn}[Funzione grado; grado di un polinomio]{funzione grado}
 Sia $R$ un anello e sia $f(x)=\sum\limits_{i=0}^n a_i x^i\in R[x]$. 
 La funzione $\deg^{\star}\colon R[x]\to \N_0\cup \{\infty\}$ definita come 
@@ -107,10 +106,10 @@ $ab=0_R$ se e solo se $a=0_R$ o $b=0_R$, da cui anche $R$ non ha divisori dello 
 
 \noindent Osserviamo che $\bf{(\star)}$ non vale quando l'anello $R$ non è un dominio di integrità.
 
-\begin{exm} 
+\begin{example}[]{esempio sul grado}
 Siano $f(x)=2x+1$ e $g(x)=3x+2$ in $\Z/6\Z\,[x]$. Allora, $\deg^{\star}(f)=\deg^{\star}(g)=1$, 
-ma $f(x)g(x)=6x^2+7x+2\equiv_6 x+2$, da cui $\deg^{\star}(f\cdot g)=1\neq 2=\deg^{\star}(f)+\deg^{\star}(g). \ \square$
-\end{exm}
+ma $f(x)g(x)=6x^2+7x+2\equiv_6 x+2$, da cui $\deg^{\star}(f\cdot g)=1\neq 2=\deg^{\star}(f)+\deg^{\star}(g).$
+\end{example}
 
 \noindent Più in generale, se $R$ non è un dominio di integrità, per definizione esistono $a,b\in R$ non nulli 
 tali che $ab=0_R$. Allora, detti $f(x)=ax$ e $g(x)=bx$, si ha $f(x)g(x)=abx^2=0_Rx^2=0_R$, da cui, essendo 
@@ -140,9 +139,10 @@ dunque $(R^{\times},\cdot)$ è effettivamente un gruppo.
 
 \noindent Grazie a tale proposizione, la definizione seguente risulta quindi ben posta.
 
-\begin{defn}[]{defn gruppo moltiplicativo}
-Sia $R$ un anello. L'insieme $R^{\times}$ degli elementi di $R$ che ammettono inverso moltiplicativo è un gruppo detto 
-\underline{gruppo moltiplicativo di $R$}.\footnotemark
+\begin{defn}[Gruppo moltiplicativo di un anello]{defn gruppo moltiplicativo}
+Sia $R$ un anello unitario commutativo. L'insieme $R^{\times}$ degli elementi di $R$ 
+che ammettono inverso moltiplicativo è un gruppo detto 
+\emph{gruppo moltiplicativo di $R$}.\footnotemark
 \end{defn}
 
 \footnotetext{Tale gruppo viene spesso indicato anche con $\mathcal{U}(R)$ o $R^{\star}$ ed è anche detto 
@@ -150,7 +150,7 @@ Sia $R$ un anello. L'insieme $R^{\times}$ degli elementi di $R$ che ammettono in
 
 \noindent Se da una parte la proposizione \ref{prop sul grado} mostra che $R[x]$ può avere la struttura di un dominio di integrità, l'anello dei polinomi $R[x]$ non è mai un campo, nemmeno se lo è $R$ stesso.\footnote{Vedremo nel \emph{Capitolo 1.4} una generalizzazione degli anelli di polinomi con la struttura di un campo.} Infatti, $x\in R[x]$ non è un elemento invertibile perché il suo inverso $1/x$ non è un polinomio.\footnote{Più rigorosamente, se $f(x)=x$ fosse invertibile, esisterebbe $g(x)\in R[x]$ tale che $f(x)g(x)=1_R$, da cui $\deg^{\star}(f\cdot g)=\deg^{\star}(1_R)=0=\deg^{\star}(f)+\deg^{\star}(g)$, cioè $\deg^{\star}(g)=-\deg^{\star}(f)=-1<0$, assurdo.} Risulta quindi naturale chiedersi quali elementi di $R[x]$ siano effettivamente invertibili.
 
-\clearpage
+
 \begin{prop}[]{se R dom R[x] dom}
 Sia $R$ un dominio di integrità. Allora, $R[x]^{\times}=R^{\times}$.
 \end{prop}
@@ -167,7 +167,10 @@ ogni elemento di $R[x]^{\times}$ è in realtà una costante invertibile, cioè
 $R[x]^{\times}\subseteq R^{\times}$, dunque $R[x]^{\times}=R^{\times}$.
 \end{proof}
 
-\noindent Sia $R$ un anello, e supponiamo di voler aggiungere a $R$ un certo elemento $x\notin R$ 
+
+\noindent\emph{\underline{Come esprimere una relazione piu' generica di sottoanello?}}
+\vspace{2mm}\\
+Sia $R$ un anello, e supponiamo di voler aggiungere a $R$ un certo elemento $x\notin R$ 
 senza alcuna relazione con gli altri elementi di $R$, in modo che la struttura algebrica risultante sia ancora un anello 
 e sia la più piccola possibile. Come possiamo fare? 
 \vspace{1.5mm}
@@ -193,8 +196,9 @@ $\C\not\subseteq \operatorname{Mat}_{2\times 2}(\R)$ e $\operatorname{Mat}_{2\ti
 cioè tali anelli non sono confrontabili secondo l'inclusione.} Per risolvere tale problema, 
 ha quindi più senso definire che $R$ è più piccolo di $S$ se e solo se $S$ contiene una copia isomorfa dell'anello $R$, 
 cioè se e solo se esiste un sottanello di $S$ isomorfo a $R$.
+\clearpage
 
-\begin{defn}[]{anello piu piccolo}
+\begin{defn}[Anello piu' piccolo]{anello piu piccolo}
 Siano $R$ e $S$ due anelli. Diciamo che $R$ è \underline{più piccolo} di $S$ (o anche che $S$ contiene $R$) 
 se e solo se esiste un omomorfismo di anelli iniettivo $\varphi \colon R\to S$.
 \end{defn} 
@@ -203,12 +207,13 @@ se e solo se esiste un omomorfismo di anelli iniettivo $\varphi \colon R\to S$.
 (cioè un omomorfismo iniettivo) $\varphi\colon R\to S$, la restrizione $\varphi\colon R\to \varphi(R)$ è un isomorfismo, 
 dunque l'immagine $\varphi(R)\subseteq S$ è un sottoanello di $S$ isomorfo a $R$.
 
-\begin{exm}
+\begin{example}[]{esempio anello piu piccolo}
 Chiaramente $\R$ non è un sottoanello di $\R^2$, in quanto $\R\not\subseteq \R^2$. D'altra parte, la mappa 
 $\varphi\colon \R\to \R^2$, $x\mapsto (x,x)$ è un omomorfismo iniettivo, quindi $\R^2$ contiene una copia isomorfa di $\R$, 
-che geometricamente corrisponde alla bisettrice $y=x. \ \square$\end{exm}
+che geometricamente corrisponde alla bisettrice $y=x$.
+\end{example}
 
-\noindent Tornando al problema iniziale, sia $X$ la struttura algebrica che stiamo cercando di costruire. 
+\noindent\emph{Osservazione.} Tornando al problema iniziale, sia $X$ la struttura algebrica che stiamo cercando di costruire. 
 Allora, possiamo riformulare le condizioni su $X$ come segue:
 
 \begin{itemize}
@@ -218,7 +223,7 @@ con tali proprietà (cioè tale che esista un monomorfismo $\varphi\colon R\to S
 abbiamo che $X$ è più piccolo di $S$, ossia esiste un monomorfismo $\phi\colon X\to S$. 
 \end{itemize}
 
-In particolare, richiediamo che tale mappa $\phi$ soddisfi $\phi(x)=s$ e $\phi(\iota(R))=\varphi(R)$, 
+\noindent In particolare, richiediamo che tale mappa $\phi$ soddisfi $\phi(x)=s$ e $\phi(\iota(R))=\varphi(R)$, 
 cioè che mandi l'elemento aggiunto $x$ nell'elemento aggiunto $s$ e la copia isomorfa $\iota(R)$ di $R$ in $X$ 
 nella copia isomorfa $\varphi(R)$ di $R$ in $S$.
 
@@ -239,7 +244,7 @@ Tale mappa si estende per linearità su tutto $R[x]$ ponendo
 
 $$\phi\left( \sum\limits_{i=0}^n r_ix^i \right)=\sum\limits_{i=0}^n \varphi(r_i)s^i$$ 
 
-ed è facile verificare che $\phi$ sia un monomorfismo.
+\noindent ed è facile verificare che $\phi$ sia un monomorfismo.
 \footnote{Approfondiremo meglio questa questione nel \emph{Capitolo 2.1} quando tratteremo le estensioni di campi.} 
 Più in generale, vale il teorema seguente.
 
@@ -256,16 +261,16 @@ per ogni $r\in R$, quindi $\phi$ soddisfa le condizioni richieste. Mostriamo ora
 
 \[ \phi(f+g)=\sum\limits_{i=0}^{\max\{m,n\}}\varphi(a_i+b_i)s^i=\sum\limits_{i=0}^{m}\varphi(a_i)s^i+\sum\limits_{j=0}^{n}\varphi(b_j)s^j=\phi(f)+\phi(g) \] 
 
-per la distributività del prodotto rispetto alla somma e perché $\varphi(a_i+b_i)=\varphi(a_i)+\varphi(b_i)$, e 
+\noindent per la distributività del prodotto rispetto alla somma e perché $\varphi(a_i+b_i)=\varphi(a_i)+\varphi(b_i)$, e 
 
 \[ \phi(f\cdot g)=\sum\limits_{k=0}^{m+n}\left(\sum\limits_{i=0}^{k}\varphi(a_ib_{k-i})\right)
 s^k=\left(\sum\limits_{i=0}^{m}\varphi(a_i)s^i\right)\left(\sum\limits_{j=0}^{n}\varphi(b_j)s^j\right)=\phi(f)\cdot \phi(g) \] 
 
-per come è definito il prodotto tra polinomi e perché $\varphi(a_ib_{k-i})=\varphi(a_i)\varphi(b_{k-i})$ essendo $\varphi$ 
+\noindent per come è definito il prodotto tra polinomi e perché $\varphi(a_ib_{k-i})=\varphi(a_i)\varphi(b_{k-i})$ essendo $\varphi$ 
 un omomorfismo. Poiché $\phi(0_{R[x]})=\varphi(0_R)=0_S$ e $\phi(1_{R[x]})=\varphi(1_R)=1_S,$ 
 concludiamo che tale mappa $\phi$ è effettivamente un omomorfismo di anelli.
 
-\vspace{1mm}
+\vspace{2mm}
 
 \noindent Mostriamo ora che $\phi$ è unico. Sia $\psi\colon R[x]\to S$ un altro omomorfismo di anelli 
 tale che $\psi(x)=s$ e $\psi \raisebox{-.5em}{$\vert_{R}$}= \varphi$. 
@@ -274,7 +279,7 @@ Poiché $\psi$ preserva le operazioni, per ogni $f(x)=\sum\limits_{i=0}^m a_i x^
 \[ \psi(f) = \psi\left( \sum\limits_{i=0}^m a_i x^i \right) = 
 \sum\limits_{i=0}^m \psi(a_i) \psi(x^i)=\sum\limits_{i=0}^m \varphi(a_i) \psi(x)^i=\sum\limits_{i=0}^m \varphi(a_i) s^i=\phi(f) \] 
 
-essendo $\psi(a_i)=\varphi(a_i)$ perché $a_i\in R$ e $\psi(x^i)=\psi(x)^i=s^i$. 
+\noindent essendo $\psi(a_i)=\varphi(a_i)$ perché $a_i\in R$ e $\psi(x^i)=\psi(x)^i=s^i$. 
 Dunque, $\psi$ coincide con $\phi$ per ogni polinomio $f(x)\in R[x]$, da cui $\phi$ è unico.
 \end{proof}
 
@@ -283,17 +288,19 @@ la mappa $\phi$ di cui sopra viene spesso denotata con $\phi_s$.
 In questo caso, $\phi_s(f)$ non è altro che il polinomio $f(x)$ calcolato in $x=s$, 
 cioè $\phi_s(f)=f(s)$, il che spiega l'origine del nome ``valutazione in $s$'' per tale mappa.
 
-\begin{defn}[]{valutazione polinomio}
-Tale omomorfismo di anelli $\phi_s$ è detto \underline{valutazione in $s$}.
+\vspace{3mm}
+\begin{defn}[Valutazione di un polinomio]{valutazione polinomio}
+Tale omomorfismo di anelli $\phi_s$ è detto \emph{valutazione in $s$}.
 \end{defn}
+\clearpage
 
-\begin{exm}
+\begin{example}[]{esempio valutazione polinomio}
 Se $R=\Z$, $S=\Z[\sqrt{2}\,]$ e $f(x)=x^2+2x+3\in \Z[x]$, detta $\phi_{\sqrt{2}}\colon \Z[x]\to \Z[\sqrt{2}\,]$ 
-la valutazione in $\sqrt{2}$, abbiamo che $\phi_{\sqrt{2}}(f)=(\sqrt{2})^2+2\sqrt{2}+3=5+2\sqrt{2}\in \Z[\sqrt{2}\,]. \ \square$
-\end{exm}
+la valutazione in $\sqrt{2}$, abbiamo che $\phi_{\sqrt{2}}(f)=(\sqrt{2})^2+2\sqrt{2}+3=5+2\sqrt{2}\in \Z[\sqrt{2}\,]$.
+\end{example}
 
-\noindent Vogliamo ora dimostrare che la \emph{Proprietà universale} è una caratteristica propria degli anelli di polinomi, 
-cioè che se $T$ è un anello contenente sia $R$ che un elemento $t\notin R$ e dotato della \emph{Proprietà universale}, 
+\noindent Vogliamo ora dimostrare che la \emph{proprietà universale} è una caratteristica propria degli anelli di polinomi, 
+cioè che se $T$ è un anello contenente sia $R$ che un elemento $t\notin R$ e dotato della \emph{proprietà universale}, 
 allora $T\cong R[x]$. Nella dimostrazione ci limiteremo al caso in cui $R\subseteq T$ e $\varphi=\id_R$ (e quindi $R\subseteq S$), 
 ma il caso generale è del tutto analogo.
 
@@ -305,7 +312,7 @@ $\psi \colon T\to S$ con $\psi(t)=s$ e $\psi \raisebox{-.5em}{$\vert_{R}$}= \id_
 \vspace{-4mm}
 \begin{proof}Poiché per ipotesi tale proprietà vale per ogni anello $S\supseteq R$, 
 in particolare scegliamo $S=R[s]$ e siano $\phi_t\colon R[s]\to T$ la valutazione in $t$
-\footnote{Ricordiamo che per il \emph{Teorema 1.1.4} tale omomorfismo è l'unico che soddisfa 
+\footnote{Ricordiamo che per il \emph{Teorema \ref{proprieta universale}} tale omomorfismo è l'unico che soddisfa 
 $\phi_t(s)=t$ e $\phi_t \raisebox{-.5em}{$\vert_{R}$}= \operatorname{id}_R$.} e $\alpha=\phi_t\circ \psi\colon T\to T$. 
 \vspace{-2mm}
 \[
