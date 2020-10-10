@@ -16,11 +16,11 @@ Presi infatti due elementi
 $f(x)=\sum\limits_{i=0}^m a_i x^i$ e $g(x)=\sum\limits_{j=0}^n b_j x^j$ di $R[x],$ 
 definiamo le operazioni binarie di \emph{somma} 
 
-\[ + : R[x] \times R[x] \to R[x],\ f(x)+g(x)=\sum\limits_{i=0}^s (a_i+b_i)x^i \] 
+\[ + : R[x] \times R[x] \to R[x],\ f(x)+g(x)=\sum\limits_{i=0}^s (a_i+b_i)x^i, \] 
 
 \noindent dove abbiamo posto $s=\max\{m,n\}$ e $a_i=b_j=0_R$ per $i>m$ e $j>n$, e \emph{prodotto}
 
-\[ \cdot : R[x] \times R[x] \to R[x],\ f(x)\cdot g(x)=\sum\limits_{k=0}^{m+n} \left(\sum\limits_{i=0}^{k}a_i b_{k-i}\right) x^k\] 
+\[ \cdot : R[x] \times R[x] \to R[x],\ f(x)\cdot g(x)=\sum\limits_{k=0}^{m+n} \left(\sum\limits_{i=0}^{k}a_i b_{k-i}\right) x^k.\] 
 \end{defn}
 
 \noindent Come visto nel corso di Algebra I, si verifica facilmente che $R[x]$ dotato di tali operazioni di somma e prodotto 
@@ -66,8 +66,10 @@ Tale notazione serve per non confondere un polinomio costante $p(x)\equiv 0$ con
 $f(x)$ sia identicamente nullo. Infatti, per questa definizione $f(x)\equiv 0_R$ è l'unico polinomio di grado infinito, 
 mentre secondo quella classica anch'esso ha grado $0$ in quanto costante. 
 
-\begin{exm}Se consideriamo i polinomi $f(x)=x^2+1,$ $g(x)\equiv 1$ e $h(x)\equiv 0$ in $\Z[x]$, 
-si ha che $\deg^{\star}(f)=2$ e $\deg^{\star}(g)=0,$ ma $\deg^{\star}(h)=\infty. \ \square$\end{exm}
+\begin{example}[]{esempio polinomi}
+Se consideriamo i polinomi $f(x)=x^2+1,$ $g(x)\equiv 1$ e $h(x)\equiv 0$ in $\Z[x]$, 
+si ha che $\deg^{\star}(f)=2$ e $\deg^{\star}(g)=0,$ ma $\deg^{\star}(h)=\infty$.
+\end{example}
 
 \noindent Possiamo ora dimostrare un risultato che mette in relazione l'anello dei polinomi con quello dei suoi coefficienti, 
 nel caso in cui quest'ultimo sia un dominio di integrità.
