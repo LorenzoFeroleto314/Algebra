@@ -1,0 +1,133 @@
+
+\subsection{Anelli di polinomi in $n$ variabili}
+
+\noindent Vogliamo ora estendere il concetto di anello di polinomi ad un numero finito di variabili.
+
+\begin{defn}[Insieme dei monomi in $n$ variabili]{monomi in n variabili}
+Sia $n$ un intero positivo. Denotiamo con $M=\operatorname{mon}\{x_1,...\,,x_n\}$ l'\underline{insieme dei monomi} 
+\underline{nelle variabili $x_1,...\,,x_n$}, cioè $M=\{x_1^{\alpha_1}\cdot ...\cdot x_n^{\alpha_n}: \alpha_i\in\mathbb{N}_0\}$.
+\end{defn} 
+\vspace{-2mm}
+\noindent Presi due elementi $u=x_1^{\alpha_1}\cdot ...\cdot x_n^{\alpha_n}$ e $v=x_1^{\beta_1}\cdot ...\cdot x_n^{\beta_n}$ di $M$, 
+è possibile definire su $M$ un'operazione binaria corrispondente al prodotto di monomi: 
+
+\[ u\cdot v=x_1^{\alpha_1+\beta_1}\cdot ...\cdot x_n^{\alpha_n+\beta_n}.\] 
+
+Osserviamo che $M$ dotato di tale operazione è un monoide commutativo. Infatti,
+
+\begin{itemize}
+\item $u\cdot v=x_1^{\alpha_1+\beta_1}\cdot ...\cdot x_n^{\alpha_n+\beta_n}\in M$ perché $\alpha_i+\beta_i\in \mathbb{N}_0$, 
+cioè $M$ è chiuso rispetto a $\cdot$
+\item tale operazione agisce sugli esponenti delle variabili $x_1, ...\,,x_n$ mediante la somma, ed essendo tali esponenti in $\mathbb{N}_0$ 
+e la somma associativa su $\mathbb{N}_0$, anche $\cdot$ è associativo
+\item esiste un elemento neutro $1_{M}=x_1^0\cdot ... \cdot x_n^0\in M$
+\item $u\cdot v=x_1^{\alpha_1+\beta_1}\cdot ...\cdot x_n^{\alpha_n+\beta_n}=x_1^{\beta_1+\alpha_1}\cdot ...\cdot x_n^{\beta_n+\alpha_n}=v\cdot u$, 
+cioè $M$ è commutativo.
+\end{itemize}
+
+\noindent Per semplicità di notazione, sia $I_n=\{1,...\,,n\}$ e sia $\valpha \colon I_n\to\mathbb{N}_0$ 
+la funzione che associa alla $i$-esima variabile $x_i$ l'esponente $\underline{\alpha}(i)=\alpha_i$. 
+Denotiamo con $x^{\valpha}=x_1^{\alpha_1}\cdot ... \cdot x_n^{\alpha_n}\in M$. 
+
+\begin{exm}
+Se $M=\operatorname{mon}\{x_1,x_2,x_3,x_4\}$ e $\valpha\colon \{1,2,3,4\}\to \mathbb{N}_0$ è la funzione definita 
+come $\valpha(1)=2$, $\valpha(2)=\valpha(3)=1$ e $\valpha(4)=0$, abbiamo che $x^{\valpha}=x_1^2 x_2^1 x_3^1 x_4^0=x_1^2 x_2 x_3\in M.$
+\end{exm}
+
+\noindent Detto $\mathcal{F}=\mathcal{F}(I_n, \mathbb{N}_0)$ l'insieme delle funzioni $\valpha \colon I_n\to\mathbb{N}_0$,
+\footnote{In generale, dati due insiemi $X$ e $Y$, si denota con $\mathcal{F}(X,Y)$ l'insieme di tutte le funzioni $f\colon X\to Y$.} 
+vi è una corrispondenza biunivoca tra $\mathcal{F}$ e l'insieme dei monomi $M$. 
+Infatti, ogni monomio $x_1^{\alpha_1}\cdot ...\cdot x_n^{\alpha_n}$ corrisponde in modo naturale all'unica funzione 
+$\valpha\in\mathcal{F}$ tale che $\valpha(i)=\alpha_i$ per ogni $i\in I_n$, e ogni funzione $\vbeta \in\mathcal{F}$ 
+rappresenta univocamente il monomio $x_1^{\vbeta(1)}\cdot ... \cdot x_n^{\vbeta(n)}\in M$.
+
+\vspace{1.5mm}
+
+\noindent Prima di procedere nella costruzione dei polinomi nelle variabili $x_1,...\,,x_n$, 
+richiamiamo un importante concetto derivante dalla topologia e alcune sue proprietà.
+
+\begin{defn}[Supporto di una funzione]{supp di una funzione}
+Siano $X$ e $Y$ insiemi non vuoti e sia $f\colon X\to Y$ una funzione. Si definisce \underline{supporto di $f$} l'insieme 
+$\supp(f)=\left\{x\in X: f(x)\neq 0_Y \right\}$. Se $|\supp(f)|<\infty$, diciamo che f ha supporto \emph{finito}.
+\end{defn}
+
+\noindent Si osservi che tale definizione ha senso solo se 
+l'insieme $Y$ contiene un elemento neutro $0_Y$: nel nostro caso, avendo a che fare con anelli, 
+3è naturale identificare tale elemento con l'elemento neutro dell'addizione.
+
+\begin{example}[]{esempio supporto di f}
+\begin{enumerate}
+\item Sia $f\colon \mathbb{Z}\to\mathbb{R}$ la funzione $f(x)=x^2-1$. Allora, $\supp(f)=\mathbb{Z}\setminus\{\pm 1\}.$
+\item Se $f\colon \operatorname{Mat}_{2\times 2}(\mathbb{F}_2)\to \mathbb{F}_2$ è il determinante, 
+allora $f$ ha supporto finito perché $\supp(f)=\mathrm{GL}(2,\mathbb{F}_2)\footnotemark = 
+\left\{ 
+  \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, 
+  \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}, 
+  \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, 
+  \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}, 
+  \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, 
+  \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix} \right\} $
+\end{enumerate}
+\end{example}
+\footnotetext{Ricordiamo che $\mathrm{GL}(n,\mathbb{K})$ è il gruppo delle matrici $n\times n$ invertibili con entrate nel campo $\mathbb{K}$.}
+
+%%%%%%%%%%%qua
+
+\begin{prop}[1.2.1]{} 
+Siano $f,\,g\colon X\to Y$ funzioni e siano $(f+g)(x)=f(x)+g(x)$ e $(f\cdot g)(x)=f(x)\cdot g(x)$. Allora, $\supp(f+g)\subseteq [\supp(f)\cup \supp(g)]$ e $\supp(f\cdot g)\subseteq [\supp(f)\cap \supp(g)]$. \end{prop}
+\vspace{-4mm}
+\begin{proof}
+Osserviamo che se $x\in \supp(f+g)$, allora per definizione $f(x)+g(x)\neq 0_Y$, cioè almeno uno tra $f(x)$ e $g(x)$ è non nullo e quindi $x\in [\supp(f)\cup \supp(g)]$. 
+
+\noindent Analogamente, se $x\in \supp(f\cdot g)$, per definizione abbiamo che $f(x)\cdot g(x)\neq 0_Y$, dunque $f(x)\neq 0_Y$ e $g(x)\neq 0_Y$, ossia $x\in [\supp(f)\cap \supp(g)]$.
+\end{proof}
+
+\begin{exm}Siano $f,\,g\colon \mathbb{Z}\to\mathbb{R}$ le funzioni $f(x)=x^2-3x+2$ e $g(x)=x^2+x-2$. Allora, è evidente che $\supp(f)=\mathbb{Z}\setminus\{ 1,2\}$ e $\supp(g)=\mathbb{Z}\setminus \{ 1,-2 \}$, ed essendo $(f+g)(x)=2x^2-2x$ e $(f\cdot g)(x)=(x-1)^2(x-2)(x+2)$, abbiamo che $$\supp(f+g)=\mathbb{Z}\setminus\{0,1\}\subseteq \mathbb{Z}\setminus\{1\} = \supp(f)\cup\supp(g)$$ $$\supp(f\cdot g)=\mathbb{Z}\setminus \{1,\pm 2\} = \supp(f)\cap\supp(g)$$ in accordo con la \emph{Proposizione 1.2.1}. $\square$\end{exm}
+
+\noindent Sia $R$ un anello e sia $\mathcal{F}^{\times}(\mathcal{F},R)=\left\{ \rbar\,\colon \mathcal{F}\to R : |\operatorname{supp}(\rbar\,)|<\infty \right\}$, cioè l'insieme di tutte le funzioni $\rbar$ che associano ad ogni funzione $\valpha\in\mathcal{F}$ un elemento $r_{\valpha}\in R$ e che sono diverse dall'elemento neutro $0_R$ solo per un numero finito di elementi di $\mathcal{F}$. Possiamo quindi definire un polinomio nelle variabili $x_1,...\,,x_n$ ponendo \[ f(x_1,...\,,x_n)=\sum\limits_{\valpha\in \mathcal{F}}r_{\valpha} x^{\valpha}.\] Infatti, $f(x_1,...\,,x_n)$ risulta essere la somma di un numero finito di monomi non nulli, ognuno con il relativo coefficiente $r_{\valpha}$. Questo punto è fondamentale: abbiamo scelto $\rbar \in \mathcal{F}^{\times}(\mathcal{F},R)$ con supporto finito così che soltanto un numero finito degli infiniti monomi di $M$ abbia un coefficiente $r_{\valpha}\neq 0_R$. Così facendo, nella sommatoria vi è solo un numero finito di elementi perché tutti gli infiniti altri sono nulli, dunque $f$ è effettivamente un polinomio.
+
+\begin{exm}Siano $M=\operatorname{mon}\{x,y\}$ e $R=\mathbb{Z}$. Detta $\rbar\,\colon \mathcal{F}\to \mathbb{Z}$ la funzione \[r_{\valpha} = \begin{cases}2\valpha(1)-\valpha(2) \text{ \ se } \valpha(1)+\valpha(2)=3 \\ 0 \text{ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ altrimenti}\end{cases}\] al variare di $\valpha\in\mathcal{F}= \mathcal{F}(I_2,\mathbb{N}_0)$, essendo $\valpha(1)\geq 0$ e $\valpha(2)\geq 0$, è evidente che esista solo un numero finito di funzioni $\valpha\in \mathcal{F}$ per cui $\valpha(1)+\valpha(2)=3$. In tutti gli altri casi abbiamo che $r_{\valpha}=0$, quindi $\rbar$ ha supporto finito, cioè $\rbar\in\mathcal{F}^{\times}(\mathcal{F},R)$. Se identifichiamo $\valpha$ con la coppia $(\alpha_1,\alpha_2)=(\valpha(1),\,\valpha(2))$,\footnote{Infatti $\mathcal{F}(I_n,\mathbb{N}_0)\cong \mathbb{N}_0^n$ mediante l'isomorfismo $\varphi\colon \mathcal{F}(I_n,\mathbb{N}_0)\to \mathbb{N}_0^n$, $\valpha \mapsto (\valpha(1),...\,,\valpha(n))$.} possiamo quindi definire il polinomio \begin{align*}f(x,y) &= \sum\limits_{\valpha\in \mathcal{F}}r_{(\alpha_1,\alpha_2)} x^{\alpha_1}y^{\alpha_2} \\ &= r_{(3,0)}x^3y^0+r_{(2,1)}x^2y^1+r_{(1,2)}x^1y^2+r_{(3,0)}x^3y^0+...\,\footnotemark \\ &= (2\cdot 3-0)x^3+(2\cdot 2-1)x^2y+(2\cdot 1-2)xy^2+(2\cdot 0-3)y^3 \\ &= 6x^3+3x^2y-3y^3.\ \square\end{align*}\end{exm}\footnotetext{Tutti gli altri termini della sommatoria sono nulli perché $\valpha(1)+\valpha(2)\neq 3$ e quindi, per come abbiamo definito $\rbar\,$, il coefficiente del monomio $x^{\alpha_1}y^{\alpha_2}$ è $r_{\valpha}=0$.}
+
+\clearpage
+
+\noindent Possiamo procedere nella costruzione dell'anello dei polinomi nelle variabili $x_1,...\,,x_n$. Detto $$R[x_1,...\,,x_n]=\left\{ \sum\limits_{\valpha\in \mathcal{F}} r_{\valpha} x^{\valpha} : \rbar \in \mathcal{F}^{\times}(\mathcal{F},R) \right\}$$ vogliamo quindi introdurre su tale insieme delle operazioni binarie di somma e prodotto così che esso sia effettivamente un anello. Presi due elementi $$f(x_1,...\,,x_n) = \sum\limits_{\valpha\in \mathcal{F}}r_{\valpha} x^{\valpha} \ \ \text{ e } \ \ g(x_1,...\,,x_n)=\sum\limits_{\vbeta\in \mathcal{F}}s_{\vbeta} x^{\vbeta}$$ di $R[x_1,...\,,x_n]$, definiamo le operazioni di somma e prodotto $$f(x_1,...\,,x_n)+g(x_1,...\,,x_n)=\sum\limits_{\valpha\in \mathcal{F}}(r_{\valpha}+s_{\valpha}) x^{\valpha}$$ $$f(x_1,...\,,x_n)\cdot g(x_1,...\,,x_n)=\sum\limits_{\vgamma \in \mathcal{F}}t_{\vgamma}x^{\vgamma}$$ dove abbiamo posto $t_{\vgamma}=\sum\limits_{\valpha+\vbeta=\vgamma} r_{\valpha}s_{\vbeta}$. Anche in questo caso, tali operazioni non sono altro che la formalizzazione delle usuali operazioni di somma e prodotto tra polinomi. 
+
+\begin{prop}[1.2.2]{} 
+Tali operazioni di somma e prodotto su $R[x_1,...\,,x_n]$ sono ben poste.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Nel caso della somma, è sufficiente mostrare che $(\rbar + \sbar\,) \in \mathcal{F}^{\times}(\mathcal{F},R)$, cioè che la somma di due funzioni in $\mathcal{F}^{\times}(\mathcal{F},R)$ è ancora una funzione in $\mathcal{F}^{\times}(\mathcal{F},R)$. Osserviamo che $(\rbar + \sbar\,)(\valpha)=r_{\valpha}+s_{\valpha}\in R$ per ogni $\valpha\in \mathcal{F}$ essendo $r_{\valpha}, s_{\valpha}\in R$ e $R$ chiuso rispetto alla somma in quanto anello, quindi $\rbar + \sbar$ è effettivamente una funzione da $\mathcal{F}$ in $R$. Inoltre, per la \emph{Proposizione 1.2.1} si ha che $$\supp(\rbar+\sbar\,)\subseteq [\supp(\rbar\,) \cup \supp(\sbar\,)]$$ e tale insieme è finito poiché unione di insiemi finiti. Dunque, $\rbar + \sbar$ ha supporto finito, da cui concludiamo che $(\rbar + \sbar\,) \in \mathcal{F}^{\times}(\mathcal{F},R)$, cioè che $\mathcal{F}^{\times}(\mathcal{F},R)$ è chiuso rispetto alla somma.
+
+\vspace{1.5mm}
+
+\noindent Nel caso del prodotto, dobbiamo mostrare che $\tbar\in \mathcal{F}^{\times}(\mathcal{F},R)$. Osserviamo innanzitutto che per ogni $\vgamma\in \mathcal{F}$ fissato, la somma $$t_{\vgamma} = \sum\limits_{\valpha+\vbeta=\vgamma} r_{\valpha}s_{\vbeta}$$ contiene un numero finito di addendi. Infatti, la condizione $\vgamma=\valpha+\vbeta\Rightarrow \vgamma(i)=\valpha(i)+\vbeta(i)$ per ogni $i\in I_n$ implica che $0\leq \valpha(i) \leq \vgamma(i)$, dunque abbiamo un numero finito di scelte per ogni $\valpha(i)$ e quindi anche per $\valpha$. Essendo $t_{\vgamma}$ la somma di un numero finito di prodotti $r_{\valpha}s_{\vbeta}\in R$, anche $t_{\vgamma}\in R$ per ogni $\vgamma\in \mathcal{F}$, cioè $\tbar$ è effettivamente una funzione da $\mathcal{F}$ in $R$. Infine, osserviamo che sempre per la \emph{Proposizione 1.2.1} si ha che $$\supp(\rbar\cdot \sbar\,)\subseteq [\supp(\rbar\,) \cap \supp(\sbar\,)]$$ dove tale insieme è finito poiché intersezione di insiemi finiti, quindi $(\rbar\cdot \sbar\,) \in \mathcal{F}^{\times}(\mathcal{F},R)$. Dunque, $\tbar$ è la somma di un numero finito di funzioni in $\mathcal{F}^{\times}(\mathcal{F},R)$, e avendo mostrato sopra che $\mathcal{F}^{\times}(\mathcal{F},R)$ è chiuso rispetto alla somma, concludiamo che $\tbar\in \mathcal{F}^{\times}(\mathcal{F},R)$.
+\end{proof}
+
+\clearpage
+
+\noindent Per semplicità di notazione denoteremo di qui in seguito gli elementi di $R[x_1,...\,,x_n]$ come $f$, $g$, eccetera, dove si intende che $f=f(x_1,...\,,x_n),$ $g=g(x_1,...\,,x_n)$ e così via. Possiamo quindi finalmente dimostrare la proposizione seguente.
+
+\begin{prop}[1.2.3]{}
+Sia $R$ un anello commutativo. Allora, $R[x_1,...\,,x_n]$ dotato di tali operazioni di somma e prodotto è un anello commutativo.
+\end{prop}
+\vspace{-3mm}
+\begin{proof}Siano $f=\sum\limits_{\valpha\in \mathcal{F}} r_{\valpha}x^{\valpha}\,, \ g=\sum\limits_{\vbeta\in \mathcal{F}} s_{\vbeta}x^{\vbeta}\,$ e $h=\sum\limits_{\vgamma\in \mathcal{F}} t_{\vgamma}x^{\vgamma}\,$ elementi di $R[x_1,...\,,x_n].$ Osserviamo innanzitutto che \begin{align*}\left(f+g\right)+h &= \sum\limits_{\valpha\in \mathcal{F}}(r_{\valpha}+s_{\valpha}) x^{\valpha} + \sum\limits_{\vgamma\in \mathcal{F}} t_{\vgamma}x^{\vgamma} = \sum\limits_{\valpha\in \mathcal{F}}(r_{\valpha}+s_{\valpha}+t_{\valpha}) x^{\valpha} \\ &= \sum\limits_{\valpha\in \mathcal{F}} r_{\valpha}x^{\valpha}+ \sum\limits_{\vbeta\in \mathcal{F}}(s_{\vbeta}+t_{\vbeta}) x^{\vbeta}=f+\left(g+h\right)\end{align*} da cui la somma è associativa. Poiché $(R,+)$ è abeliano, $r_{\valpha}+s_{\valpha}=s_{\valpha}+r_{\valpha},$ quindi \[ f+g = \sum\limits_{\valpha\in \mathcal{F}}(r_{\valpha}+s_{\valpha}) x^{\valpha}=\sum\limits_{\valpha\in \mathcal{F}}(s_{\valpha}+r_{\valpha}) x^{\valpha}=g+f\] da cui anche $(R[x_1,...\,,x_n],+)$ è un gruppo abeliano con elemento neutro $\sum\limits_{\valpha\in \mathcal{F}} 0_{\valpha}x^{\valpha}=0_R,$ dove $0_{\valpha}=0_R$ $\forall \valpha\in \mathcal{F}$ è la funzione nulla, e opposto $-f=\sum\limits_{\valpha\in \mathcal{F}} -r_{\valpha}x^{\valpha}$. Inoltre, \begin{align*}\left(f\cdot g\right) \cdot h &= \sum\limits_{\vdelta\in \mathcal{F}}\, \sum\limits_{\valpha+\vbeta=\vdelta} r_{\valpha}s_{\vbeta} \ x^{\vdelta}\,\cdot\,\sum\limits_{\vgamma\in \mathcal{F}} t_{\vgamma}x^{\vgamma}=\sum\limits_{\vepsilon\in \mathcal{F}} \, \sum\limits_{\vdelta+\vgamma=\vepsilon} \, \sum\limits_{\valpha+\vbeta=\vdelta} r_{\valpha}s_{\vbeta}t_{\vgamma} \ x^{\vepsilon} \\ &= \sum\limits_{\vepsilon\in \mathcal{F}} \,\sum\limits_{\valpha+\vbeta+\vgamma=\vepsilon} r_{\valpha}s_{\vbeta}t_{\vgamma} \ x^{\vepsilon} = \sum\limits_{\valpha\in \mathcal{F}} r_{\valpha}x^{\valpha} \, \cdot \, \sum\limits_{\vdelta\in \mathcal{F}}\, \sum\limits_{\vbeta+\vgamma=\vdelta} s_{\vbeta}t_{\vgamma} \ x^{\vdelta}=f\cdot \left(g\cdot h\right)\end{align*} da cui il prodotto è associativo. Essendo $R$ commutativo, $r_{\valpha}s_{\vbeta}=s_{\vbeta}r_{\valpha}$ e quindi \[ f\cdot g=\sum\limits_{\vdelta\in \mathcal{F}}\, \sum\limits_{\valpha+\vbeta=\vdelta} r_{\valpha}s_{\vbeta} \ x^{\vdelta}=\sum\limits_{\vdelta\in \mathcal{F}}\, \sum\limits_{\vbeta+\valpha=\vdelta} s_{\vbeta}r_{\valpha} \ x^{\vdelta}=g\cdot f\] da cui anche $R[x_1,...\,,x_n]$ è commutativo con unità $\sum\limits_{\valpha\in\mathcal{F}} 1_{\valpha}x^{\valpha}=1_R$ dove $1_{\valpha}$ è la funzione che vale $1_R$ per $\valpha=\underline{0}$ e $0_R$ per ogni altro $\valpha \in \mathcal{F}$.\footnote{Chiaramente si intende che $x^{\underline{0}}=x_1^0\cdot ...\cdot x_n^0=1_R\cdot ...\cdot 1_R=1_R$.} Infine, \begin{align*}\left(f+g\right) \cdot h &= \sum\limits_{\valpha\in \mathcal{F}}(r_{\valpha}+s_{\valpha}) x^{\valpha} \, \cdot \, \sum\limits_{\vgamma\in \mathcal{F}} t_{\vgamma}x^{\vgamma}= \sum\limits_{\vdelta\in \mathcal{F}}\, \sum\limits_{\valpha+\vgamma=\vdelta} (r_{\valpha}+s_{\valpha})t_{\vgamma} \ x^{\vdelta} \\ &= \sum\limits_{\vdelta\in \mathcal{F}}\, \sum\limits_{\valpha+\vgamma=\vdelta} r_{\valpha}t_{\vgamma} \ x^{\vdelta}\,+\,\sum\limits_{\vdelta\in \mathcal{F}}\, \sum\limits_{\valpha+\vgamma=\vdelta} s_{\valpha}t_{\vgamma} \ x^{\vdelta} = f\cdot h+g\cdot h\end{align*} dunque vale la proprietà distributiva e $(R[x_1,...\,,x_n],+,\cdot)$ è un anello commutativo.\end{proof}
+
+\begin{defn}[]{}
+Sia $R$ un anello commutativo e sia $n$ un intero positivo. Allora, l'insieme $R[x_1,...\,,x_n]$ è detto \underline{anello dei polinomi a coefficienti in $R$ nelle variabili $x_1,...\,,x_n$}.
+\end{defn}
+
+\noindent Anche per gli anelli di polinomi in $n$ variabili vale il corrispondente della \emph{Proprietà universale}, che per semplicità ci limiteremo a dimostrare nel caso in cui $R\subseteq S$.
+
+\begin{teo}[1.2.4: Proprietà universale]{}
+Sia $R$ un anello commutativo. Allora, per ogni anello commutativo $S\supseteq R$ e per ogni $\underline{s}=(s_1,...\,,s_n)\in S^n$ esiste un unico omomorfismo di anelli $\phi_{\underline{s}}\colon R[x_1, ...\, ,x_n]\to S$ tale che $\phi_{\underline{s}} (x_i)=s_i$ per ogni $i=1,...\,,n$ e $\phi_{\underline{s}} \raisebox{-.5em}{$\vert_{R}$}= \operatorname{id}_R$.
+\end{teo}
+\vspace{-3.5mm}
+\begin{proof}Siano $f=\sum\limits_{\valpha\in \mathcal{F}} r_{\valpha}x^{\valpha}\,$ e $g=\sum\limits_{\vbeta\in \mathcal{F}} t_{\vbeta}x^{\vbeta}\,$ due elementi di $R[x_1,...\,,x_n].$ Per ogni monomio $x^{\valpha}\in M$ definiamo $\phi_{\underline{s}}(x^{\valpha})=\prod\limits_{i=1}^n s_i^{\alpha_i}$, e sia quindi $\phi_{\underline{s}}(f)=\sum\limits_{\valpha\in \mathcal{F}} r_{\valpha}\phi_{\underline{s}}(x^{\valpha}).$ Osserviamo innanzitutto che $\phi_{\underline{s}}(f)$ è ben definita. Infatti, $r_{\valpha}\in R\subseteq S$ e $\phi_{\underline{s}}(f)\in S$ perché somma di prodotti di elementi dell'anello $S$, che è chiuso rispetto a somma e prodotto. Inoltre, $\phi_{\underline{s}}(x_i)=s_i$ e $\phi_{\underline{s}}(\rho)=\rho$ per ogni $\rho\in R,$ quindi $\phi_{\underline{s}}$ soddisfa le condizioni richieste. Mostriamo ora che $\phi_{\underline{s}}$ preserva le operazioni. Infatti, $$\phi_{\underline{s}}\left(f+g\right)=\sum\limits_{\valpha\in \mathcal{F}}(r_{\valpha}+t_{\valpha}) \phi_{\underline{s}}(x^{\valpha})=\sum\limits_{\valpha\in \mathcal{F}}r_{\valpha}\phi_{\underline{s}}(x^{\valpha})+\sum\limits_{\valpha\in \mathcal{F}}t_{\valpha} \phi_{\underline{s}}(x^{\valpha})=\phi_{\underline{s}}(f)+\phi_{\underline{s}}(g)$$ per la proprietà distributiva del prodotto rispetto alla somma, essendo $S$ un anello, e $$\phi_{\underline{s}}(f\cdot g)=\sum\limits_{\vgamma\in \mathcal{F}} \sum\limits_{\valpha+\vbeta=\vgamma} r_{\valpha}t_{\vbeta} \ \phi_{\underline{s}}(x^{\vgamma})=\left(\sum\limits_{\valpha\in \mathcal{F}} r_{\valpha}\phi_{\underline{s}}(x^{\valpha})\right)\cdot \left(\sum\limits_{\vbeta\in \mathcal{F}} t_{\vbeta}\phi_{\underline{s}}(x^{\vbeta})\right)=\phi_{\underline{s}}(f)\cdot \phi_{\underline{s}}(g)$$ perché $\phi_{\underline{s}}(x^{\vgamma})=\prod\limits_{i=1}^n s_i^{\gamma_i}=\prod\limits_{i=1}^n s_i^{\alpha_i+\beta_i}=\prod\limits_{i=1}^n s_i^{\alpha_i}\cdot \prod\limits_{i=1}^n s_i^{\beta_i}=\phi_{\underline{s}}(x^{\valpha})\cdot \phi_{\underline{s}}(x^{\vbeta})$. Poiché $\phi_{\underline{s}}(0_R)=0_S$ e $ \phi_{\underline{s}}(1_R)=1_S$, concludiamo che tale mappa $\phi_{\underline{s}}$ è effettivamente un omomorfismo di anelli.
+
+\vspace{2mm}
+
+\noindent Mostriamo ora che $\phi_{\underline{s}}$ è unico. Sia $\psi\colon R[x_1,...\,,x_n]\to S$ un altro omomorfismo di anelli tale che $\psi(x_i)=s_i$ per ogni $i=1,...\,,n$ e $\psi \raisebox{-.5em}{$\vert_{R}$}= \operatorname{id}_R.$ Allora, per ogni monomio $x^{\valpha}\in M$ vale $$\psi(x^{\valpha})=\psi\left(\prod\limits_{i=1}^n x_i^{\alpha_i}\right)=\prod\limits_{i=1}^n \psi\left(x_i^{\alpha_i}\right)=\prod\limits_{i=1}^n \psi(x_i)^{\alpha_i}=\prod\limits_{i=1}^n s_i^{\alpha_i}=\phi_{\underline{s}}(x^{\valpha}).$$ Poiché $\psi$ preserva le operazioni, per ogni $f=\sum\limits_{\valpha\in \mathcal{F}} r_{\valpha}x^{\valpha}\in R[x_1,...\,,x_n]$ si ha quindi che \[ \psi(f)=\psi\left(\sum\limits_{\valpha\in \mathcal{F}} r_{\valpha}x^{\valpha}\right)=\sum\limits_{\valpha\in \mathcal{F}} \psi(r_{\valpha}x^{\valpha})=\sum\limits_{\valpha\in \mathcal{F}} \psi(r_{\valpha})\psi(x^{\valpha})=\sum\limits_{\valpha\in \mathcal{F}} r_{\valpha}\phi_{\underline{s}}(x^{\valpha})=\phi_{\underline{s}}(f)\] essendo $\psi(r_{\valpha})=r_{\valpha}$ perché $r_{\valpha}\in R$ e $\psi(x^{\valpha})=\phi_{\underline{s}}(x^{\valpha})$ per quanto provato sopra. Dunque, $\psi$ coincide con $\phi_{\underline{s}}$ per ogni polinomio $f\in R[x_1,...\,,x_n]$, da cui $\phi_{\underline{s}}$ è unico.\end{proof}
+
+\end{document}
