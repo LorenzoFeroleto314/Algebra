@@ -1,0 +1,197 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{yhmath}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{amscd}
+\usepackage{sectsty}
+\usepackage{stmaryrd}
+\usepackage{tikz-cd}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Teorema}[subsection]
+\newtheorem*{exm}{Esempio}
+\renewcommand\qedsymbol{$\blacksquare$}
+\addto\captionsenglish{\renewcommand*{\proofname}{Dimostrazione}}
+\addto\captionsenglish{\renewcommand{\contentsname}{Indice}}
+
+\sectionfont{\fontsize{20}{15}\selectfont}
+\subsectionfont{\fontsize{14}{15}\selectfont}
+
+\renewcommand\thefootnote{\textcolor{red}{\arabic{footnote}}}
+
+\newcommand{\quot}{\operatorname{quot}}
+\newcommand{\tor}{\operatorname{tor}}
+\newcommand{\sat}{\operatorname{sat}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\id}{\operatorname{id}}
+
+\newenvironment{teo}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{prop}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{cor}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{lem}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{defn}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione:~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=green!35,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\subsection{Endomorfismi}
+
+\noindent \textbf{Lezione del 20/11/2019} (appunti grezzi)
+
+\noindent Oggi parliamo del polinomio minimo di un endomorfismo di uno spazio vettoriale di dimensione finita.
+
+\
+
+\noindent Sia $K$ un campo, $V$ un $K$-spazio vettoriale con $\operatorname{dim}_K(V)<\infty$ e sia $\alpha\in \operatorname{End}_K(V)$. Sia $\phi_{\alpha}\colon K[x]\to \operatorname{End}_K(V)$ definita come $\phi_{\alpha}(f)=f(\alpha)$, cioè, preso $f(x)=\sum\limits_{k=0}^n a_kx^k$, $\phi_{\alpha}(f)=\sum\limits_{k=0}^n a_k \alpha^k$, dove $\alpha^k$ indica la composizione $k$ volte inteso che $\alpha^0=\operatorname{id}_V$. Allora, $\phi_{\alpha}$ è una mappa $K$-lineare, perché $\phi_{\alpha}(\lambda f+\mu h)=\lambda \phi_{\alpha}(f)+\mu\phi_{\alpha}(g)$ per ogni $\lambda,\mu\in K$ e per ogni $f,g\in K[x]$. Inoltre, tale mappa è un omomorfismo di anelli, essendo $\phi_{\alpha}(f\cdot g)=f(\alpha)\circ g(\alpha)$. Dunque, essendo $\operatorname{dim}(K[x])=\infty$ e $\dim(\operatorname{End}_K(V))=\dim_{K}(V)^2$, per il principio dei cassetti $\phi_{\alpha}$ non può essere iniettiva, cioè $\ker(\phi_{\alpha})\neq \{0_{K}\}$. Poiché $\ker(\phi_{\alpha})\lhd K[x]$ è non banale, esiste un unico generatore monico $\min_{\alpha}(x)\in \ker(\phi_{\alpha})$ cioè $\ker(\phi_{\alpha})=\langle \min_{\alpha}(x) \rangle$.
+
+\begin{defn}[]{}
+Tale polinomio $\min_{\alpha}(x)$ si dice polinomio minimo dell'endomorfismo $\alpha\in \operatorname{End}_K(V)$.
+\end{defn}
+
+\noindent Vogliamo ora fare due cose: innanzitutto capire come calcolare il polinomio minimo, e poi, analogamente a GAL, trovare un'opportuna base $\mathcal{B}$ di $V$ tale che $[\alpha]_{\mathcal{B}}$ abbia una forma piacevole (Teorema di Jordan). Adesso ci dedichiamo a fare la prima cosa. Per fare la seconda cosa, c'è un teorema molto generale detto Teorema fondamentale per moduli finitamente generati su un dominio a ideali principali. Applicando questo teorema a $(V,\ast_{\alpha})$ proveremo il Teorema di Jordan (per $K$ campo algebricamente chiuso), e applicandolo a $\mathbb{Z}$ troveremo il Teorema per gruppi abeliani finitamente generati. Inoltre, c'è un altro teorema detto di Decomposizione primaria che permette la caratterizzazione deglii endomorfismi diagonalizzabili. Tale seconda cosa è molto complessa, e ci staremo sopra fino a Natale. 
+
+\begin{teo}[3.X.Y: Teorema di Cayley-Hamilton]{}
+Sia $V$ un $K$-spazio vettoriale con $\dim_K(V)<\infty$ e sia $\alpha\in \operatorname{End}_K(V)$. Allora, $\min_{\alpha}(x)$ è un divisore del polinomio caratteristico $\operatorname{char}_{\alpha}(x)=\det(\alpha-x\cdot \operatorname{id}_V)$.
+\end{teo}
+\vspace{-4mm}
+\begin{proof}
+Basta provare che (non ha detto niente lol).
+\end{proof}
+
+\noindent Mettiamo a posto qualche pezzo di ieri, quando ha usato la somma diretta come se niente fosse. Sia $R$ un anello e siano $M$ e $N$ degli $R$-moduli sinistri. Allora, $M\oplus N=\{(m,n): m\in M,n\in N\}$ è un $R$-modulo sx, ove $(m_1,n_1)+(m_2,n_2)=(m_1+m_2,n_1+n_2)$ e $r\cdot (m,n)=(r\cdot m,r\cdot n)$. Analogamente, se $M_1,...\,,M_k$ sono $R$-moduli sinistri, poniamo $\oplus_{i=1}^n M_i=M_1\oplus ... \oplus M_k=\{(m_1,...\,,m_k): m_i\in M_i\}$ e questo è un $R$-modulo sx con le ovvie operazioni $(m_1,...\,,m_k)+(m'_1,...\,,m'_k)=(m_1+m'_1,...\,,m_k+m'_k)$ e $r\cdot (m_1,...\,,m_k)=(r\cdot m_1,...\,,r\cdot m_k)$.
+
+\
+
+\noindent Dimostriamo ora la proposizione che è l'analoga di quella di teoria dei gruppi, che serve per dimostrare che il prodotto diretto interno è isomorfo al prodotto diretto esterno sotto ipotesi ragionevoli (tra l'altro la seconda parte è più bella di come la sta facendo lui).
+
+\begin{prop}[]{}
+Sia $R$ un anello, $M$ un $R$-modulo sinistro e siano $A,B\subseteq M$ degli $R$-sottomoduli tali che $A\cap B=\{0_M\}$. Allora, $A+B\simeq A\oplus B$. In generale, se ho $A_1,...\,,A_k$ che sono $R$-sottomoduli di $M$ tali che $A_j \cap \sum\limits_{i\neq j}A_i=\{0_M\}$ per ogni $j=1,...\,,k$, ho che $\sum\limits_{i=1}^k A_i \simeq \oplus_{i=1}^k A_i$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Sia $m\in A+B$; allora, esistono $a_m\in A$ e $b_m\in B$ con $m=a_m+b_m\in A+B$. Siano $a'\in A$, $b'\in B$ tali che $m=a'+b'$. Allora, $a_m+b_m=a+b$ se e solo se $a_m-a'=b'-b_m$. Poiché tale elemento appartiene a $A\cap B=\{0_M\}$, risulta $a'=a_m$ e $b'=b_m$, quindi ogni $m\in A+B$ si scrive in modo unico come somma $a_m+b_m$. Sia $\psi\colon A+B\to A\oplus B$ definita come $\psi(m)=(a_m,b_m)$ e sia $\eta\colon A\oplus B\to A+B$ definita come $\eta(a,b)=a+b$. Per l'unicità della scrittura di $m$, tali mappe sono ben definite. Inoltre, $\eta\circ\psi=\operatorname{id}_{A+B}$ e $\psi\circ\eta=\operatorname{id}_{A\oplus B}$, quindi è sufficiente mostrare che questi sono omomorfismi di $R$-moduli. Questo è facile: prendo $m=a_m+b_m$ e $n=a_n+b_n$, allora $m+n=(a_m+a_n)+(b_m+b_n)$, cioè $a_{m+n}=a_m+a_n$ e $b_{m+n}=b_m+b_n$, quindi $\psi$ è un omomorfismo di gruppi abeliani. Inoltre, preso $r\in R$, $r\cdot m=r\cdot a_m+r\cdot a_n=a_{r\cdot m}+b_{r\cdot m}$, da cui $\psi$ è un omomorfismo di $R$-moduli. Analogo per $\eta$, ho $\eta((a_1,b_1)+(a_2,b_2))=(a_1+a_2)+(b_1+b_2)=\eta(a_1,b_1)+\eta(a_2,b_2)$ e $\eta(r\cdot (a,b))=\eta(r\cdot a,r\cdot b)=r\cdot a+r\cdot b=r\cdot \eta(a,b)$.
+
+Procediamo ora per induzione su $k$. Per $k=1$ non c'è nulla da dimostrare, per $k=2$ lo ho già fatto. Supponiamo quindi che $\sum\limits_{i=1}^{k-1}A_i\simeq \oplus_{i=1}^{k-1}A_i$ e dimostriamolo per $k$. Per ipotesi $A_k\cap \sum\limits_{i=1}^{k-1}=\{0\}$, quindi $\sum\limits_{i=1}^k A_i=\sum\limits_{i=1}^{k-1} A_i+A_k\simeq \oplus_{i=1}^{k-1} A_i\oplus A_k\simeq \oplus_{i=1}^k A_k$.
+\end{proof}
+
+\begin{prop}[]{}
+Sia $V$ un $K$-spazio vettoriale di dimensione finita e sia $\alpha\in\operatorname{End}_{K}(V)$. Siano $U,W\leqslant V$ sottospazi vettoriali tali che $\alpha(U)=U$ e $\alpha(W)=W$, cioè $U$ e $W$ sono $\alpha$-invarianti. Siano $\alpha_U\in \operatorname{End}_{K}(U)$ e $\alpha_W\in \operatorname{End}_K(W)$ gli endomorfismi indotti. Se $U+W=V$ e $U\cap W=\{0_K\}$, allora $\min_{\alpha}(x)=\operatorname{mcm}(\min_{\alpha_U}(x),\min_{\alpha_W}(x))$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Poiché $\ker(\phi_{\alpha})=\Ann_{K[x]}(V,\ast_{\alpha})=K[x]\min_{\alpha}(x)$,\footnote{Dimostrare l'uguaglianza tra $\ker$ e $\Ann$ usando le doppie inclusioni.} vale $(V,\ast_{\alpha})\simeq (U, \ast_{\alpha_U})\oplus (W, \ast_{\alpha_W})$. Dunque $\Ann_{K[x]}(V,\ast_{\alpha})=\Ann_{K[x]}(U,\ast_{\alpha_U})\cap \Ann_{K[x]}(W,\ast_{\alpha_W})$, da cui risulta $K[x]\operatorname{mcm}(\min_{\alpha_U}(x),\min_{\alpha_W}(x))=K[x]\min_{\alpha_U}(x)\cap K[x]\min_{\alpha_W}(x)$.
+\end{proof}
+
+\end{document}

@@ -2,8 +2,8 @@
 % Ricordati di mettere sempre le label
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Theorem
-\newcounter{theo}[section] \setcounter{theo}{0}
-\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+\newcounter{theo}[subsection] \setcounter{theo}{0}
+\renewcommand{\thetheo}{\arabic{section}.\arabic{subsection}.\arabic{theo}}
 \newenvironment{theo}[2][]{%
   \refstepcounter{theo}%
   \ifstrempty{#1}%

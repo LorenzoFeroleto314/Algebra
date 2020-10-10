@@ -1,0 +1,262 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{yhmath}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{amscd}
+\usepackage{sectsty}
+\usepackage{stmaryrd}
+\usepackage{tikz-cd}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Teorema}[subsection]
+\newtheorem*{exm}{Esempio}
+\renewcommand\qedsymbol{$\blacksquare$}
+\addto\captionsenglish{\renewcommand*{\proofname}{Dimostrazione}}
+\addto\captionsenglish{\renewcommand{\contentsname}{Indice}}
+
+\sectionfont{\fontsize{20}{15}\selectfont}
+\subsectionfont{\fontsize{14}{15}\selectfont}
+
+\renewcommand\thefootnote{\textcolor{red}{\arabic{footnote}}}
+
+\newcommand{\quot}{\operatorname{quot}}
+\newcommand{\tor}{\operatorname{tor}}
+\newcommand{\sat}{\operatorname{sat}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\id}{\operatorname{id}}
+
+\newenvironment{teo}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{prop}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{cor}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{lem}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{defn}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione:~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=green!35,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\subsection{Torsione}
+
+\noindent Introduciamo ora un concetto fondamentale nello studio degli $R$-moduli.
+
+\begin{defn}[]{}
+Sia $R$ un anello e sia $M$ un $R$-modulo sinistro. Un elemento $m\in M$ si dice \underline{elemento di} \underline{torsione} se esiste almeno un $r\in R\setminus \{0_R\}$ tale che $r\cdot m=0_M$. Un $R$-modulo sinistro si dice \underline{modulo di torsione} se ogni suo elemento è di torsione.
+\end{defn}
+
+\noindent Denotiamo con $\tor_R(M)$ l'insieme degli elementi di torsione di $M$. Allora, è evidente che $m\in M$ è di torsione se e solo se $m\in \tor(M)$, e $M$ è di torsione se e solo se $M=\tor(M)$.
+
+\begin{exm}Aggiungere esempio con $\mathbb{Z}$ e $\mathbb{Q}$ dall'esame di settembre. $\quad$\end{exm}
+
+\begin{prop}[3.2.1]{}
+Sia $R$ un dominio di integrità e sia $M$ un $R$-modulo sinistro. Allora, $\tor(M)$ è un $R$-sottomodulo di $M$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Siano $m,n\in \tor(M)$ e sia $r\in R$. Allora, esistono $s_m,s_n\in R\setminus \{0_R\}$ tali che $s_m\cdot m=0_M$ e $s_n\cdot n=0_M$. Poiché $R$ è un dominio di integrità, $s_m\cdot s_n\neq 0_R$. Dunque, $s_m\cdot s_n\cdot (m+n)=s_n\cdot (s_m\cdot m)+s_m\cdot (s_n\cdot n)=0_M$ per la distributività destra, da cui $m+n \in \tor(M)$. Inoltre, $s_m\cdot (r\cdot m)= r\cdot (s_m\cdot m)=r\cdot 0_M=0_M$, dunque $r\cdot m\in \tor(M)$.
+\end{proof}
+
+\begin{defn}[]{}
+Sia $R$ un dominio di integrità, $M$ un $R$-modulo sinistro e sia $A\subseteq M$ un $R$-sottomodulo di $M$. Definiamo saturazione di $A$ in $M$ l'insieme $\sat_M(A)$ degli elementi $m\in M$ tali che esiste $r\in R\setminus \{0_R\}$ con $r\cdot m\in A$.
+\end{defn}
+
+\begin{prop}[3.2.2]{}
+Sia $R$ un dominio di integrità, $M$ un $R$-modulo sinistro e sia $A\subseteq M$ un $R$-sottomodulo di $M$. Allora,
+
+\noindent (a) $\sat_M(A)\subseteq M$ è un $R$-sottomodulo di $M$;
+
+\noindent (b) $\tor(M)=\sat_M(\{0_R\})$;
+
+\noindent (c) $\tor(M/A)=\sat_M(A)/A$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+(a) Siano $m,n\in \sat_M(A)$ e sia $r\in R$. Allora, esistono $s_m,s_n\in R\setminus \{0_R\}$ tali che $s_m\cdot m\in A$ e $s_n\cdot n\in A$. Poiché $R$ è un dominio di integrità, $s_m\cdot s_n\neq 0_R$. Dunque, $s_m\cdot s_n\cdot (m+n)=s_n\cdot (s_m\cdot m)+s_m\cdot (s_n\cdot n)\in A$ poiché somma di elementi di $A$, da cui $n+m\in \sat_M(A)$. Inoltre, $s_m\cdot (r\cdot m)=r\cdot (s_m\cdot m)\in A$ essendo $s_m\cdot m\in A$.
+
+\vspace{0.25mm}
+
+\noindent (b) Ovvio per definizione
+
+\vspace{0.25mm}
+
+\noindent (c) Per definizione, $\tor(M/A)=\{m+A: \exists r\in R\setminus \{0_R\}: r\cdot (m+A)=0_{M/A}\}$. Poiché $r\cdot (m+A)=r\cdot m+ A=0_{M/A}=A$ se e solo se $r\cdot m\in A$, si ha $\tor(M/A)=\{m+A: \exists r\in R\setminus \{0_R\}: r\cdot m\in A\}=\{m+A: m\in \sat_M(A)\}=\sat_M(A)/A$.
+\end{proof}
+
+\begin{defn}[]{}
+Sia $R$ un anello, $M$ un $R$-modulo sinistro e sia $m\in M$. Allora, si dice annullatore di $m$ in $R$ l'insieme $\Ann_R(m)=\{r\in R: r\cdot m=0_M\}$.
+\end{defn}
+
+\noindent Osserviamo che $m$ è di torsione se e solo se $\Ann_R(m)\neq \{0_R\}$. Chiaramente, si intende che \[\Ann_R(M)=\{r\in R: r\cdot m=0_M \ \forall m\in M\}=\bigcap_{m\in M} \Ann_R(m)\] e tale insieme si dice annullatore globale di $M$ in $R$. Si osservi che $\Ann_R(M)\subseteq \Ann_R(m)$ per ogni $m\in M$ e che $\Ann_R(M)\lhd R$ (andrebbe dimostrato).
+
+\
+
+\noindent Aggiungere esempi, aggiungere dimostrazione del $\sat(\sat(A))$ usata più avanti, commenti.
+
+\clearpage
+
+\begin{prop}[3.2.3]{}
+Sia $A$ uno $\mathbb{Z}$-modulo finitamente generato. Allora, sono equivalenti:
+
+\noindent (i) $A$ è di torsione;
+
+\noindent (ii) $\Ann_{\mathbb{Z}}(A)\neq \{0\}$;
+
+\noindent (iii) $|A|<\infty$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof} Poiché $A$ è finitamente generato, siano $a_1,...\,,a_n\in A$ tali che $A=\sum\limits_{i=1}^n \mathbb{Z}\cdot a_i$. 
+\noindent (i) $\Rightarrow$ (ii) Essendo $A$ di torsione, in particolare anche $a_1,...\,,a_n\in \tor_{\mathbb{Z}}(A)$, quindi esistono $k_1,...\,,k_n\in \mathbb{Z}\setminus\{0\}$ tali che $k_i\cdot a_i=0_A$. Sia $m=\operatorname{mcm}(k_1,...\,,k_n)\neq 0$ e sia $a\in A$. Allora, esistono $z_1,...\,,z_n\in \mathbb{Z}$ tali che $a=\sum\limits_{i=1}^n z_i\cdot a_i$, e $$m\cdot a=\sum\limits_{i=1}^n mz_i\cdot a_i=\sum\limits_{i=1}^n z_i\cdot (m\cdot a_i)=0_A$$ perché $m\cdot a_i=0_A$ per ogni $i=1,...\,,n$. Dunque $m\in \Ann_{\mathbb{Z}}(a)$, e per l'arbitrarietà di $a$ si ha che $m\in \Ann_{\mathbb{Z}}(A)$, cioè $\Ann_{\mathbb{Z}}(A)\neq \{0\}$.
+
+\vspace{0.5mm}
+
+\noindent (ii) $\Rightarrow$ (iii) Sia $\phi\colon \mathbb{Z}^n\to A$ la mappa definita come $\phi(z_1,...\,,z_n)=\sum\limits_{i=1}^n z_i\cdot a_i$. Poiché $\phi$ è un omomorfismo suriettivo,\footnote{Che $\phi$ sia un omomorfismo è evidente; la suriettività segue dal fatto che $A$ è generato da $a_1,...\,,a_n$, quindi per ogni $a\in A$ esistono $z_1,...\,,z_n\in \mathbb{Z}$ tali che $a=\sum\limits_{i=1}^n z_i\cdot a_i$.} per il \emph{Primo teorema d'isomorfismo} si ha che $\mathbb{Z}^n/\ker(\phi)\simeq A$. D'altra parte, $\Ann_{\mathbb{Z}}(a_1)\times ... \times \Ann_{\mathbb{Z}}(a_n)\subseteq \ker(\phi)$, dunque $$|A|=|\mathbb{Z}^n/\ker(\phi)|\leq \left|\mathbb{Z}^n /\bigoplus\limits_{i=1}^n \Ann_{\mathbb{Z}}(a_i)\right| = \left|\bigoplus\limits_{i=1}^n \mathbb{Z}\,/\Ann_{\mathbb{Z}}(a_i)\right|.\footnotemark$$\noindent Poiché $\{0\}\neq \Ann_{\mathbb{Z}}(A)\subseteq \Ann_{\mathbb{Z}}(a_i)\lhd \mathbb{Z}$, \footnotetext{La disuguaglianza segue dal fatto che $|\Ann_{\mathbb{Z}}(a_1)\times ... \times \Ann_{\mathbb{Z}}(a_n)|\leq |\ker(\phi)|$, e l'uguaglianza perché tali anelli sono isomorfi. Andrebbe spiegato meglio, di fatto dice che ad esempio $\mathbb{Z}^2/\langle (2,3)\rangle\simeq \mathbb{Z}/2\mathbb{Z}\oplus \mathbb{Z}/3\mathbb{Z}$.}siano $k_1,...\,,k_n\in \mathbb{Z}$ con $\Ann_{\mathbb{Z}}(a_i)=k_i\mathbb{Z}$.\footnote{Infatti, essendo $\mathbb{Z}$ un PID, i suoi ideali sono tutti e soli quelli della forma $k\mathbb{Z}$ al variare di $k\in \mathbb{Z}$.} Allora, $$|A|\leq \left|\bigoplus\limits_{i=1}^n \mathbb{Z}\,/\Ann_{\mathbb{Z}}(a_i)\right| = k_1\cdot ...\cdot k_n<\infty.$$
+
+\vspace{0.5mm}
+
+\noindent (iii) $\Rightarrow$ (i) Sia $a\in A$ e sia $\phi_a\colon \mathbb{Z}\to A$ la mappa definita come $\phi_a(z)=z\cdot a$. Poiché $\phi_a$ è un omomorfismo di $\mathbb{Z}$-moduli e $\mathbb{Z}/\ker(\phi_a)\simeq A$ per il \emph{Primo teorema d'isomorfismo}, essendo $|\mathbb{Z}|=\infty$ e $|A|<\infty$, per il \emph{Principio dei cassetti} deve essere $\ker(\phi_a)\neq \{0\}$. Dunque $\ker(\phi_a)=\Ann_{\mathbb{Z}}(a)\neq \{0\}$, cioè $a$ è un elemento di torsione, e per l'arbitrarietà di $a$ concludiamo che $\tor_{\mathbb{Z}}(A)=A$, da cui $A$ è di torsione.
+\end{proof}
+
+\noindent Aggiungere da qualche parte la dimostrazione dell'isomorfismo citato nel punto 2. A questo punto però tanto vale usare la stessa strategia della proposizione seguente, cioè definire $\phi\colon \bigoplus\limits_{i=1}^n \mathbb{Z}/k_i\mathbb{Z}\to A$ la mappa $\phi(z_1+k_1\mathbb{Z}, ...\,, z_n+k_n\mathbb{Z})=\sum\limits_{i=1}^n z_i\cdot a_i$ e ragionando come sotto mostrare che è ben posto, suriettivo, e quindi $|A|\leq \left|\bigoplus\limits_{i=1}^n \mathbb{Z}/k_i\mathbb{Z}\right|=k_1\cdot ...\cdot k_n<\infty$. 
+
+\clearpage
+
+\noindent Vale una proposizione simile alla precedente anche nel caso dei $\mathbb{K}[x]$-moduli.
+
+\begin{prop}[3.2.4]{}
+Sia $\mathbb{K}$ un campo e sia $M$ un $\mathbb{K}[x]$-modulo sinistro finitamente generato. Allora, sono equivalenti:
+
+\noindent (i) $M$ è di torsione;
+
+\noindent (ii) $\Ann_{\mathbb{K}[x]}(M)\neq \{0_{\mathbb{K}}\}$;
+
+\noindent (iii) $\operatorname{dim}_{\mathbb{K}}(M)<\infty$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}Per ipotesi, esistono $m_1,...\,,m_n\in M$ tali che $M=\sum\limits_{i=1}^n \mathbb{K}[x]\cdot m_i$.
+
+\noindent (i) $\Rightarrow$ (ii) Essendo $M$ di torsione, anche $m_1,...\,,m_n\in \tor_{\mathbb{K}[x]}(M)$, quindi esistono polinomi $f_1,...\,,f_n\in \mathbb{K}[x]\setminus\{0_{\mathbb{K}}\}$ tali che $f_i\cdot m_i=0_M$. Sia $g=\operatorname{mcm}(f_1,...\,,f_n)\neq 0_{\mathbb{K}}$ e sia $m\in M$. Allora, esistono $q_1,...\,,
+q_n\in \mathbb{K}[x]$ tali che $m=\sum\limits_{i=1}^n q_i\cdot m_i$, e $$g\cdot m=\sum\limits_{i=1}^n (g \cdot q_i)\cdot m_i=\sum\limits_{i=1}^n q_i\cdot (g\cdot m_i)=0_M$$ perché $g\cdot m_i=0_M$ per ogni $i=1,...\,,n$. Dunque $g\in \Ann_{\mathbb{K}[x]}(m)$, e per l'arbitrarietà di $m$ si ha che $g\in \Ann_{\mathbb{K}[x]}(M)$, cioè $\Ann_{\mathbb{K}[x]}(M)\neq \{0_{\mathbb{K}}\}$.
+
+\vspace{1.5mm}
+
+\noindent (ii) $\Rightarrow$ (iii) Poiché $\{0_{\mathbb{K}}\}\neq \Ann_{\mathbb{K}[x]}(M)\subseteq \Ann_{\mathbb{K}[x]}(m_i)\lhd \mathbb{K}[x]$, sappiamo che esistono dei polinomi $f_1,...\,,f_n\in \mathbb{K}[x]\setminus \{0_{\mathbb{K}}\}$ tali che $\Ann_{\mathbb{K}[x]}(m_i)=\langle f_i\rangle$.\footnote{Infatti, essendo $\mathbb{K}[x]$ un PID, i suoi ideali sono tutti e soli quelli della forma $\langle f\rangle$ al variare di $f\in \mathbb{K}[x]$.} Sia $\phi\colon \bigoplus\limits_{i=1}^n \mathbb{K}[x]/\langle f_i\rangle\to M$ la mappa definita come $\phi(q_1+\langle f_1\rangle, ...\,, q_n+\langle f_n\rangle)=\sum\limits_{i=1}^n q_i\cdot m_i$. Poiché $\phi$ è un omomorfismo di $\mathbb{K}[x]$-moduli suriettivo,\footnote{Andrebbe dimostrato che $\phi$ è ben posto, il che segue dall'aver scelto come $f_i$ i generatori degli annullatori e ragionando componente per componente: se $q_i+\langle f_i\rangle = r_i +\langle f_i\rangle$, allora $q_i=r_i+h f_i$ per un certo $h\in \mathbb{K}[x]$, e la restrizione di $\phi$ alla $i$-esima componente è $\phi_i(q_i)=(r_i+hf_i)\cdot m_i=r_i\cdot m_i+hf_i\cdot m_i=r_i\cdot m_i=\phi_i(r_i)$. La suriettività invece risulta evidente dalla definizione.} essendo $\operatorname{dim}_{\mathbb{K}}(\mathbb{K}[x]/\langle f_i\rangle)=\deg^{\star}(f_i)$ concludiamo che $$\operatorname{dim}_{\mathbb{K}}(M)\leq \operatorname{dim}_{\mathbb{K}}\left(\bigoplus\limits_{i=1}^n \mathbb{K}[x]/\langle f_i\rangle \right)=\prod\limits_{i=1}^n \deg^{\star}(f_i)<\infty.$$
+
+
+\vspace{0.5mm}
+
+\noindent (iii) $\Rightarrow$ (i) Sia $m\in M$ e sia $\phi_m\colon \mathbb{K}[x]\to M$ la mappa definita come $\phi_m(f)=f\cdot m$. Poiché $\phi_m$ è un omomorfismo di $\mathbb{K}[x]$-moduli e per il \emph{Primo teorema d'isomorfismo} vale $\mathbb{K}[x]/\ker(\phi_m)\simeq M$, essendo $\operatorname{dim}_{\mathbb{K}}(\mathbb{K}[x])=\infty$ e $\operatorname{dim}_{\mathbb{K}}(M)<\infty$, deve essere $\ker(\phi_m)\neq \{0_{\mathbb{K}}\}$. Dunque $\ker(\phi_m)=\Ann_{\mathbb{K}[x]}(m)\neq \{0_{\mathbb{K}}\}$, cioè $m$ è un elemento di torsione, e per l'arbitrarietà di $m$ concludiamo che $\tor_{\mathbb{K}[x]}(M)=M$, da cui $M$ è di torsione.
+\end{proof}
+
+\noindent Aggiungere qualche commento e spostare l'osservazione finale (vedi foto) nel capitolo sugli endomorfismi. Qualche esempio pratico? Se mi viene in mente lo aggiungo.
+
+\end{document}

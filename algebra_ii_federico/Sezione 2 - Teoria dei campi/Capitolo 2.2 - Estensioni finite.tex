@@ -1,0 +1,216 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{yhmath}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{amscd}
+\usepackage{sectsty}
+\usepackage{stmaryrd}
+\usepackage{tikz-cd}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Teorema}[subsection]
+\newtheorem*{exm}{Esempio}
+\renewcommand\qedsymbol{$\blacksquare$}
+\addto\captionsenglish{\renewcommand*{\proofname}{Dimostrazione}}
+\addto\captionsenglish{\renewcommand{\contentsname}{Indice}}
+
+\sectionfont{\fontsize{20}{15}\selectfont}
+\subsectionfont{\fontsize{14}{15}\selectfont}
+
+\renewcommand\thefootnote{\textcolor{red}{\arabic{footnote}}}
+
+\newcommand{\quot}{\operatorname{quot}}
+\newcommand{\tor}{\operatorname{tor}}
+\newcommand{\sat}{\operatorname{sat}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\id}{\operatorname{id}}
+
+\newenvironment{teo}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{prop}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{cor}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{lem}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{defn}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione:~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=green!35,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\subsection{Estensioni finite}
+
+\noindent \textbf{Lezioni del 05-06/11/2019} (appunti grezzi)
+
+\begin{defn}[]{}
+Un'estensione di campi $\mathbb{L}/\mathbb{K}$ si dice finita se $|\mathbb{L}:\mathbb{K}|<\infty$.
+\end{defn}
+
+\begin{prop}[]{}
+Sia $\mathbb{L}/\mathbb{K}$ un'estensione finita. Allora, ogni elemento $a\in \mathbb{L}$ è algebrico su $\mathbb{K}$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Sia $\phi_a\colon \mathbb{K}[x]\to \mathbb{L}$ la valutazione in $a$. Poiché $\dim_{\mathbb{K}}\mathbb{K}[x]=\infty$ (una base sono tutti i monomi $1, x, x^2, ...$) e $|\mathbb{L}:\mathbb{K}|=\dim_{K}(L)<\infty$, $\phi_a$ non è iniettiva, cioè $\ker(\phi_a)\neq \{0_K\}$. Dunque, per $f\in \ker(\phi_a)\setminus \{0_K\}$, si ha $f(a)=\phi_a(f)=0$.
+\end{proof}
+
+\begin{prop}[]{}
+Sia $\mathbb{L}/\mathbb{K}$ un'estensione di campi, e sia $a\in \mathbb{L}$. Allora, sono equivalenti
+
+\noindent (i) $a$ è algebrico su $\mathbb{K}$
+
+\noindent (ii) $|\mathbb{K}(a)\colon \mathbb{K}|<\infty$
+
+\noindent (iii) esiste un'estensione finita $M/K$, $M\subseteq L$ tale che $a\in M$
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Per la proposizione precedente, sappiamo già che (iii) implica (i). Vediamo che (i) implica (ii). Infatti, $K[a]=\operatorname{Im}(\phi_a)\simeq K[x]/\ker(\phi_a)$ è un campo, e $K(a)=K[a]$ implica che $|K[a]\colon K|=|K[a] \colon K|=\deg^{\star}(\min_{a,K})<\infty$. Mostriamo ora che non (i) implica non (ii). Infatti, non (i) sse a è trascendente su $K$. Quindi, $\phi_a\colon K[x]\to L$ è iniettiva, e $K(a)\supseteq im(\phi_a)\simeq K[x]$ perché $K(a)$ contiene il sottospazio vettoriale $im(\phi_a)$ e $\dim_{K}(K(a))=\infty$. Dunque, il fatto che (i) implica (ii) e non (i) implica non (ii), sappiamo che (i) se e solo se (ii). Ma (ii) implica (iii) è banale: infatti prendo $M=K(a)$.
+\end{proof}
+
+\begin{defn}[]{}
+Sia $\mathbb{L}/\mathbb{K}$ un'estensione di campi. Denotiamo con $\operatorname{alg}_{\mathbb{K}}(\mathbb{L})$ l'insieme degli elementi $a\in L$ algebrici su $K$.
+\end{defn}
+
+\begin{prop}[]{}
+Sia $\mathbb{L}/\mathbb{K}$ un'estensione di campi. Allora, $\operatorname{alg}_{\mathbb{K}}(\mathbb{L})$ è un sottocampo di $\mathbb{L}$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Siano $a,b\in \operatorname{alg}_{\mathbb{K}}(\mathbb{L})$. Basta dimostrare che $a+b, ab$ e $a^{-1}$ stanno in $\operatorname{alg}_{\mathbb{K}}(\mathbb{L})$. Poiché $a\in \operatorname{alg}_{\mathbb{K}}(\mathbb{L})$, per la proposizione 2 sappiamo che $|K(a):K|<\infty$. Poiché $b\in \operatorname{alg}_{\mathbb{K}}(\mathbb{L})$, esiste $\min_{b,K}(x)\in K[x]\subseteq K(a)[x]$. Dunque, $b$ è algebrico su $K(a)$, da cui \[|K(\{a,b\}): K|=|K(a)(b): K(a)|\cdot |K(a): K|<\infty\] per la Formula del grado. Poiché $a+b, ab, a^{-1}\in K(\{a,b\})$,per la Proposizione 2 sappiamo che $a+b, ab, a^{-1}\in \operatorname{alg}_{\mathbb{K}}(\mathbb{L})$.
+\end{proof}
+
+\noindent Trovare esplicitamente i polinomi che annullano $a+b, ab$ e $a^{-1}$ sarebbe stato un incubo!
+
+\begin{defn}[]{}
+Un campo $\mathbb{K}$ si dice algebricamente chiuso se ogni polinomio $f\in \mathbb{K}[x]$ con $\deg^{\star}(f)\geq 1$ ammette una radice.
+\end{defn}
+
+\begin{exm}Per il Teorema Fondamentale dell'Algebra (lui dice Teorema di Gauss) sappiamo che $\mathbb{C}$ è un campo algebricamente chiuso. La dimostrazione è tutt'altro che banale e richiede o l'analisi complessa o la Teoria di Galois$. \ \square$\end{exm}
+
+\noindent Denotiamo con $\overline{\mathbb{Q}}=\operatorname{alg}_{\mathbb{Q}}(\mathbb{C})$. 
+
+\begin{prop}[]{}
+$\overline{\mathbb{Q}}$ è un campo algebricamente chiuso.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Sia $f=\sum\limits_{i=0}^n a_i x^i\in \overline{\mathbb{Q}}[x]$ con $\deg^{\star}(f)\geq 1$. Poiché $f\in C[x]$ essendo $\overline{\mathbb{Q}}\subseteq \mathbb{C}$, per il Teorema Fondamentale dell'Algebra esiste $c\in \mathbb{C}$ tale che $f(c)=0$. Definiamo $M=\overline{\mathbb{Q}}(\{a_0, a_1, ...\,,a_n\})$. Allora, per la formula del grado \[|M:Q|=|M:Q(\{a_0, ...\,,a_{n-1}\})|\cdot |Q(\{a_0, ...\,,a_{n-1}\}): Q(\{a_0, ...\,,a_{n-2}\})|\cdot ...\] Ma sappiamo che $|M:Q(\{a_0, ...\,,a_{n-1}\})|\leq \deg^{\star}(\min_{a_n,Q})$ e induttivamente $|M:Q|\leq \prod\limits_{i=0}^n \deg^{\star}(\min_{a_i, Q})$. Quindi, $|M(c):Q|=|M(c):M|\cdot |M:Q|$, dove $|M(c):M|\leq n$ e $|M:Q|\leq \infty$. Dunque, per la Proposizione 2 concludiamo che $c\in \overline{\mathbb{Q}}$.
+\end{proof}
+
+\begin{prop}[2.X.Y: Costruzione di Kronecker]{}
+Sia $\mathbb{K}$ un campo e sia $f\in\mathbb{K}[x]$ con $\deg^{\star}(f)\geq 1$. Allora, esiste un'estensione $\mathbb{L}/\mathbb{K}_0$ finita e un elemento $a\in \mathbb{L}$ tale che $f(a)=0$, dove $\mathbb{K}_0\simeq \mathbb{K}$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Poiché $K[x]$ è un dominio principale, possiamo scrivere $f=h\cdot f_0$ dove $h\in K[x]$ è primo e dunque irriducibile. Definiamo $L=K[x]/\langle h\rangle$. Poiché $\langle h\rangle \lhd K[x]$ è un ideale massimale, tale $L$ è un campo. Definiamo $K_0=\{b+\langle h\rangle : b\in K\}$, cioè $K_0=\pi(K)$, dove $\pi\colon K[x]\to L$ è la proiezione canonica. Poiché $\langle h\rangle$ è un ideale primo, $K\cap \langle h\rangle \{0_K\}$, quindi la restrizione $\pi_K\colon K\to K_0$ è un isomorfismo. Inoltre, $|L:K_0|=\deg^{\star}(h)<\deg^{\star}(f)<\infty$, quindi abbiamo trovato un'estensione finita. Sia $h=\sum\limits_{k=0}^n a_k x^k$, e sia $I=\langle h \rangle$. Detto $a=x+I\in L$, si ha che \[h(a)=\sum\limits_{k=0}^n a_k (x+I)^k=\sum\limits_{k=0}^n a_k (x^k+I)=\left(\sum\limits_{k=0}^n a_k x^k\right)+I=h+I=I=O_{L}.\] Questo mostra che per ogni polinomio troviamo $a\in L$ tale che $f(a)=0$, come desiderato.\end{proof}
+
+\end{document}

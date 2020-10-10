@@ -1,0 +1,242 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{yhmath}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{amscd}
+\usepackage{sectsty}
+\usepackage{stmaryrd}
+\usepackage{tikz-cd}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Teorema}[subsection]
+\newtheorem*{exm}{Esempio}
+\renewcommand\qedsymbol{$\blacksquare$}
+\addto\captionsenglish{\renewcommand*{\proofname}{Dimostrazione}}
+\addto\captionsenglish{\renewcommand{\contentsname}{Indice}}
+
+\sectionfont{\fontsize{20}{15}\selectfont}
+\subsectionfont{\fontsize{14}{15}\selectfont}
+
+\renewcommand\thefootnote{\textcolor{red}{\arabic{footnote}}}
+
+\newcommand{\quot}{\operatorname{quot}}
+\newcommand{\tor}{\operatorname{tor}}
+\newcommand{\sat}{\operatorname{sat}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\id}{\operatorname{id}}
+
+\newenvironment{teo}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{prop}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{cor}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{lem}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{defn}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione:~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=green!35,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\subsection{Moduli in domini a ideali principali}
+
+\noindent \textbf{Lezione del 26/11/2019} (appunti grezzi, non so più cosa stia succedendo qui ad Algebra)
+
+\begin{defn}[]{}
+Sia $R$ un PID e sia $M$ un $R$-modulo finitamente generato di torsione. Sia $\mathfrak{p}\lhd R$ ideale primo di $R$. Definiamo $M_{\mathfrak{p}}=\{m\in M: x\cdot m=0\, \forall x\in \mathfrak{p}\}=\{m\in M: \mathfrak{p}\subseteq \Ann_R(M)\}$. Allora, tale $M_{\mathfrak{p}}$ si dice $\mathfrak{p}$-componente primaria di $M$ (o anche $\mathfrak{p}$-componente di Fitting).
+\end{defn}
+
+\begin{teo}[]{}
+Sia $R$ un PID e sia $M$ un $R$-modulo sinistro finitamente generato di torsione con $\Ann_R(M)=\mathfrak{p}_1^{\alpha_1}...\mathfrak{p}_r^{\alpha_r}$, dove i $\mathfrak{p}_i\lhd R$ sono ideali primi non nulli. Allora, $M\simeq \oplus_{i=1}^r M\mathfrak{p}_i^{\alpha_i}$.
+\end{teo}
+\vspace{-4mm}
+\begin{proof}
+La facciamo la prossima volta, le ultime parole famose.
+\end{proof}
+
+\noindent Da qui comincia la lezione di oggi, ci sono cose sparse da spostare in torsione etc
+
+\begin{prop}[]{}
+Sia $R$ un dominio di integrità e sia $M$ un $R$-modulo sinistro finitamente generato. Allora, $M$ è di torsione se e solo se $\Ann_R(M)\neq 0$. 
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Siano $m_1,...\,,m_n\in M$ tali che $M=\sum\limits_{i=1}^n R\cdot m_1$. Allora, $\Ann_R(M)=\bigcap\limits_{i=1}^n \Ann_R(m_i)$. Dunque, se $M$ è di torsione, sappiamo che ogni $\Ann_R(m_i)\neq \{0\}$ da cui $\bigcap\limits_{i=1}^n \Ann_R(m_i)\neq \{0\}$.\footnote{Infatti, presi $I,J$ ideali non banali di un dominio di integrità $R$, se per assurdo fosse $I\cap J=\{0\}$, essendo $IJ=\{ij: i\in I, j\in J\}\lhd R$ un ideale contenuto in $I\cap J=\{0\}$, avremmo che esistono $i\in I\setminus \{0\}$ e $j\in J\setminus\{0\}$ tali che $ij=0$, assurdo (perché siamo in un dominio di integrità). Il claim segue per induzione.} Il viceversa a quanto pare lo abbiamo già fatto.
+\end{proof}
+
+\noindent Osserviamo che se $R$ è un anello commutativo e $M$ è un $R$-modulo sinistro con $\Ann_R(M)\neq \{0\}$, essendo $\Ann_R(M)\lhd R$, $M$ è canonicamente un $\overline{R}=R/\Ann_R(\overline{M})$-modulo. Aggiungere qui il diagramma commutativo negli appunti cartacei. Verifichiamo che vale il Lemma della forbice. Presi $r_1,r_2\in R$, si ha che $\tau(r_1)=\tau(r_2)$ se e solo se $r_1-r_2\in \Ann_R(\overline{M})$, cioè $r_1=r_2+a$ con $a\in \Ann_R(\overline{M})$. Per ogni $m\in M$, si ha quindi che $r_1\cdot m=(r_2+a)\cdot m=r_2\cdot m+a\cdot m=r_2\cdot m$ essendo $a\cdot m=0$. Dunque, abbiamo dimostrato che $(r_1,m)\sim (r_2,m)$ implica $r_1\cdot m=r_2\cdot m$, quindi per il Lemma della forbice esista la mappa $\odot\colon \overline{R}\cdot M\to M$ tale che $(r+\Ann_R{M})\odot m=r\cdot m$.
+
+
+\begin{teo}[3.X.Y: Teorema cinese del resto]{}
+Sia $R$ un anello e siano $I_1,...\,,I_n\lhd R$ ideali a due a due coprimi (cioè tali che $I_j+I_k=R$ per ogni $j\neq k$). Sia $\pi\colon R\to \bigoplus\limits_{k=1}^n R/I_k$ la mappa definita come $\pi(r)=(r+I_1,...\,,r+I_n)$. Allora, $\phi$ è un omomorfismo di anelli suriettivo con $\ker(\pi)=\bigcap\limits_{k=1}^n I_k$.
+\end{teo}
+\vspace{-4mm}
+\begin{proof}
+Che $\pi$ sia un omomorfismo di anelli è evidente dalla definizione (a casa lo scrivo meglio). Inoltre, $\pi(r)=0$ se e solo se $r\in \bigcap\limits_{k=1}^n I_k$. Sia $J_k=\bigcup\limits_{j\neq k} I_j\lhd R$. Allora, $J_k$ e $I_k$ sono coprimi. Infatti, l'ipotesi che $I_k+I_j=R$ per $j\neq k$ implica che in particolare esistono $a_k\in I_k$ e $b_k\in I_j$ tali che $a_k+b_k=1_R$. Allora, \[1_R=(a_1+b_1)\cdot ...\cdot (a_k+b_k)=a_1a_2\cdot ...\cdot a_n+b_1a_2\cdot ...\cdot a_n+...+b_1b_2\cdot ...\cdot b_n\] dove detti $d_k=b_1b_2\cdot ...\cdot b_n\in I_1...I_{k-1}I_{k+1}...I_n\subseteq J_k$ e $e_k=$ tutti gli altri termini $\in I_k$, abbiamo che $d_k+e_k=1_R$, cioè $I_k$ e $J_k$ sono effettivamente coprimi. Sia $\pi_k\colon R\to R/I_k$ la proiezione canonica, cioè $\pi(r)=r+I_k$. Allora, $\pi_k(d_j)=0_{R/I_k}$ se $j\neq k$ e $\pi_k(d_j)=1_{R/I_k}=1_R+I_k$ per $j=k$. Dunque, $1_R+I_k=\pi_k(1_R)=\pi_k(d_k+e_k)=\pi_k(d_k)+\pi_k(e_k)=\pi_k(d_k)$ perché $\pi_k(e_k)=0$. Sia ora $y=(r_1+I_1,...\,,r_n+I_n)\in \bigoplus\limits_{k=1}^n R/I_k$ e sia $z=\sum\limits_{i=1}^n r_1\cdot d_i$. Allora, $\pi_k(z)=\sum\limits_{i=1}^n \pi_k(r_i)\cdot \pi_k(d_i)=\pi_k(r_k)\cdot \pi_k(d_k)=r_k+I_k$ essendo $\pi_k(r_k)=r_k+I_k$ e $\pi_k(d_k)=1_R+I_k$, da cui $\pi(z)=y$ e $\pi$ risulta quindi essere un omomorfismo suriettivo.
+\end{proof}
+
+\noindent Ora parliamo di ideali in domini a ideali principali (PID), dove $\mathfrak{p}\lhd R$ è primo se e solo se è massimale.
+
+\begin{defn}[]{}
+Sia $R$ un PID. Definiamo spettro di $R$ l'insieme $\spec(R)=\{\mathfrak{p}\lhd R: \mathfrak{p}\neq \{0\} \text{ è primo}\}$.
+\end{defn}
+
+\begin{prop}[]{}
+Sia $R$ un PID e sia $I\lhd R$ un ideale non banale. Allora, esistono $n_{\mathfrak{p}}(I)$, $\mathfrak{p}\in \spec(R)$ e $n_{\mathfrak{p}}\in \mathbb{N}$ tali che $\operatorname{supp}(I)=\{\mathfrak{p}\in \spec(R): n_{\mathfrak{p}}(I)\neq 0\}$ è un insieme finito, e $I=\prod\limits_{\mathfrak{p}\in \spec(R)} \mathfrak{p}^{n_{\mathfrak{p}}(I)}$, dove si intende che $\mathfrak{p}^0=R$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Sia $I=R\cdot a$. Se $a\in R^{\times}$, allora $n_{\mathfrak{p}}=0$ per ogni $\mathfrak{p}\in \spec(R)$. Poiché $I\neq \{0_R\}$, sappiamo che $a\neq 0_R$. Quindi, possiamo assumere che $a\in R^{\#}=R\setminus (R^{\times}\cup \{0_R\})$. Allora, esiste $u_a\in R^{\times}$ e $\varepsilon_p(a)\in \mathbb{N}$ tali che $a=u_a\cdot \prod\limits_{p\in \mathfrak{p}} p^{\varepsilon_p(a)}$ dove $\mathfrak{p}\subseteq \operatorname{prim}_0(R)$ è un sistema di rappresentanti rispetto a $\sim$ e $\{p\in \mathfrak{p}: \varepsilon_p(a)\neq 0\}$ è un insieme finito, cioè $|\operatorname{supp}(I)|<\infty$. Dunque $R\cdot a=\prod\limits_{p\in \mathfrak{p}} (R\cdot p)^{\varepsilon_p(a)}$. Dove finisce la dimostrazione? Boh...
+\end{proof}
+
+\noindent Sia $(m_{\mathfrak{p}})$ con $\mathfrak{p}\in \spec(R)$ una successione di interi non negativi tali che $\{\mathfrak{p}\in \spec(R): m_{\mathfrak{p}}\neq 0\}$ sia un insieme finito e $I=\prod\limits_{\mathfrak{p}\in \spec(R)} \mathfrak{p}^{m_{\mathfrak{p}}}$. Allora, $m_{\mathfrak{p}}=n_{\mathfrak{p}}(I)$ per ogni $\mathfrak{p}\in \spec(R)$ come conseguenza della univocitò della decomposizione in primi. Sia $I=\prod\limits_{\mathfrak{p}\in \spec(R)} \mathfrak{p}^{n_{\mathfrak{p}}(I)}=\prod\limits_{\mathfrak{p}\in \operatorname{supp}(I)} \mathfrak{p}^{n_{\mathfrak{p}}(I)} = \bigcap\limits_{\mathfrak{p}\in \operatorname{supp}(I)} \mathfrak{p}^{n_{\mathfrak{p}}(I)}$. (Ma sti cazzo di $n_{\mathfrak{p}}$ sono così o sono degli $\eta_{\mathfrak{p}}$?)
+
+\
+
+\noindent Sia $R$ un PID e sia $M$ un $R$-modulo sinistro di torsione. Allora, \[\operatorname{Ann}_R(M)=\prod\limits_{\mathfrak{p}\in \operatorname{supp}(\Ann_R(M))} \mathfrak{p}^{n_{\mathfrak{p}}(I)}=\bigcap\limits_{\mathfrak{p}\in \operatorname{supp}(\Ann_R(M))} \mathfrak{p}^{n_{\mathfrak{p}}(I)}\] da cui per il Teorema cinese e per il primo teorema d'isomorfismo si ha che $\overline{R}=R/\Ann_R(M)\simeq \bigoplus\limits_{\mathfrak{p}\in \operatorname{supp}(\Ann_R(M))} R/\mathfrak{p}^{n_{\mathfrak{p}}}$. Sia $d_{\mathfrak{p}}\in \overline{R}$, $d_{\mathfrak{p}}\in \bigcap\limits_{\mathfrak{q}\neq \mathfrak{p}} \mathfrak{q}^{n_{\mathfrak{q}}}$ dove $\mathfrak{q}\in \operatorname{supp}(\Ann_R(M))$. Allora, $d_{\mathfrak{p}}+\mathfrak{p}^{n_{\mathfrak{p}}} = 1+\mathfrak{p}^{n_{\mathfrak{p}}}$. Detto $\Omega=\{ \mathfrak{p}^{n_{\mathfrak{p}}}: \mathfrak{p}\in \operatorname{supp}(\Ann_R(M))\}$, se $\mathfrak{p},\mathfrak{q}\in \spec(R)$ e $\mathfrak{p}\neq \mathfrak{q}$, significa che $\mathfrak{p}^m+\mathfrak{q}^n=R$ per ogni $m,n\in \mathbb{N}$, cioè $\Omega$ sono a due a due coprimi. Infine, si ha quindi che $1_{\overline{R}}=\sum\limits_{\mathfrak{p}\in \operatorname{supp}(\Ann_R(M))} d_{\mathfrak{p}}$.
+
+\
+ 
+\noindent \textbf{Lezione del 27/11/2019} (vedi appunti cartacei)
+
+\
+
+\noindent \textbf{Lezione del 03/12/2019} (appunti grezzi)
+
+\
+
+\noindent Facciamo un recap. Se $R$ è un PID e $M$ è un $R$-modulo sinistro finitamente generato di torsione, allora $\Ann_R(M)\neq \{0\}$ ed esistono $\mathfrak{p}_1,...\,,\mathfrak{p}_r\in \spec(R)$ e $\alpha_i\in \mathbb{N}$ tali che $\Ann_R(M)=\prod\limits_{i=1}^r \mathfrak{p}_i^{\alpha_i}$. Sappiamo anche che i $\mathfrak{p}_i^{\alpha_i}$, $\mathfrak{p}_j^{\alpha_j}$ sono a due a due coprimi. Abbiamo visto poi che vale il Teorema cinese del resto, cioè $\overline{R}=R/\Ann_R(M)\simeq \bigoplus\limits_{i=1}^r R/\mathfrak{p}_i^{\alpha_i}$ mediante la mappa $\pi$. Inoltre, se prendo $d_1,...\,,d_r\in R$ tali che $\pi(d_i+\Ann_R(M))=(0,...\,,1,0,...\,,0)$ dove $1$ è in posizione $i$-esima, sappiamo che gli $M_i=d_i\cdot M$ sono $R$-sottomoduli di $M$ e $M=\bigoplus\limits_{i=1}^r M_i$.
+
+\
+
+\noindent Abbiamo applicato la teoria generale al caso particolare in cui $R=\mathbb{K}[x]$ con $\mathbb{K}$ campo e $(M,\cdot)=(M,\ast_{\alpha})$. In questo caso, $\Ann_{\mathbb{K}[x]}(M)=\mathbb{K}[x]\cdot \min_{\alpha}(x)\cdot \mathbb{K}[x]$ (forse c'è un $\mathbb{K}[x]$ di troppo), e abbiamo dimostrato che $\alpha$ è un endomorfismo diagonalizzabile se e solo se $\min_{\alpha}(x)=\prod\limits_{i=1}^k (x-\lambda_i)$ con $\lambda_i\neq \lambda_j$ se $i\neq j$, cioè se e solo se il polinomio minimo splitta completamente in fattori lineari distinti su $\mathbb{K}[x]$.
+
+\begin{prop}[]{}
+Si ha che $M_i=M_{\mathfrak{p}_i^{\alpha_i}}=\{m\in M: \mathfrak{p}_i^{\alpha_i}\cdot m=0\}$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Osserviamo che $d_i\in \mathfrak{p}_j^{\alpha_j}$ per $j\neq i$, quindi $d_i\in \bigcap\limits_{j\neq i} \mathfrak{p}_j^{\alpha_j}$. Sia $m\in d_i\cdot M$. Allora, $m=d_i\cdot m$ perché $(d_i+\Ann_R(M))^2=d_i+\Ann_R(M)$, cioè esiste $y\in M$ tale che $m=d_i\cdot y=d_i^2\cdot y=d_i(d_i\cdot y)=d_i\cdot m$. Per ogni $z\in \mathfrak{p}^{\alpha_i}$ tale che $z\cdot d_i\cdot m=0$ osserviamo che $z\cdot d_i$ (qualcosa, forse è appartiene?) $\mathfrak{p}_i^{\alpha_i}\cap \prod\limits_{j\neq i} \mathfrak{p}_j^{\alpha_j}=\prod\limits_{k=1}^r \mathfrak{p}_k^{\alpha_k}=\mathfrak{p}_1^{\alpha_1}\cap ... \cap \mathfrak{p}_k^{\alpha_k}=\Ann_R(M)$, e questo prova che $M_i\in M_{\mathfrak{p}_i^{\alpha_i}}$. Sia ora $m\in M_i\in M_{\mathfrak{p}_i^{\alpha_i}}$. Poiché $m=\cdot m$ e $1_{\overline{R}}=\sum\limits_{i=1}^r d_i + \Ann_R(M)$, sappiamo che $m=\sum\limits_{k=1}^r d_k\cdot m=d_i\cdot m$. Per $k\neq i$, l'elemento $d_k\in \bigcap\limits_{j\neq k} \mathfrak{p}_j^{\alpha_j}\subseteq \mathfrak{p}_i^{\alpha_i}$. Dunque $d_k\cdot m=0$ perché $m\in M_{\mathfrak{p}_i^{\alpha_i}}$, da cui $M_{\mathfrak{p}_i^{\alpha_i}}\subseteq d_i\cdot M=M_i$ come desiderato.
+\end{proof}
+
+\noindent Come si applica questa cosa? Sia $R=\mathbb{Z}$ e sia $A$ uno $\mathbb{Z}$-modulo finitamente generato di torsione. Allora, avevamo visto che $|A|<\infty$, cioè $A$ è un gruppo abeliano finito.\footnote{Ricordiamo che per ogni $g\in G$ gruppo, la mappa $\chi_g\colon \mathbb{Z}\to G$ definita come $\chi_g(k)=g^k$ è un omomorfismo di gruppi. Definiamo esponente di $G$ l'intero positivo $\exp(G)$ tale che $\exp(G) \mathbb{Z}=\bigcap\limits_{g\in G} \ker(\chi_g)$. In realtà c'è una definizione molto più facile ma a lui piace complicarsi la vita.} Per quanto appena provato, possiamo scrivere $A=\bigoplus\limits_{i=1}^r A_i$, dove $A_i=A_{p_i^{\alpha_i}\mathbb{Z}}={a\in A: p_i^{\alpha_i}\cdot a=0}\in \operatorname{Syl}_p(A)$. Sia $|A|=p_1^{n_1}\cdot ...\cdot p_r^{n_r}\cdot p_{r+1}^{n_{r+1}}\cdot ...\cdot p_{r+k}^{n_{r+k}}$. Allora, $A_i\subseteq A$ è un sottogruppo, anzi è un $p_i$-sottogruppo, e $|A_i|=p_i^{\beta_i}$. Infatti, se per assurdo fosse $|A_i|=p_i^{\beta_i}\cdot q^{\beta}\cdot r$ con $q\neq p_i$ primo e $r$ intero coprimo a $p_i$ e $q$, dove ovviamente $\beta\geq 1$, per il Teorema di Sylow esiste $Q\subseteq \operatorname{Syl_q}(A_i)\subseteq A_i$ tale che $|Q|=q^{\beta}\neq 1$, cioè esiste $g\in Q\setminus\{1\}$. Dunque, $g\in \operatorname{Syl}_q(A_i)\subseteq A_i$ da cui, essendo $g^{p_i^{\alpha_i}}=1$ e $\langle g \rangle\subseteq Q$, per Lagrange $g^{|Q|}=g^{q^{\beta}}=1$. Dunque, essendo $\gcd(p,q)=1$, deve essere $g=1$, il che è assurdo perché questo forza $Q=\{1\}$. Dunque, essendo $A=\bigoplus\limits_{i=1}^r A_i$, abbiamo che $|A|=\prod p_i^{\beta_i}$, dove $\beta_i$ è la massima potenza di $p_i$ che divide $|A|$, da cui $A_i\in \operatorname{Syl}_{p_i}(A)$. (In entrambi gli esempi, ho mostrato che un modulo è somma diretta di sottomoduli che si annullano su ideali particolari che contengolo l'annullatore globale, credo abbia detto così). 
+
+\begin{exm}Se $|G|=35$, allora $G\simeq \mathbb{Z}/35\mathbb{Z}$. Infatti, per quanto appena detto si ha che $G\simeq \mathbb{Z}/5\mathbb{Z}\times \mathbb{Z}/7\mathbb{Z}=\mathbb{Z}/35\mathbb{Z}$, cioè $G$ è ciclico. L'ide è che ho un solo $5$-sottogruppo di Sylow e un solo $7$-sottogruppo di Sylow, da cui essi sono normali, e si conclude facilmente$. \ \square$\end{exm}
+
+\noindent Vogliamo arrivare al teorema seguente. Per farlo dovremo prima introdurre i moduli liberi.
+
+\begin{teo}[3.X.Y: Teorema fondamentale sui moduli f.g. per PID]{}
+Sia $M$ un $R$-modulo sinistro finitamente generato di torsione. Allora, esistono degli ideali $\mathfrak{a}_1,...\,,\mathfrak{a}_k \lhd R$ tali che $M\simeq \bigoplus\limits_{i=1}^k R/\mathfrak{a}_i$.
+\end{teo}
+
+\begin{exm}Se $R=\mathbb{Z}$ e $A$ è uno $\mathbb{Z}$-modulo di torsione con $|A|=27$, allora $\mathfrak{a}_1,\mathfrak{a_2},\mathfrak{a}_3\in \{3\mathbb{Z}, 9\mathbb{Z},27\mathbb{Z}\}$ e $A$ è isomorfo a uno tra $\mathbb{Z}/27\mathbb{Z}$, $\mathbb{Z}/9\mathbb{Z}\times \mathbb{Z}/3\mathbb{Z}$ e $\mathbb{Z}/3\mathbb{Z}\times \mathbb{Z}/3\mathbb{Z}\times \mathbb{Z}/3\mathbb{Z}. \ \square$\end{exm}
+
+\end{document}

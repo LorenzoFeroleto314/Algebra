@@ -1,0 +1,245 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{yhmath}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{amscd}
+\usepackage{sectsty}
+\usepackage{stmaryrd}
+\usepackage{tikz-cd}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Teorema}[subsection]
+\newtheorem*{exm}{Esempio}
+\renewcommand\qedsymbol{$\blacksquare$}
+\addto\captionsenglish{\renewcommand*{\proofname}{Dimostrazione}}
+\addto\captionsenglish{\renewcommand{\contentsname}{Indice}}
+
+\sectionfont{\fontsize{20}{15}\selectfont}
+\subsectionfont{\fontsize{14}{15}\selectfont}
+
+\renewcommand\thefootnote{\textcolor{red}{\arabic{footnote}}}
+
+\newcommand{\quot}{\operatorname{quot}}
+\newcommand{\tor}{\operatorname{tor}}
+\newcommand{\sat}{\operatorname{sat}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\id}{\operatorname{id}}
+
+\newenvironment{teo}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{prop}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{cor}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{lem}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{defn}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione:~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=green!35,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\subsection{Moduli liberi}
+
+\begin{defn}[]{}
+Sia $R$ un anello e sia $X$ un insieme. Un $R$-modulo sinistro $L$ dotato di una mappa $i_X\colon X\to L$ si dice libero su $X$ se per ogni $\phi\colon X\to M$ con $M$ che è $R$-modulo sinistro, esiste un unico $\phi_{\star}\colon L\to M$ omomorfismo di $R$-moduli tale che $\phi=\phi_{\star}\circ i_X$.
+\end{defn}
+
+\noindent Aggiungere diagrammino dagli appunti. Esistono definizioni analoghe per i gruppi, per le algebre, etc. Il concetto di libero è una generalizzazione del concetto di funtore aggiunto. Ma proseguiamo la prossima volta. Se prendo $R=\mathbb{K}$ campo, $M=V$ spazio vettoriale, $X=\mathcal{B}$ base di $V$ e $i_X$ l'inclusione canonica, allora lo spazio vettoriale $V$ lo possiamo vedere come modulo libero sulla base $\mathcal{B}$. L'idea è che basta definire i valori di una mappa $\mathbb{K}$-lineare sulla base, e so già come si comporta in tutto lo spazio $V$.
+
+\
+
+\noindent \textbf{Lezione del 10/12/2019} (vedi appunti cartacei)
+
+\
+
+\noindent La lezione del 10/12/2019 la ho negli appunti cartacei per ora. Le cose su teoria dei moduli sono davvero troppo a caso come ordine, dovrei davvero risistemarle.
+
+\
+
+\
+
+\noindent \textbf{Lezione del 18/12/2019} (appunti grezzi)
+
+\
+
+\noindent Scopo di questa lezione è arrivare al teorema che mostri che se $R$ è un PID, allora ogni $R$-modulo finitamente generato senza torsione possiamo in realtà vederlo come $R$-modulo libero su un opportuno insieme finito. Per fare ciò, procediamo step by step. 
+
+\vspace{1.5mm}
+
+\noindent La somma diretta: sia $R$ un anello e $M$ un $R$-modulo sinistro. Allora, $M\simeq A\oplus B$, dove $A$ e $B$ sono $R$-sottomoduli di $M$, se e solo se dette $\iota_A\colon A\to M$, $\iota_B\colon B\to M$ le inclusioni e $\pi_A\colon M\to A$ e $\pi_B\colon M\to B$ le rispettive proiezioni sul quoziente, accade che $\pi_A\circ \iota_A=\operatorname{id}_A$, $\pi_B\circ \iota_B=\operatorname{id}_B$ e $\iota_A\circ \pi_A+\iota_B\circ \pi_B=\operatorname{id}_M$.
+
+\begin{prop}[3.5.4]{}
+Sia $R$ un anello, $M$ un $R$-modulo sinistro, $A$ un $R$-sottomodulo di $M$ e $\iota_A\colon A\to M$ e $\pi_A\colon M\to A$ omomorfismi di $R$-moduli tali che $\pi_A\circ \iota_A=\operatorname{id}_A$. Allora, $M\simeq A\oplus \ker(\pi_A)$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Sia $\phi\colon A\oplus \ker(\pi_A)\to M$ la mappa definita come $\phi(a,x)=\iota_A(a)+x$, dove $a\in A$ e $x\in \ker(\pi_A)$. Chiaramente tale mappa è un omomorfismo di $R$-moduli. Inoltre, se $\phi(a,x)=0$, allora $\iota_A(a)=-x$, cioè $a=\pi_A(\iota_A(a))=\pi_A(-x)=0$, da cui $a=0$, cioè $-x=0$ e quindi $x=0$, dunque $(a,x)=(0,0)$ il che mostra che $\phi$ è iniettiva. Infine, $\phi$ è anche suriettiva. Infatti, sia $z\in M$ e sia $y=z-\iota_A(\pi_A(z))\in M$. Allora, $\pi_A(y)=\pi_A(z)-\pi_A(\iota_A(\pi_A(z)))=\pi_A(z)-\pi_A(z)=0$, dove nell'ultimo passaggio abbiamo usato che $\pi_A\circ \iota_A=\operatorname{id}_A$, da cui $y\in \ker(\pi_A)$. Dunque, $z=\phi(\pi_A(x),y)=\iota_A(\pi_A(z))+y$, e questo prova la suriettività di $\phi$, da cui esso è quindi un isomorfismo e vale quindi $M\simeq A\oplus \ker(\pi_A)$.
+\end{proof}
+
+\noindent Vale una proposizione simile nel caso dei moduli liberi.
+
+\
+
+\begin{prop}[3.5.5]{}
+Sia $M$ un $R$-modulo sinistro, $\pi\colon M\to F$ un omomorfismo suriettivo e $F$ un $R$-modulo sinistro libero su un insieme $Y$. Allora, $M\simeq F\oplus \ker(\pi)$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Sia $\iota_X\colon X\to F$ una mappa tale che $(F,\iota_X)$ sia libero su $X$, e per ogni $x\in X$ sia $m_x\in M$ tale che $\pi(m_x)=\iota_X(x)$. Sia $\psi\colon X\to M$ la mappa definita come $\psi(x)=m_x$.
+\[
+\begin{tikzcd}[column sep=small]
+X \arrow[rd, "\psi"'] \arrow[rr, "\iota_X"] &                      & F \arrow[ld, "\psi_{\star}", dashed, bend left=40] \\
+                                            & M \arrow[ru, swap, "\pi"'] &                                                   
+\end{tikzcd}
+\]
+\noindent Essendo $F$ libero su $X$, sappiamo che esiste un'unica mappa $\psi_{\star}\colon F\to M$ tale che $\psi_{\star}\circ \iota_X=\psi$. Resta da verificare che $\pi\circ \psi_{\star}=\operatorname{id}_F$. Poiché $\pi(\psi_{\star}(\iota_X(x)))=\pi(\psi(x))=\pi(m_x)=\iota_X(x)$, abbiamo che $(\pi\circ \psi_{\star}) (\iota_X(x))=\iota_X(x)$ per ogni $x\in X$. Abbiamo quindi trovato due mappe che fanno commutare il diagramma seguente: 
+\[
+\begin{tikzcd}[column sep=small]
+X \arrow[rd, "\iota_X"'] \arrow[rr, "\iota_X"] &   & F \arrow[ld, "\operatorname{id}_F"'] \arrow[ld, "\pi\circ \psi_{\star}", bend left=40] \\
+                                               & F &                                                                                       
+\end{tikzcd}
+\]
+\noindent Tuttavia, essendo $F$ libero, la mappa che fa commutare tale diagramma è unica, da cui $\pi\circ \psi_{\star}=\operatorname{id}_F$. Dunque, presa $\iota_F=\psi_{\star}$, per la \emph{Proposizione 3.5.4} vale $M\simeq F\oplus \ker(\pi)$.
+\end{proof}
+
+\noindent Per dimostrare il Teorema, vogliamo procedere per induzione sul numero di generatori di $M$. Tuttavia, per fare ciò dobbiamo prima essere in grado di dimostrare il passo base e lo step induttivo. Ci servono quindi altre due proposizioni.
+
+\begin{prop}[3.5.6]{}
+Sia $R$ un PID, $\mathbb{K}=\quot(R)$ e sia $M\subseteq \mathbb{K}$ un $R$-sottomodulo finitamente generato. Allora, $M\simeq R$ oppure $M=\{0\}$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Poiché $M$ è finitamente generato, esistono $m_1,...\,,m_n\in M$ tali che $M=\sum\limits_{i=1}^n R\cdot m_i$. Essendo $M\subseteq \mathbb{K}$, sappiamo che ogni $m_i$ è della forma $m_i=\frac{a_i}{s_i}$ per degli opportuni $a_i\in R$ e $s_i\in R\setminus \{0\}$. Sia $s=s_1\cdot ...\cdot s_n$, così che $s\cdot M\subseteq R$ sia un $R$-sottomodulo (perché?). Siano $r_1,...\,,r_n\in R$; allora, $s\cdot \sum\limits_{i=1}^n r_i\cdot \frac{a_i}{s_i}=\sum\limits_{i=1}^n r_i s_i^{\times} a_i$ dove $s_i^{\times}=\prod\limits_{j\neq i} s_j$ (non so cosa stia facendo qui). Dunque, essendo $s\cdot M$ un ideale di $R$, poiché $R$ è un PID ogni suo ideale è principale, quindi esiste $b\in R$ tale che $s\cdot M=\langle b\rangle$, da cui $M=R\cdot \frac{b}{s}$. Allora, la mappa $\phi_{b/s}\colon R\to M$ definita come $\phi_{b/s}(r)=r\cdot \frac{b}{s}$ è un omomorfismo suriettivo. Se $b=0$, allora banalmente $M=\{0\}$. Se $b\neq 0$, allora $\ker(\phi_{b/s})=\{0\}$ e $\phi_{b/s}$ è quindi un isomorfismo.
+\end{proof}
+
+\noindent Manca ancora un'ultima (spero meno dubbia della precedente) proposizione prima di poter dimostrare il Teorema. Altro che sagra della primavera, qui è la sagra delle proposizioni.
+
+\begin{prop}[3.5.7]{}
+Sia $R$ un anello, $F_1$ un $R$-modulo sinistro libero su $X$ e $F_2$ un $R$-modulo sinistro libero su $Y$. Allora, $F_1\oplus F_2$ è un $R$-modulo libero su $X\sqcup Y$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Siano $\iota_X\colon X\to F_1$ e $\iota_Y\colon Y\to F_2$ le mappe dei moduli liberi $F_1$ e $F_2$, rispettivamente, e sia $\iota_{X\sqcup Y}\colon X\sqcup Y\to F_1\oplus F_2$ la mappa definita come $\iota_{X\sqcup Y}(x)=\iota_X(x)$ e $\iota_{X\sqcup Y}(y)=\iota_Y(y)$ per ogni $x\in X$ e $y\in Y$ (sappiamo che tale mappa è ben definita per le proprietà dell'unione disgiunta). Sia $M$ un $R$-modulo sinistro e sia $\phi \colon X\sqcup Y\to M$ una mappa qualunque. Allora, detta $\phi_{\star}\colon F_1\oplus F_2\to M$ la mappa $\phi_{\star}(f_1,f_2)=\phi_1(f_1)+\phi_2(f_2)$, dove $\phi_1\colon F_1\to M$ e $\phi_2\colon F_2\to M$ sono gli omomorfismi di $R$-moduli tali che $\phi \raisebox{-.5em}{$\vert_{X}$}=\phi_1\circ \iota_X$ e $\phi \raisebox{-.5em}{$\vert_{Y}$}=\phi_2\circ \iota_Y$ (che credo esistano essendo $F_1$ e $F_2$ moduli liberi), si ha che $\phi_{\star}\circ \iota_{X\sqcup Y}=\phi$, il che prova l'esistenza. Resta da mostrare la unicità di tale mappa $\phi_{\star}$ per concludere che $F_1\oplus F_2$ è libero. D'altra parte, se $\psi\colon F_1\oplus F_2\to M$ è una mappa tale che $\psi\circ \iota_{X\sqcup Y}=\phi$, in particolare deve essere $\psi \raisebox{-.5em}{$\vert_{X}$}=\phi_1$ e $\psi \raisebox{-.5em}{$\vert_{Y}$}=\phi_2$, da cui $\psi(f_1,f_2)=\psi(f_1,0)+\psi(0,f_2)=\phi_1(f_1)+\phi_2(f_2)=\phi_{\star}(f_1,f_2)$, da cui $\psi=\phi_{\star}$ provando l'unicità di $\phi_{\star}$.
+\end{proof}
+
+\noindent It's time for the big theorem, boi :)
+
+\begin{teo}[3.5.8]{}
+Sia $R$ un PID e sia $M$ un $R$-modulo sinistro finitamente generato con $\tor_R(M)=\{0\}$. Allora, esiste un insieme finito $X$ con $|X|=d_R(M)$ tale che $M$ è libero su $X$.
+\end{teo}
+\vspace{-4mm}
+\begin{proof}
+Procediamo per induzione sul numero di generatori $d_R(M)$. Se $d_R(M)=1$, esiste $m\in M$ tale che $M=R\cdot m$. Allora, $\phi_m\colon R\to M$ definita come $\phi_r(m)=r\cdot m$ è un omomorfismo di moduli suriettivo, e $\ker(\phi_m)=\Ann_R(m)=\{0\}$ perché per ipotesi $\tor_R(M)=\{0\}$. Dunque $\phi_m$ è iniettivo, da cui $M\simeq R$, quindi il teorema vale (perchè ogni anello è un modulo libero su se stesso con $1$ generatore, in quanto $R=\langle 1_R\rangle$, cioè $\{1_R\}$ è una base). Supponiamo ora che la tesi valga per $d_R(M)\leq n$. Sia $M$ con $d_R(M)=n+1$ e $\tor_R(M)=\{0\}$. Allora, esistono $m_0,...\,,m_n\in M$ tali che $M=\sum\limits_{i=0}^n R\cdot m_i$. Sia $M_0=\sat_M(R\cdot m_0)$. Allora, $\sat_M(M_0)=\sat_M(\sat_M(M_0))=M_0$ (il passaggio in mezzo è inutile, il punto è che il sat del sat è ancora il sat), dunque per la \emph{Proposizione 3.2.2} si ha che $\tor_R(M/M_0)=\sat_M(M_0)/M_0=\{0\}$ (perché il quoziente è $M_0/M_0$). Poiché $d_R(M/M_0)\leq n$, per ipotesi induttiva $M/M_0$ è libero e per la \emph{Proposizione 3.5.5} vale $M\simeq M_0\oplus M/M_0$. Dunque, basta far vedere che anche $M_0$ è libero. Preso $x\in M_0$, (da qui in poi è delirio) sappiamo che esistono $r_x\in R$ e $s_x\in R\setminus \{0\}$ tali che $s_x\cdot x=r_x\cdot m_0$. Sia $\alpha\colon M_0\to \quot(R)$ la mappa $\alpha(x)=\frac{r_x}{s_x}$ se $x\neq 0$ e $\alpha(0)=0$. Siano $r,r'\in R$ e $s,s'\in R\setminus \{0\}$ con $s\cdot x=r\cdot m_0$ e $s'\cdot x=r'\cdot m_0$. Allora, $ss'\cdot x=s'r\cdot m_0=sr'\cdot m_0$, cioè $(s'r-sr')\cdot m_0=0$, da cui $s'r-sr'\in Ann_R(m_0)=\{0\}$ e quindi $s'r-sr'=0$, cioè $\frac{r}{s}=\frac{r'}{s'}$ (a che serve sta cosa?). Mostriamo che $\alpha$ è un omomorfismo iniettivo di $R$-moduli. Infatti, presi $x,y\in M_0$, siano $s_x\cdot x=r_x\cdot m_0$ e $s_y\cdot y=r_y\cdot m_0$, così che moltiplicando la prima equazione per $s_y$ e la seconda per $s_x$ e sommandole, valga $s_xs_y(x+y)=(s_yr_x+s_xr_y)\cdot m_0$, da cui $\alpha(x+y)=\frac{s_yr_x+s_xr_y}{s_xs_y}=\frac{r_x}{s_x}+\frac{r_y}{s_y}=\alpha(x)+\alpha(y)$. Inoltre, preso $r\neq 0$, $rs_x\cdot x=rr_x\cdot m_0$, quindi $\alpha(r\cdot x)=\frac{r\cdot r_x}{s_x}=r\cdot \alpha(x)$. Per l'iniettività, se $\alpha(x)=0$ esiste $s_x\in R\setminus \{0\}$ tale che $s_x\cdot x=0$, cioè $x\in \tor_R(M_0)\subseteq M$, da cui $x=0$ essendo $\tor_R(M)=\{0\}$. Dunque, per il \emph{Primo teorema d'isomorfismo} si ha $M_0\simeq \operatorname{Im}(\alpha)\subseteq M$. Tuttavia, per la \emph{Proposizione 3.5.6}, essendo $\operatorname{Im}(\alpha)$ un $R$-sottomodulo di $\quot(R)$, vale $\operatorname{Im}(\alpha)\simeq R$, quindi $M_0\simeq R$. Poiché $R$ è libero su $\{\cdot \}$ (come detto prima la base è un insieme di cardinalità 1) e per ipotesi induttiva $M/M_0$ è libero su $X'$ di cardinalità $|X'|=d_R(M)-1$, concludiamo che $M$ è libero su $X=X'\sqcup \{\cdot \}$ e $|X|=d_R(M)$ come desiderato. 
+\end{proof}
+
+\noindent Ci sono un sacco di punti che non mi sono chiari: perchè il sat del sat è il sat? che succede quando compare un $m_0$ selvaggio con tutto il delirio degli $r_x$ e $s_x$? Alla fine che succede?
+
+\end{document}

@@ -1,0 +1,310 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{yhmath}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{amscd}
+\usepackage{sectsty}
+\usepackage{stmaryrd}
+\usepackage{tikz-cd}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Teorema}[subsection]
+\newtheorem*{exm}{Esempio}
+\renewcommand\qedsymbol{$\blacksquare$}
+\addto\captionsenglish{\renewcommand*{\proofname}{Dimostrazione}}
+\addto\captionsenglish{\renewcommand{\contentsname}{Indice}}
+
+\sectionfont{\fontsize{20}{15}\selectfont}
+\subsectionfont{\fontsize{14}{15}\selectfont}
+
+\renewcommand\thefootnote{\textcolor{red}{\arabic{footnote}}}
+
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\quot}{\operatorname{quot}}
+\newcommand{\tor}{\operatorname{tor}}
+\newcommand{\sat}{\operatorname{sat}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\con}{\operatorname{con}}
+\newcommand{\valpha}{\underline{\alpha}}
+\newcommand{\vbeta}{\underline{\beta}}
+\newcommand{\vgamma}{\underline{\gamma}}
+\newcommand{\rbar}{r\underline{\, \, \,}}
+
+\newenvironment{teo}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{prop}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{cor}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{lem}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{defn}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione:~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=green!35,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\section{Complementi di teoria degli anelli}
+\vspace{1.75mm}
+\subsection{Anelli di polinomi in una variabile}
+
+Sia $R$ un anello e sia $R[x]=\left\{\sum\limits_{i=0}^n a_i x^i : a_i\in R,\, n\in \mathbb{N}_0\right\}$.\footnote{Useremo la convenzione secondo cui gli anelli sono commutativi unitari e $\mathbb{N}=\{1,2,...\}$, $\mathbb{N}_0=\mathbb{N}\cup \{0\}$.} Presi due elementi $f(x)=\sum\limits_{i=0}^m a_i x^i$ e $g(x)=\sum\limits_{j=0}^n b_j x^j$ di $R[x],$ definiamo le operazioni binarie di somma {\setlength{\belowdisplayskip}{4.5pt} \setlength{\abovedisplayskip}{-3.5pt} \[ f(x)+g(x)=\sum\limits_{i=0}^s (a_i+b_i)x^i \] dove abbiamo posto $s=\max\{m,n\}$ e $a_i=b_j=0_R$ per $i>m$ e $j>n$, e prodotto} {\setlength{\belowdisplayskip}{-3.5pt} \setlength{\abovedisplayskip}{3pt} \[ f(x)\cdot g(x)=\sum\limits_{k=0}^{m+n}c_k x^k\] dove abbiamo posto $c_k=\sum\limits_{i=0}^{k}a_i b_{k-i}$.\footnote{È solo un modo formale per definire il classico prodotto tra polinomi, come chiarificato dall'esempio.}}
+
+\begin{exm}Se prendiamo $R=\mathbb{Z},$ $f(x)=x^2+2x+3$ e $g(x)=4x+5,$ si ha che \[ f(x)+g(x)=(1+0)x^2+(2+4)x+(3+5)=x^2+6x+8, \] {\setlength{\belowdisplayskip}{-2pt}\setlength{\abovedisplayskip}{0pt}\begin{align*}f(x)\cdot g(x) &= (3\cdot 0+2\cdot 0+1\cdot 4+0\cdot 5)x^3+(3\cdot 0+2\cdot 4+1\cdot 5)x^2+(3\cdot 4+2\cdot 5)x+3\cdot 5 \\ &= 4x^3+13x^2+22x+15. \ \square\end{align*}}\end{exm}
+
+\noindent Come visto nel corso di Algebra I, si verifica facilmente che $R[x]$ dotato di tali operazioni di somma e prodotto è un anello commutativo\footnote{Infatti $a_ib_{k-i}=b_{k-i}a_i$ essendo $R$ un anello commutativo per ipotesi, da cui $f(x)\cdot g(x)=g(x)\cdot f(x)$.} con elemento neutro il polinomio identicamente nullo $0_{R[x]}=0_{R}$ e unità il polinomio costante $1_{R[x]}=1_{R}$. 
+
+\vspace{1.5mm}
+
+\noindent Di qui in seguito, denoteremo il prodotto di polinomi semplicemente come $f(x)g(x)$ o $f\cdot g$.
+
+\begin{defn}[]{}
+Tale insieme $R[x]$ è detto \underline{anello dei polinomi a coefficienti in $R$ nella variabile $x$}.
+\end{defn}
+
+\noindent Possiamo quindi definire su $R[x]$ il concetto di ``grado'' di un polinomio.
+
+\begin{defn}[]{}
+Sia $R$ un anello e sia $f(x)=\sum\limits_{i=0}^n a_i x^i\in R[x]$. La funzione $\deg^{\star}\colon R[x]\to \mathbb{N}_0\cup \{\infty\}$ definita come $\deg^{\star}(f)=\begin{cases} \max\{k\in \mathbb{N}_0: a_k\neq 0_R\} \text{ \ se }f(x)\not\equiv 0_R \\ \infty \text{ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ se } f(x)\equiv 0_R\end{cases}$è detta \underline{grado}.\footnotemark
+\end{defn}
+\footnotetext{Sarebbe più corretto scrivere $\deg^{\star}(f(x)),$ ma si preferisce evitare l'uso di troppe parentesi. Ricordiamo che con $f(x)\equiv k$ si intende il polinomio costante uguale a $k$. Tale notazione serve per non confondere un polinomio costante $p(x)\equiv 0$ con l'equazione algebrica $p(x)=0.$}
+
+\noindent Tale definizione coincide con quella classica di grado di un polinomio tranne nel caso in cui $f(x)$ sia identicamente nullo. Infatti, per questa definizione $f(x)\equiv 0_R$ è l'unico polinomio di grado infinito, mentre secondo quella classica anch'esso ha grado $0$ in quanto costante. 
+
+\begin{exm}Se consideriamo i polinomi $f(x)=x^2+1,$ $g(x)\equiv 1$ e $h(x)\equiv 0$ in $\mathbb{Z}[x]$, si ha che $\deg^{\star}(f)=2$ e $\deg^{\star}(g)=0,$ ma $\deg^{\star}(h)=\infty. \ \square$\end{exm}
+
+\noindent Possiamo ora dimostrare un risultato che mette in relazione l'anello dei polinomi con quello dei suoi coefficienti, nel caso in cui quest'ultimo sia un dominio di integrità.\footnote{Ricordiamo che un dominio di integrità è un anello commutativo unitario $R\neq \{0_R\}$ senza divisori dello zero, cioè in cui $ab=0_R$ se e solo se $a=0_R$ o $b=0_R$. Esempi di domini di integrità sono $\mathbb{Z},$ le classi di resto $\mathbb{F}_p=\mathbb{Z}/p\mathbb{Z}$ con $p$ primo, gli interi gaussiani $\mathbb{Z}[i]=\left\{a+bi: a,b\in\mathbb{Z}\right\}$ e $\mathbb{Z}[\sqrt{2}\,]=\{a+b\sqrt{2}: a,b\in \mathbb{Z}\}$.}
+
+\begin{prop}[1.1.1]{}
+Sia $R$ un dominio di integrità. Allora, per ogni $f(x),\,g(x)\in R[x]$ vale \[\deg^{\star}(f\cdot g)=\deg^{\star}(f)+\deg^{\star}(g). \ \bf{(\star)}\] In particolare, $R[x]$ è un dominio di integrità se e solo se $R$ è un dominio di integrità.
+\end{prop}
+\vspace{-4mm}
+\begin{proof} Osserviamo innanzitutto che se almeno uno tra $f(x)$ e $g(x)$ è identicamente nullo, allora $\bf{(\star)}$ è vera perché $f(x)g(x)\equiv 0_R$ e quindi \[\deg^{\star}(f\cdot g)=\infty=\deg^{\star}(f)+\deg^{\star}(g).\] D'altra parte, siano $f(x)=\sum\limits_{i=0}^m a_i x^i$ e $g(x)=\sum\limits_{j=0}^n b_j x^j$ non nulli con $a_m\neq 0_R$ e $b_n\neq 0_R$. Poiché $R$ è un dominio di integrità, $a_m b_n\neq 0_R$, cioè $a_m b_n x^{m+n}$ è il monomio di grado massimo nel prodotto $f(x)g(x)$. Per definizione di grado, concludiamo quindi che \[\deg^{\star}(f\cdot g)=m+n=\deg^{\star}(f)+\deg^{\star}(g).\]
+
+\noindent Sia ora $R$ un dominio di integrità, e mostriamo che lo è anche $R[x]$. Osserviamo innanzitutto che $R[x]$ è un anello commutativo unitario, in quanto eredita tali proprietà da $R$. Inoltre, presi $f(x),\,g(x)\in R[x]$ tali che $f(x)g(x)\equiv 0_R$, per quanto appena mostrato vale \[\deg^{\star}(f)+\deg^{\star}(g)=\deg^{\star}(f\cdot g)=\deg^{\star}(0_R)=\infty.\] Dunque, almeno uno fra $f(x)$ e $g(x)$ ha grado infinito ed è quindi il polinomio nullo, cioè $R[x]$ non ha divisori dello zero ed è effettivamente un dominio di integrità.
+
+\vspace{1mm}
+
+\noindent Viceversa, sia $R[x]$ un dominio di integrità. Allora, $R\subseteq R[x]$ è commutativo e unitario in quanto sottoanello, e presi $a,b\in R,$ possiamo vedere $a$ e $b$ come polinomi costanti in $R[x]$. Essendo $R[x]$ un dominio di integrità, $ab=0_R$ se e solo se $a=0_R$ o $b=0_R$, da cui anche $R$ non ha divisori dello zero ed è quindi un dominio di integrità.\end{proof}
+
+\noindent Osserviamo che $\bf{(\star)}$ non vale quando l'anello $R$ non è un dominio di integrità.
+
+\begin{exm}Siano $f(x)=2x+1$ e $g(x)=3x+2$ in $\mathbb{Z}/6\mathbb{Z}\,[x]$. Allora, $\deg^{\star}(f)=\deg^{\star}(g)=1$, ma $f(x)g(x)=6x^2+7x+2\equiv_6 x+2$, da cui $\deg^{\star}(f\cdot g)=1\neq 2=\deg^{\star}(f)+\deg^{\star}(g). \ \square$\end{exm}
+
+\noindent Più in generale, se $R$ non è un dominio di integrità, per definizione esistono $a,b\in R$ non nulli tali che $ab=0_R$. Allora, detti $f(x)=ax$ e $g(x)=bx$, si ha $f(x)g(x)=abx^2=0_Rx^2=0_R$, da cui, essendo $\deg^{\star}(f)=\deg^{\star}(g)=1$, l'uguaglianza $\bf{(\star)}$ non vale perché \[\deg^{\star}(f\cdot g)=\deg^{\star}(0_R)=\infty\neq 2=\deg^{\star}(f)+\deg^{\star}(g).\] Dunque, per la \emph{Proposizione 1.1.1} segue che $\bf{(\star)}$ vale se e solo se $R$ è un dominio di integrità.
+
+\vspace{1.5mm}
+
+\noindent Prima di procedere nello studio degli anelli di polinomi, richiamiamo il concetto di elemento invertibile di un anello. Preso un anello $R$, sia $R^{\times}$ l'insieme degli elementi di $R$ che hanno inverso moltiplicativo, cioè l'insieme degli $a\in R$ per cui esiste $b\in R$ tale che $ab=1_R$. Se esiste, denotiamo l'inverso moltiplicativo di $a$ con $a^{-1}$. Allora, vale la proposizione seguente.
+
+\begin{prop}[1.1.2]{}
+Sia $R$ un anello. Allora, $R^{\times}$ è un gruppo rispetto al prodotto.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Osserviamo innanzitutto che il prodotto è associativo essendo $R$ un anello, e in particolare $1_R$ è l'unità anche di $R^{\times}$. Inoltre, presi $a,b\in R^{\times}$, per definizione esistono $c,d\in R$ tali che $ac=1_R$ e $bd=1_R$, dunque \[(ab)(dc)=a(bd)c=a1_Rc=ac=1_R,\] cioè $ab\in R^{\times}$ è invertibile con inverso $dc$, da cui $R^{\times}$ è chiuso rispetto al prodotto. Infine, se $ab=1_R$ è evidente che anche $a^{-1}=b\in R^{\times}$, dunque $(R^{\times},\cdot)$ è effettivamente un gruppo.
+\end{proof}
+
+\noindent Grazie a tale proposizione, la definizione seguente risulta quindi ben posta.
+
+\begin{defn}[]{}
+Sia $R$ un anello. L'insieme $R^{\times}$ degli elementi di $R$ che ammettono inverso moltiplicativo è un gruppo detto \underline{gruppo moltiplicativo di $R$}.\footnotemark
+\end{defn}\footnotetext{Tale gruppo viene spesso indicato anche con $\mathcal{U}(R)$ o $R^{\star}$ ed è anche detto ``gruppo delle unità di $R$''.}
+
+\noindent Se da una parte la \emph{Proposizione 1.1.1} mostra che $R[x]$ può avere la struttura di un dominio di integrità, l'anello dei polinomi $R[x]$ non è mai un campo, nemmeno se lo è $R$ stesso.\footnote{Vedremo nel \emph{Capitolo 1.4} una generalizzazione degli anelli di polinomi con la struttura di un campo.} Infatti, $x\in R[x]$ non è un elemento invertibile perché il suo inverso $1/x$ non è un polinomio.\footnote{Più rigorosamente, se $f(x)=x$ fosse invertibile, esisterebbe $g(x)\in R[x]$ tale che $f(x)g(x)=1_R$, da cui $\deg^{\star}(f\cdot g)=\deg^{\star}(1_R)=0=\deg^{\star}(f)+\deg^{\star}(g)$, cioè $\deg^{\star}(g)=-\deg^{\star}(f)=-1<0$, assurdo.} Risulta quindi naturale chiedersi quali elementi di $R[x]$ siano effettivamente invertibili.
+
+\begin{prop}[1.1.3]{}
+Sia $R$ un dominio di integrità. Allora, $R[x]^{\times}=R^{\times}$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Poiché ogni elemento di $R^{\times}$ può essere visto come polinomio costante di~$R[x]$, è evidente che $R^{\times}\subseteq R[x]^{\times}$. D'altra parte, siano $f(x),\,g(x)\in R[x]^{\times}$ tali che $f(x)g(x)=1_R$. Allora, per la \emph{Proposizione 1.1.1} si ha che \[\deg^{\star}(f\cdot g)=\deg^{\star}(1_R)=0=\deg^{\star}(f)+\deg^{\star}(g),\] quindi $\deg^{\star}(f)=\deg^{\star}(g)=0$ essendo il grado non negativo. Questo prova che ogni elemento di $R[x]^{\times}$ è in realtà una costante invertibile, cioè $R[x]^{\times}\subseteq R^{\times}$, dunque $R[x]^{\times}=R^{\times}$.
+\end{proof}
+
+\clearpage
+
+\noindent Sia $R$ un anello, e supponiamo di voler aggiungere a $R$ un certo elemento $x\notin R$ senza alcuna relazione con gli altri elementi di $R$, in modo che la struttura algebrica risultante sia ancora un anello e sia la più piccola possibile. Come possiamo fare? 
+
+\vspace{1.5mm}
+
+\noindent Poiché ogni anello è chiuso rispetto a somma e prodotto, tale struttura conterrà anche tutte le potenze non negative $\{x^0, x^1, x^2, ...\}$ di $x$ e tutte le combinazioni lineari tra potenze di $x$ ed elementi di $R$, cioè tutti gli elementi della forma $a_nx^n + ... + a_1x+a_0$ con $a_0,...\,,a_n\in R$. Dunque, l'anello dei polinomi $R[x]$ sembra essere la struttura che soddisfa le nostre richieste, cioè il più piccolo anello contenente sia $R$ che $x$. Resta solo da formalizzare meglio il concetto di ``più piccolo anello'', cioè chiarire cosa significa che un anello ne contiene un altro.
+
+\vspace{1.5mm}
+
+\noindent A questo scopo, potremmo considerare sull'insieme degli anelli la relazione d'ordine data dall'inclusione, cioè dire che un anello $R$ è più piccolo di un altro anello $S$ se e solo se $R\subseteq S$. Tuttavia, questo non terrebbe conto dell'importanza algebrica degli isomorfismi: infatti, la struttura che stiamo cercando di costruire è definita a meno di isomorfismi, e anelli isomorfi potrebbero essere non confrontabili secondo l'inclusione.\footnote{Ad esempio, si verifica facilmente che la mappa $\varphi\colon \mathbb{C}\to \Mat_{2\times 2}(\mathbb{R})$, $a+bi \mapsto \begin{pmatrix} a & b \\ -b & a \end{pmatrix}$ è un isomorfismo di anelli, ma $\mathbb{C}\not\subseteq \operatorname{Mat}_{2\times 2}(\mathbb{R})$ e $\operatorname{Mat}_{2\times 2}(\mathbb{R})\not\subseteq \mathbb{C}$, cioè tali anelli non sono confrontabili secondo l'inclusione.} Per risolvere tale problema, ha quindi più senso definire che $R$ è più piccolo di $S$ se e solo se $S$ contiene una copia isomorfa dell'anello $R$, cioè se e solo se esiste un sottanello di $S$ isomorfo a $R$.
+
+\begin{defn}[]{}
+Siano $R$ e $S$ due anelli. Diciamo che $R$ è \underline{più piccolo} di $S$ (o anche che $S$ contiene $R$) se e solo se esiste un omomorfismo di anelli iniettivo $\varphi \colon R\to S$.
+\end{defn} 
+
+\noindent Si osservi che tale definizione è equivalente a quanto detto sopra: se esiste un monomorfismo (cioè un omomorfismo iniettivo) $\varphi\colon R\to S$, la restrizione $\varphi\colon R\to \varphi(R)$ è un isomorfismo, dunque l'immagine $\varphi(R)\subseteq S$ è un sottoanello di $S$ isomorfo a $R$.
+
+\begin{exm}Chiaramente $\mathbb{R}$ non è un sottoanello di $\mathbb{R}^2$, in quanto $\mathbb{R}\not\subseteq \mathbb{R}^2$. D'altra parte, la mappa $\varphi\colon \mathbb{R}\to \mathbb{R}^2$, $x\mapsto (x,x)$ è un omomorfismo iniettivo, quindi $\mathbb{R}^2$ contiene una copia isomorfa di $\mathbb{R}$, che geometricamente corrisponde alla bisettrice $y=x. \ \square$\end{exm}
+
+\noindent Tornando al problema iniziale, sia $X$ la struttura algebrica che stiamo cercando di costruire. Allora, possiamo riformulare le condizioni su $X$ come segue:
+\begin{itemize}
+\item $X$ contiene $R\Rightarrow$ esiste un monomorfismo $\iota\colon R\to X$;
+\item $X$ è il più piccolo anello contenente sia $R$ che $x\notin R\Rightarrow$ per ogni altro anello $S$ con tali proprietà (cioè tale che esista un monomorfismo $\varphi\colon R\to S$ e contenente un $s\notin R$), abbiamo che $X$ è più piccolo di $S$, ossia esiste un monomorfismo $\phi\colon X\to S$. 
+\end{itemize}In particolare, richiediamo che tale mappa $\phi$ soddisfi $\phi(x)=s$ e $\phi(\iota(R))=\varphi(R)$, cioè che mandi l'elemento aggiunto $x$ nell'elemento aggiunto $s$ e la copia isomorfa $\iota(R)$ di $R$ in $X$ nella copia isomorfa $\varphi(R)$ di $R$ in $S$.
+\[
+\begin{tikzcd}
+R \arrow[rr, "\varphi", hook] \arrow[dd, "\iota"', hook] &  & S \\
+                                                         &  &   \\
+X \arrow[rruu, "\phi"', dashed, hook]                    &  &  
+\end{tikzcd}
+\]
+
+\noindent Osserviamo ora che l'anello dei polinomi $R[x]$ soddisfa effettivamente tali proprietà. Infatti, detta $\iota\colon R\to R[x]$ la mappa di inclusione che manda ogni elemento $r\in R$ nel corrispondente polinomio costante $r\in R[x]$, è evidente che $\iota$ sia un monomorfismo, e preso un qualunque monomorfismo $\varphi\colon R\to S$, basta definire $\phi\colon R[x]\to S$ ponendo $\phi(x)=s$ e $\phi(\iota(r))=\varphi(r)$ per ogni $r\in R$. Tale mappa si estende per linearità su tutto $R[x]$ ponendo $$\phi\left( \sum\limits_{i=0}^n r_ix^i \right)=\sum\limits_{i=0}^n \varphi(r_i)s^i$$ ed è facile verificare che $\phi$ sia un monomorfismo.\footnote{Approfondiremo meglio questa questione nel \emph{Capitolo 2.1} quando tratteremo le estensioni di campi.} Più in generale, vale il teorema seguente.
+
+\begin{teo}[1.1.4: Proprietà universale]{}
+Siano $R$ e $S$ due anelli e sia $\varphi\colon R\to S$ un omomorfismo. Allora, per ogni $s\in S$ esiste un unico omomorfismo di anelli $\phi\colon R[x]\to S$ tale che $\phi(x)=s$ e $\phi \raisebox{-.5em}{$\vert_{R}$}= \varphi$.
+\end{teo}
+\vspace{-4mm}
+\begin{proof}Siano $f(x)=\sum\limits_{i=0}^m a_i x^i$ e $g(x)=\sum\limits_{j=0}^n b_j x^j$ in $R[x]$ e sia $\phi(f)=\sum\limits_{i=0}^m \varphi(a_i) s^i$. Osserviamo innanzitutto che $\phi(f)$ è ben definita. Infatti, $\varphi(a_i)\in S$ e $\phi(f)\in S$ perché somma di prodotti di elementi dell'anello $S$, che è chiuso rispetto a somma e prodotto. Inoltre, $\phi(x)=\varphi(1_R)s^1=s$ e $\phi(r)=\varphi(r)s^0=\varphi(r)$ per ogni $r\in R$, quindi $\phi$ soddisfa le condizioni richieste. Mostriamo ora che $\phi$ preserva le operazioni. Infatti, \[ \phi(f+g)=\sum\limits_{i=0}^{\max\{m,n\}}\varphi(a_i+b_i)s^i=\sum\limits_{i=0}^{m}\varphi(a_i)s^i+\sum\limits_{j=0}^{n}\varphi(b_j)s^j=\phi(f)+\phi(g) \] per la distributività del prodotto rispetto alla somma e perché $\varphi(a_i+b_i)=\varphi(a_i)+\varphi(b_i)$, e \[ \phi(f\cdot g)=\sum\limits_{k=0}^{m+n}\left(\sum\limits_{i=0}^{k}\varphi(a_ib_{k-i})\right)s^k=\left(\sum\limits_{i=0}^{m}\varphi(a_i)s^i\right)\left(\sum\limits_{j=0}^{n}\varphi(b_j)s^j\right)=\phi(f)\cdot \phi(g) \] per come è definito il prodotto tra polinomi e perché $\varphi(a_ib_{k-i})=\varphi(a_i)\varphi(b_{k-i})$ essendo $\varphi$ un omomorfismo. Poiché $\phi(0_{R[x]})=\varphi(0_R)=0_S$ e $\phi(1_{R[x]})=\varphi(1_R)=1_S,$ concludiamo che tale mappa $\phi$ è effettivamente un omomorfismo di anelli.
+
+\vspace{1mm}
+
+\noindent Mostriamo ora che $\phi$ è unico. Sia $\psi\colon R[x]\to S$ un altro omomorfismo di anelli tale che $\psi(x)=s$ e $\psi \raisebox{-.5em}{$\vert_{R}$}= \varphi$. Poiché $\psi$ preserva le operazioni, per ogni $f(x)=\sum\limits_{i=0}^m a_i x^i\in R[x]$ vale \[ \psi(f) = \psi\left( \sum\limits_{i=0}^m a_i x^i \right) = \sum\limits_{i=0}^m \psi(a_i) \psi(x^i)=\sum\limits_{i=0}^m \varphi(a_i) \psi(x)^i=\sum\limits_{i=0}^m \varphi(a_i) s^i=\phi(f) \] essendo $\psi(a_i)=\varphi(a_i)$ perché $a_i\in R$ e $\psi(x^i)=\psi(x)^i=s^i$. Dunque, $\psi$ coincide con $\phi$ per ogni polinomio $f(x)\in R[x]$, da cui $\phi$ è unico.\end{proof}
+
+\noindent Nel caso particolare in cui $\varphi=\id_R$ e quindi $R\subseteq S$, la mappa $\phi$ di cui sopra viene spesso denotata con $\phi_s$. In questo caso, $\phi_s(f)$ non è altro che il polinomio $f(x)$ calcolato in $x=s$, cioè $\phi_s(f)=f(s)$, il che spiega l'origine del nome ``valutazione in $s$'' per tale mappa.
+
+\begin{defn}[]{}
+Tale omomorfismo di anelli $\phi_s$ è detto \underline{valutazione in $s$}.
+\end{defn}
+
+\begin{exm}Se $R=\mathbb{Z}$, $S=\mathbb{Z}[\sqrt{2}\,]$ e $f(x)=x^2+2x+3\in \mathbb{Z}[x]$, detta $\phi_{\sqrt{2}}\colon \mathbb{Z}[x]\to \mathbb{Z}[\sqrt{2}\,]$ la valutazione in $\sqrt{2}$, abbiamo che $\phi_{\sqrt{2}}(f)=(\sqrt{2})^2+2\sqrt{2}+3=5+2\sqrt{2}\in \mathbb{Z}[\sqrt{2}\,]. \ \square$\end{exm}
+
+\noindent Vogliamo ora dimostrare che la \emph{Proprietà universale} è una caratteristica propria degli anelli di polinomi, cioè che se $T$ è un anello contenente sia $R$ che un elemento $t\notin R$ e dotato della \emph{Proprietà universale}, allora $T\cong R[x]$. Nella dimostrazione ci limiteremo al caso in cui $R\subseteq T$ e $\varphi=\id_R$ (e quindi $R\subseteq S$), ma il caso generale è del tutto analogo.
+\begin{teo}[1.1.5]{}
+Sia $R$ un anello e sia $T\supseteq R$ un anello contenente un elemento $t\notin R$ e tale che per ogni anello $S\supseteq R$ e per ogni $s\in S$ esista un unico omomorfismo di anelli $\psi \colon T\to S$ con $\psi(t)=s$ e $\psi \raisebox{-.5em}{$\vert_{R}$}= \id_R$. Allora, $T\cong R[x]$.
+\end{teo}
+\vspace{-4mm}
+\begin{proof}Poiché per ipotesi tale proprietà vale per ogni anello $S\supseteq R$, in particolare scegliamo $S=R[s]$ e siano $\phi_t\colon R[s]\to T$ la valutazione in $t$\footnote{Ricordiamo che per il \emph{Teorema 1.1.4} tale omomorfismo è l'unico che soddisfa $\phi_t(s)=t$ e $\phi_t \raisebox{-.5em}{$\vert_{R}$}= \operatorname{id}_R$.} e $\alpha=\phi_t\circ \psi\colon T\to T$. 
+\vspace{-2mm}
+\[
+  \begin{tikzcd}
+    T \arrow{r}{\psi} \arrow[swap]{dr}{\alpha} & R[s] \arrow{d}{\phi_t} \\
+     & T
+  \end{tikzcd}
+\]
+Osserviamo innanzitutto che $\alpha$ è ben definito ed è un omomorfismo in quanto composizione di omomorfismi. Inoltre, $\alpha(t) = \phi_t(\psi(t)) = \phi_t(s)=t$ e $\alpha(r)=\phi_t(\psi(r))=\phi_t(r)=r$ per ogni $r\in R$, cioè $\alpha \raisebox{-.5em}{$\vert_{R}$}= \operatorname{id}_R$. D'altra parte, poiché $T\supseteq R$, possiamo scegliere $S=T$ e $s=t$ nell'enunciato del teorema, così sappiamo che esiste un unico omomorfismo $\psi'\colon T\to T$ tale che $\psi'(t)=t$ e $\psi' \raisebox{-.5em}{$\vert_{R}$}= \id_R$. Poiché anche l'identità $\id_T\colon T\to T$ soddisfa tali proprietà, per l'unicità di $\psi'$ deve essere $\alpha=\id_T$. Sia ora $\beta=\psi\circ \phi_t\colon R[s]\to R[s]$.
+\vspace{-2mm}
+\[
+  \begin{tikzcd}
+    R[s] \arrow{r}{\phi_t} \arrow[swap]{dr}{\beta} & T \arrow{d}{\psi} \\
+     & R[s]
+  \end{tikzcd}
+\]
+Come sopra, osserviamo che $\beta$ è ben definito ed è un omomorfismo in quanto composizione di omomorfismi. Inoltre, $\beta(s) = \psi(\phi_t(s)) = \psi(t)=s$ e $\beta(r)=\psi(\phi_t(r))=\psi(r)=r$ per ogni $r\in R$, cioè $\beta \raisebox{-.5em}{$\vert_{R}$}= \operatorname{id}_R$. Poiché anche l'identità $\id_{R[s]}\colon R[s]\to R[s]$ soddisfa $\id_{R[s]}(s)=s$ e $\id_{R[s]} \raisebox{-.5em}{$\vert_{R}$}= \id_R$, e per il \emph{Teorema 1.1.4} esiste un unico omomorfismo con queste proprietà, deve essere $\beta=\operatorname{id}_{R[s]}$. Dunque, essendo $\phi_t\circ \psi=\operatorname{id}_T$ e $\psi\circ \phi_t=\operatorname{id}_{R[s]}$ isomorfismi, lo sono anche $\psi$ e $\phi_t$,\footnote{In generale, se $f\colon X\to Y$ e $g\colon Y\to X$ sono omomorfismi tali che $g\circ f=\operatorname{id}_X$ e $f\circ g=\operatorname{id}_Y,$ allora $f$ e $g$ sono isomorfismi. Infatti, $f$ è iniettivo perché $f(x)=f(x')\Rightarrow x=g(f(x))=g(f(x'))=x',$ ed è suriettivo perché preso $y\in Y,$ si ha che $g(y)\in X$ e $f(g(y))=y.$ In modo del tutto analogo si dimostra che anche $g$ è un isomorfismo, e in particolare risulta quindi che $g=f^{-1}.$} da cui concludiamo che $T\cong R[s]\cong R[x].\footnote{Infatti $s$ è solo un nome qualunque per la variabile dei polinomi a coefficienti in $R$.}$
+\end{proof}
+
+\end{document}

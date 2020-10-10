@@ -1,0 +1,224 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{yhmath}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{amscd}
+\usepackage{sectsty}
+\usepackage{stmaryrd}
+\usepackage{tikz-cd}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Teorema}[subsection]
+\newtheorem*{exm}{Esempio}
+\renewcommand\qedsymbol{$\blacksquare$}
+\addto\captionsenglish{\renewcommand*{\proofname}{Dimostrazione}}
+\addto\captionsenglish{\renewcommand{\contentsname}{Indice}}
+
+\sectionfont{\fontsize{20}{15}\selectfont}
+\subsectionfont{\fontsize{14}{15}\selectfont}
+
+\renewcommand\thefootnote{\textcolor{red}{\arabic{footnote}}}
+
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\quot}{\operatorname{quot}}
+\newcommand{\tor}{\operatorname{tor}}
+\newcommand{\sat}{\operatorname{sat}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\con}{\operatorname{con}}
+\newcommand{\valpha}{\underline{\alpha}}
+\newcommand{\vbeta}{\underline{\beta}}
+\newcommand{\vgamma}{\underline{\gamma}}
+\newcommand{\vdelta}{\underline{\delta}}
+\newcommand{\vepsilon}{\underline{\varepsilon}}
+\newcommand{\rbar}{r\underline{\, \, \,}}
+\newcommand{\sbar}{s\underline{\, \, \,}}
+\newcommand{\tbar}{t\underline{\, \, \,}}
+
+\newenvironment{teo}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Teorema~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{prop}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Proposizione~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{cor}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Corollario~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{lem}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!25]
+{\strut Lemma~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=blue!25,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\newenvironment{defn}[2][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=green!35]
+{\strut Definizione:~#1};}}%
+}%
+\mdfsetup{innertopmargin=1.5pt,linecolor=green!35,%
+linewidth=1.75pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\subsection{Divisori elementari}
+
+\noindent \textbf{Lezione del 07/01/2020} (appunti grezzi)
+
+\noindent Sia $R$ un PID e sia $F$ un $R$-modulo sinistro libero su $X=\{x_1,...\,,x_n\}\subseteq F$, dove $X$ è una base di $F$. Preso un elemento $z\in F$, siano $r_1,...\,,r_n\in R$ tali che $z=\sum\limits_{i=1}^n r_i\cdot x_i$.
+
+\begin{defn}[]{}
+L'ideale $\con(z)=\langle r_1,...\,,r_n \rangle\lhd R$ si dice \underline{contenuto} di $z$.
+\end{defn}
+
+\noindent A priori, tale definizione è strana: per come lo abbiamo posto, sembra che $\con(z)$ dipenda dalla particolare base $X$ scelta. Tuttavia questo non è vero, come mostra la proposizione seguente. Per comodità di notazione, sia $F^{\star}=\operatorname{Hom}(F,R)$. 
+
+\begin{prop}[3.6.1]{}
+Sia $z\in F$ e sia $I_z=\{\phi(z): \phi\in F^{\star}\}$. Allora, $I_z$ è un ideale di $R$ e $\con(z)=I_z$.
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+Sia $x_i^{\star}\in F^{\star}$ definito come $x_i^{\star}(x_j)=\delta_{i,j}$, così che $r_i=x_i^{\star}(z)$, cioè $r_i\in I_z$.\footnote{Osserviamo che tali $x_i^{\star}$ sono una base del duale.} Mostriamo ora che $I_z\lhd R$. Innanzitutto, sappiamo che $F^{\star}$ è un $R$-modulo, perché presi $\phi,\psi\in F^{\star}$ anche $\phi+\psi\in F^{\star}$ e $r\cdot \phi\in F^{\star}$ per ogni $r\in R$. Dunque, la mappa $\underline{\ }(z)\colon F^{\star}\to R$ è un omomorfismo di $R$-moduli (ma perché chiama le mappe con il trattino, e che cacchio) da cui $\operatorname{Im}(\underline{\ }(z))=I_z$, cioè $I_z$ è un $R$-modulo (e quindi anche un ideale di $R$). Chiaramente $\con(z)\subseteq I_z$. D'altra parte, preso $\phi\in F^{\star}$, osserviamo che $\phi(z)=\phi\left( \sum\limits_{i=1}^n r_i\cdot x_i \right)=\sum\limits_{i=1}^n r_i\cdot \phi(x_i)\in \con(z)$, da cui $I_z\subseteq \con(I_z)$ e quindi seque che $\con(z)=I_z$ come richiesto.
+\end{proof}
+
+\begin{lem}[3.6.2]{}
+Sia $R$ un PID, $F$ un $R$-modulo sinistro libero su $X=\{x_1,...\,,x_n\}$ e sia $M\subseteq F$ un $R$-sottomodulo di $F$. Sia $z\in F$. Allora,
+
+\noindent (a) esiste $\phi\in F^{\star}$ tale che $\con(z)=\langle \phi(z) \rangle$; (sono ideali o moduli? lui scrive $R\cdot \phi(z)$)
+
+\noindent (b) per ogni $\psi\in F^{\star}$ si ha che $\psi(z)\in \con(z)$;
+
+\noindent (c) esiste $x_0\in M$ tale che per ogni $y\in M$ si abbia $\con(y)\subseteq \con(x_0)$.
+\end{lem}
+\vspace{-4mm}
+\begin{proof}
+(a) Poiché $R$ è un PID, ogni suo ideale è principale, da cui essendo $\con(z)\lhd R$ sappiamo che esiste $c\in \con(z)$ tale che $\con(z)=\langle c\rangle$. Dunque, per la \emph{Proposizione 3.6.1} esiste $\phi\in F^{\star}$ tale che $c=\phi(z)$.
+
+\vspace{1mm}
+
+\noindent (b) Segue banalmente dalla \emph{Proposizione 3.6.1} essendo $\con(z)=I_z$.
+
+\vspace{1mm}
+
+\noindent (c) Poiché $R$ è un PID, esso è noetheriano, dunque esiste $x_0\in M$ tale che $\con(x_0)$ è massimale in $\{\con(y): y\in M\}$, cioè se $\con(x_0)\subseteq \con(z)$ per un certo $z\in M$, allora $\con(z)=\con(x_0)$. Resta da mostrare che $x_0$ soddisfa (c). Per (a), sappiamo che esiste $\phi\in F^{\star}$ tale che $\con(x_0)=\langle \phi(x_0)\rangle$. Ora, per la \emph{Proposizione 3.6.1} basta verificare che $\phi(z)\subseteq \langle \phi(x_0)\rangle$ per ogni $z\in M$ e $\psi\in F^{\star}$. Sia $R\cdot d=R\cdot \phi(x_0) + R\cdot z_0$. Allora, esistono $a,b\in R$ tali che $d=a\cdot \phi(x_0)+b\cdot \phi(z)$, cioè $d=\phi(ax_0+bz)\in \con(ax_0+bz)$ per la \emph{Proposizione 3.6.1}. Allora, $\con(x_0)=R\cdot \phi(x_0)\subseteq R\cdot d\in \con(ax_0+bz)$, da cui $\con(x_0)=\con(ax_0+bz)$. Dunque, $d\in R\cdot \phi(x_0)$, cioè $\phi(z)\in R\cdot d\subseteq R\cdot \phi(x_0)=\con(x_0)$. Manca da mostrare che $\psi(z)\in \con(x_0)$ per ogni $\psi\in F^{\star}$. Sappiamo che $\psi(x_0)\in \con(x_0)$ per ogni $\psi\in F^{\star}$. Sia $z_0=z-\frac{\phi(z)}{\phi(x_0)}\cdot x_0$, dove quindi $\frac{\phi(z)}{\phi(x_0)}\in R$. Allora $\phi(z_0)=0$. Basta dimostrare che $\psi(z_0)\in \con(x_0)$ (nota: mi sono perso). Sia $\psi_0\in F^{\star}$ tale che $\psi_0=\psi-\frac{\psi(x_0)}{\phi(x_0)}\cdot \phi$. Osserviamo che $\psi_0(z_0)=\psi(z)$ e $\psi_0(x_0)=0$. Ora basta mostrare che $\psi_0(z_0)\in \con(x_0)$. Usiamo lo stesso trucco di prima. Sia $R\cdot c=R\cdot \psi_0(z_0)+R\cdot \psi_0(x_0)$. Allora, esistono $p,q\in R$ tali che $x=p\cdot \psi_0(z_0)+q\cdot \psi_0(x_0)$. Dunque, \[ (\phi+\psi_0)(pz_0+qx_0)=\phi(pz_0)+\phi(qx_0)+\psi_0(pz_0)+\psi_0(qx_0)=q\cdot \phi(x_0)+p\cdot \psi_0(z_0)=c\] in quanto gli altri due termini sono nulli. Quindi per la \emph{Proosizione 3.6.1} vale $c=(\phi+\psi_0)(pz_0+qx_0)\in \con(pz_0+qx_0)$, da cui $R\cdot c\subseteq \con(pz_0+qx_0)$, dove $\con(x_0)=R\cdot \phi(x_0)\subseteq R\cdot c$. Dunque, $R\cdot \phi(x_0)=\con(pz_0+qx_0)\ni c$, cioè $R\cdot c=R\cdot \phi(x_0)$, quindi $\psi_0(z_0)\in R\cdot \psi(x_0)=\con(x_0)$ come desiderato.
+\end{proof}
+
+\begin{teo}[3.6.3]{}
+Sia $R$ un PID, $F$ un $R$-modulo libero su $\{y_1,...\,,y_n\}$ e sia $M\subseteq F$ un $R$-sottomodulo di $F$. Allora, esistono una base $\{x_1,...\,,x_n\}$ di $F$ e degli elementi $\alpha_1,...\,,\alpha_m\in R\setminus\{0\}$ tali che $\{\alpha_1 x_1,...\,,\alpha_m x_m\}$ sia una base di $M$. Inoltre, la successione $(R\cdot \alpha_1, ...\,,R\cdot \alpha_m)$ è univocamente determinata da $M$.
+\end{teo}
+\vspace{-4mm}
+\begin{proof}
+Dannazione, me la sono persa per lo sciopero, ma c'è sulle sue note.
+\end{proof}
+
+\begin{defn}[]{}
+Tali $R\cdot \alpha_i$ si dicono divisori elementari di $M$.
+\end{defn}
+
+\begin{cor}[3.6.4]{}
+Sia $R$ un PID e sia $A$ un $R$-modulo di torsione finitamente generato. Allora, esistono degli ideali $I_1,...\,,I_n\lhd R$ con $\Ann_R(A)\subseteq I_n\subseteq ... \subseteq I_1\varsubsetneq R$ tali che $A\simeq \bigoplus\limits_{k=1}^n R/I_k$.
+\end{cor}
+
+\noindent Ha detto qualcosa su come applicarlo ai gruppi abeliani. Notare come tale teorema+corollario implica il Teorema di Jordan.
+
+\
+
+\noindent \textbf{Lezione del 08/01/2020} (manca, ha dimostrato le cose scritte nelle sue note sui divisori elementari)
+
+\end{document}
