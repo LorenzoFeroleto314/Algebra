@@ -169,36 +169,39 @@ ogni elemento di $R[x]^{\times}$ è in realtà una costante invertibile, cioè
 $R[x]^{\times}\subseteq R^{\times}$, dunque $R[x]^{\times}=R^{\times}$.
 \end{proof}
 
+\noindent Parliamo ora di una idea abbastanza importante che ci permettera' di parlare della \emph{valutazione di un polinomio}.
 
-\noindent\emph{\underline{Come esprimere una relazione piu' generica di sottoanello?}}
-\vspace{2mm}\\
+\begin{observ}[Una relazione piu' generica di sottoanello]{obs sottoanello}
 Sia $R$ un anello, e supponiamo di voler aggiungere a $R$ un certo elemento $x\notin R$ 
 senza alcuna relazione con gli altri elementi di $R$, in modo che la struttura algebrica risultante sia ancora un anello 
-e sia la più piccola possibile. Come possiamo fare? 
-\vspace{1.5mm}
+e sia la più piccola possibile. Come possiamo fare? \\
 \noindent Poiché ogni anello è chiuso rispetto a somma e prodotto, tale struttura conterrà anche tutte le potenze non negative 
 $\{x^0, x^1, x^2, ...\}$ di $x$ e tutte le combinazioni lineari tra potenze di $x$ ed elementi di $R$, 
 cioè tutti gli elementi della forma $a_nx^n + ... + a_1x+a_0$ con $a_0,...\,,a_n\in R$. 
 Dunque, l'anello dei polinomi $R[x]$ sembra essere la struttura che soddisfa le nostre richieste, 
 cioè il più piccolo anello contenente sia $R$ che $x$. Resta solo da formalizzare meglio il concetto di ``più piccolo anello'', 
-cioè chiarire cosa significa che un anello ne contiene un altro.
-\vspace{1.5mm}
+cioè chiarire cosa significa che un anello ne contiene un altro. \\
 \noindent A questo scopo, potremmo considerare sull'insieme degli anelli la relazione d'ordine data dall'inclusione, 
 cioè dire che un anello $R$ è più piccolo di un altro anello $S$ se e solo se $R\subseteq S$. 
 Tuttavia, questo non terrebbe conto dell'importanza algebrica degli isomorfismi: infatti, 
 la struttura che stiamo cercando di costruire è definita a meno di isomorfismi, 
-e anelli isomorfi potrebbero essere non confrontabili secondo l'inclusione.
-\footnote{Ad esempio, si verifica facilmente che la mappa 
+e anelli isomorfi potrebbero essere non confrontabili secondo l'inclusione.\footnotemark 
+Per risolvere tale problema, ha quindi più senso definire che $R$ è più piccolo di $S$ se e solo se $S$ contiene una copia isomorfa dell'anello $R$, 
+cioè se e solo se esiste un sottanello di $S$ isomorfo a $R$.
+\end{observ}
 
+\footnotetext{{Ad esempio, si verifica facilmente che la mappa 
 $\varphi\colon \C\to \Mat_{2\times 2}(\R)$, $a+bi \mapsto 
 \begin{pmatrix} a & b \\ -b & a \end{pmatrix}$ 
 
 è un isomorfismo di anelli, ma 
 $\C\not\subseteq \operatorname{Mat}_{2\times 2}(\R)$ e $\operatorname{Mat}_{2\times 2}(\R)\not\subseteq \C$, 
-cioè tali anelli non sono confrontabili secondo l'inclusione.} Per risolvere tale problema, 
-ha quindi più senso definire che $R$ è più piccolo di $S$ se e solo se $S$ contiene una copia isomorfa dell'anello $R$, 
-cioè se e solo se esiste un sottanello di $S$ isomorfo a $R$.
+cioè tali anelli non sono confrontabili secondo l'inclusione.}}
+
+
 \clearpage
+
+\noindent Possiamo ora definire piu' formalmente il concetto appena visto:
 
 \begin{defn}[Anello piu' piccolo]{anello piu piccolo}
 Siano $R$ e $S$ due anelli. Diciamo che $R$ è \underline{più piccolo} di $S$ (o anche che $S$ contiene $R$) 
