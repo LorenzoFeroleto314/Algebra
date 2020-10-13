@@ -1,0 +1,193 @@
+
+\subsection{Anelli noetheriani}
+
+\begin{lem}[]{lem per ideale generato}
+  \vspace{-3mm}
+  Sia $R$ un anello e siano $a_1,...\,,a_n\in R.$ Allora, 
+  $I=\sum\limits_{i=1}^n Ra_i=\left\{ \sum\limits_{i=1}^n r_ia_i:r_i\in R \right\}$ è un ideale\footnotemark di $R.$ 
+\end{lem}
+\begin{proof}
+  Infatti, presi $x=\sum\limits_{i=1}^n r_ia_i$ e $y=\sum\limits_{i=1}^n s_ia_i$ in $I,$ si ha che 
+  \vspace{-4mm}
+  \begin{align*}
+    x+y &=\sum\limits_{i=1}^n (r_i+s_i)a_i\in I,\\
+    tx &=t\sum\limits_{i=1}^n r_ia_i=\sum\limits_{i=1}^n (tr_i)a_i\in I,
+  \end{align*}
+  per ogni $t\in R,$ da cui $I\lhd R.$
+\end{proof}
+
+
+\footnotetext{Ricordiamo che $I$ è un ideale di un anello commutativo $R$ se $a-b\in I$ per ogni $a,b \in I$ e se $ra\in I$ per ogni $a\in I$ e $r\in R$. 
+Per ragioni estetiche, si preferisce spesso mostrare equivalentemente che $a+b\in I$ per ogni $a,b \in I$ e non che $a-b\in I$. 
+Infatti, se l'opposto esiste, detto $c=-b$ si ha che $a-b\in I\Leftrightarrow a+c\in I$.} 
+
+\vspace{-1mm}
+
+\begin{defn}[Ideale generato]{def ideale generato}
+  Sia $R$ un anello e siano $a_1,...\,,a_n\in R.$ Allora, l'ideale $I=\sum\limits_{i=1}^n Ra_i$ è detto \underline{ideale generato} 
+  \underline{da $a_1,...\,,a_n$} e si denota con $I=\langle a_1,...\,,a_n\rangle.$
+\end{defn}
+
+\noindent L'ideale generato da $a_1,...\,,a_n$ è il più piccolo ideale di $R$ contenente $a_1,...\,,a_n$, 
+e possiamo pensarlo come l'insieme delle combinazioni lineari in $R$ di $a_1,...\,,a_n$.
+
+\begin{exm}
+  Consideriamo in $\mathbb{Z}$ gli ideali $I=\langle 2\rangle$ e $J=\langle 2,3\rangle$. Allora, $I=\{2n: n\in\mathbb{Z}\}=2\mathbb{Z}$ 
+  è l'insieme dei numeri pari e $J=\{2m+3n : m,n\in \mathbb{Z}\}=\mathbb{Z}$ perché $1=2\cdot 2+3\cdot (-1)\in J$, 
+  da cui $k=2\cdot (2k)+3\cdot (-k)\in J$ per ogni $k\in \mathbb{Z}. \ \square$
+\end{exm}
+
+\vspace{-2mm}
+
+\begin{defn}[]{def anello finitamente generato}
+  Dato un ideale $I\lhd R,$ definiamo \underline{numero minimo di generatori} $d_R(I)$ il più piccolo $n\in \mathbb{N}$ 
+  per cui esistano $a_1,...\,,a_n\in R$ tali che $I=\langle a_1,...\,,a_n\rangle.$ Se tale $n\in \mathbb{N}$ non esiste, 
+  poniamo $d_R(I)=\infty.$ Diciamo che $I\lhd R$ è \underline{finitamente generato} se $d_R(I)<\infty.$
+\end{defn}
+
+\begin{exm} 
+  Sia $I=\langle 2, x\rangle \lhd \mathbb{Z}[x]$ e supponiamo che $d_{\mathbb{Z}[x]}(I)=1$, 
+  cioè che $I=\langle f(x)\rangle$ per un certo $f(x)\in \mathbb{Z}[x]$ non nullo. 
+  Se $\deg^{\star}(f)=0,$ cioè $f(x)\equiv k$, allora $k$ è pari e $I$ contiene solo polinomi con coefficienti pari, 
+  da cui $x\not\in I$, assurdo. Se $\deg^{\star}(f)\geq 1$, allora $I$ contiene solo polinomi di grado almeno $1$, 
+  cioè $2\not\in I$, assurdo. Dunque $d_{\mathbb{Z}[x]}(I)=2. \ \square$
+\end{exm}
+
+\noindent Esiste un'importante famiglia di anelli in cui ogni ideale è finitamente generato.
+
+\begin{defn}[Anello noetheriano]{def anello noetheriano}
+  Un anello commutativo $R$ si dice \underline{noetheriano} se ogni suo ideale è finitamente generato, 
+  cioè se ogni ideale $I\lhd R$ soddisfa $d_R(I)<\infty.$
+\end{defn}
+
+\begin{exm}Sia $R$ un dominio ad ideali principali.\footnote{Ricordiamo che un dominio ad ideali principali (spesso abbreviato PID) è un dominio di integrità in cui ogni ideale è principale, cioè generato da un solo elemento. Esempi di PID sono $\mathbb{Z}$ e ogni campo $\mathbb{K}.$} Allora, $R$ è un anello noetheriano poiché per definizione di PID si ha che $d_R(I)=1$ per ogni $I\lhd R$ non banale e $d_R(\{0_R\})=0.$ In particolare, ogni campo $\mathbb{K}$ è noetheriano perché i suoi unici ideali sono $\{0_{\mathbb{K}}\}$ e $\mathbb{K}=\langle 1_{\mathbb{K}}\rangle. \ \square$\end{exm}
+
+\noindent Nelle dimostrazioni è spesso utile considerare una caratterizzazione equivalente degli anelli noetheriani in termini di successioni ascendenti di ideali, cioè successioni di ideali $(I_k)_{k\in \mathbb{N}}$ tali che $I_k\subseteq I_{k+1}$ per ogni $k\in \mathbb{N}$.
+
+\begin{prop}[]{se e solo noetheriani}
+  Sia $R$ un anello commutativo. Allora, $R$ è noetheriano se e solo se per ogni successione ascendente di ideali $(I_k)_{k\in \mathbb{N}}$ 
+  esiste $N\in\mathbb{N}$ tale che $I_{N+j}=I_N$ per ogni $j\in\mathbb{N}.$
+\end{prop}
+\vspace{-4mm}
+\begin{proof}
+  Supponiamo che $R$ sia noetheriano, e sia $(I_k)_{k\in \mathbb{N}}$ una successione ascendente di ideali. 
+  Poiché $I_{\infty}=\bigcup\limits_{k\in \mathbb{N}} I_k$ è un ideale di $R,$\footnote{Siano $a,b\in I_{\infty}$ 
+  con $a\in I_{s}$ e $b\in I_{t}$, dove $s\leq t$, cioè $I_s\subseteq I_t$. Poiché $a,b\in I_t$, anche $a+b\in I_t\subseteq I_{\infty}$, 
+  da cui $a+b\in I_{\infty}$. Inoltre, preso $r\in R$, si ha che $ra\in I_s\subseteq I_{\infty},$ cioè $ra\in I_{\infty}$, da cui $I_{\infty}\lhd R$.} 
+  essendo $R$ noetheriano $d_R(I_{\infty})=n<\infty.$ Siano quindi $a_1,...\,,a_n\in I_{\infty}$ tali che $I_{\infty}=\langle a_1,...\,,a_n \rangle$, 
+  e siano $k_1,...\,,k_n\in \mathbb{N}$ tali che $a_i\in I_{k_i}$. Detto $N=\max\{k_i : 1\leq i\leq n\}$, 
+  essendo $(I_k)_{k\in \mathbb{N}}$ ascendente si ha che $a_1,...\,,a_n\in I_N.$ Dunque, essendo $I_N$ un ideale, 
+  $\sum\limits_{i=1}^n r_ia_i\in I_N$ per ogni $r_1,...\,,r_n\in R,$ cioè $\sum\limits_{i=1}^n Ra_i=I_{\infty}\subseteq I_N,$ 
+  da cui $I_{N+j}\subseteq I_N$ $\forall j\in \mathbb{N}.$ Poiché $(I_k)_{k\in \mathbb{N}}$ è ascendente, è anche vero che 
+  $I_N\subseteq I_{N+j}$ $\forall j\in N$. Combinando le doppie inclusioni, si ha quindi che $I_{N+j}=I_N$ $\forall j\in \mathbb{N}.$\\
+
+  \noindent Viceversa, supponiamo per assurdo che esista $J\lhd R$ con $d_R(J)=\infty.$ Preso $a_0\in J,$ costruiamo la successione 
+  $(a_k)_{k\in \mathbb{N}}$ di elementi di $J$ tale che $a_{k+1}\in J\setminus \langle a_0,...\,,a_k\rangle$ $\forall k\in \mathbb{N}.$ 
+  Tale successione esiste poiché $J$ non è finitamente generato, quindi $J\setminus \langle a_0,...\,,a_k\rangle \neq \emptyset$ 
+  per ogni $k\in \mathbb{N}.$ Si consideri la successione di ideali $(I_k)_{k\in \mathbb{N}},$ $I_k=\langle a_0,...\,,a_k\rangle.$ 
+  Allora, è evidente che $I_k\subseteq I_{k+1}$ $\forall k\in \mathbb{N},$ ma essendo $a_{k+1}\not\in I_{k}$ per come abbiamo definito 
+  $(a_k)_{k\in \mathbb{N}},$ risulta essere $I_k\subset I_{k+1}.$ Abbiamo quindi costruito una successione ascendente di ideali che viola le ipotesi, 
+  perché non esiste $N\in \mathbb{N}$ tale che $I_{N+j}=I_{N}$ $\forall j\in \mathbb{N},$ assurdo. Dunque $d_R(J)<\infty$, 
+  e per l'arbitrarietà di $J$ concludiamo che $R$ è noetheriano.
+\end{proof}
+
+\noindent Dimostriamo ora un risultato fondamentale nello studio degli anelli noetheriani.
+
+\begin{teo}[Teorema della base di Hilbert]{Teorema della base di Hilbert}
+  Sia $R$ un anello noetheriano. Allora, anche l'anello dei polinomi $R[x]$ è noetheriano.
+\end{teo}
+\vspace{-4mm}
+\begin{proof}
+  Supponiamo per assurdo che $R[x]$ non sia noetheriano, e sia quindi $J\lhd R[x]$ tale che $d_{R[x]}(J)=\infty.$ 
+  Preso $f_0\in J$ non nullo di grado minimo, costruiamo la successione di polinomi $(f_k)_{k\in \mathbb{N}}$ tale che $f_{k+1}$ 
+  sia il polinomio di grado minimo in $J\setminus \langle f_0, ...\,,f_k \rangle$ $\forall k\in \mathbb{N}.$ 
+  Tale successione esiste poiché $J$ non è finitamente generato, quindi $J\setminus \langle f_0, ...\,,f_k \rangle\neq \emptyset$ 
+  per ogni $k\in \mathbb{N}.$ Sia $d_k=\deg^{\star}(f_k)$ e sia $a_k\neq 0_R$ il coefficiente direttore di $f_k.$ 
+  Allora, detta $(I_k)_{k\in \mathbb{N}}$ la successione ascendente di ideali di $R$ definita come $I_k=\langle a_0, ...\,,a_k\rangle$, 
+  per la \emph{Proposizione \ref{se e solo noetheriani}} esiste $N\in \mathbb{N}$ tale che $I_{N+j}=I_{N}$ $\forall j\in \mathbb{N}.$ 
+  In particolare $I_{N+1}=I_N$, ed esistono $r_0,...\,,r_N\in R$ tali che $a_{N+1}=\sum\limits_{i=0}^N r_ia_i.$ 
+  Consideriamo ora il polinomio $h=f_{N+1}-\sum\limits_{i=0}^{N}r_i\, x^{d_{N+1}-d_i} f_i \in J.$\footnotemark\newline Se 
+  $h\in \langle f_0,...\,,f_N\rangle$, allora anche $f_{N+1}=h+\sum\limits_{i=0}^{N}r_i\, x^{d_{N+1}-d_i} f_i\in \langle f_0,...\,,f_N\rangle$, 
+  il che è assurdo per come abbiamo definito $(f_k)_{k\in \mathbb{N}}$. Poiché il coefficiente del termine di grado 
+  $d_{N+1}$ in $h$ è $a_{N+1}-\sum\limits_{i=0}^N r_ia_i=0$, si ha che $h\in J\setminus \langle f_0,...\,,f_N\rangle$ è un polinomio di grado 
+  $\deg^{\star}(h)<d_{N+1}$, e questo viola la minimalità del grado nella scelta di $f_{N+1}$. Dunque $d_{R[x]}(J)<\infty$, 
+  da cui per l'arbitrarietà di $J$ concludiamo che $R[x]$ è noetheriano.
+\end{proof}
+
+\footnotetext{Vogliamo sfruttare la relazione tra $a_{N+1}$ e $a_1,...\,,a_N$ che abbiamo appena trovato per costruire un polinomio
+ $h\in J\setminus \langle f_0, ...\,,f_N\rangle$ di grado minore di $d_{N+1}$, giungendo quindi ad un assurdo.}
+
+\begin{cor}[]{Se R noetheriano anche anello dei polinomi n variabili noetheriano}
+  Sia $n\in \mathbb{N}^+$ e sia $R$ un anello noetheriano. Allora, anche $R[x_1,...\,,x_n]$ è noetheriano.
+\end{cor}
+\vspace{-4mm}
+\begin{proof}
+  Essendo $R$ noetheriano, per il \emph{Teorema \ref{Teorema della base di Hilbert}} anche $R[x_1]$ è noetheriano, 
+  ed induttivamente sono noetheriani pure $(R[x_1])[x_2],...\,, (\cdots((R[x_1])[x_2])\cdots )[x_n]$. 
+  Poiché per il \emph{Corollario SISTEMARE REF} si ha che $R[x_1,...\,,x_n]\simeq (\cdots((R[x_1])[x_2])\cdots )[x_n]$, 
+  possiamo concludere che anche $R[x_1,...\,,x_n]$ è noetheriano.
+\end{proof}
+
+\noindent Questo risultato non è più valido quando l'insieme delle variabili $X$ è un insieme infinito, ed in particolare, 
+esistono domini di integrità che non sono noetheriani.
+
+\begin{exm}
+  Sia $R$ un domimio di integrità noetheriano e sia $X=\{x_n : n\in \mathbb{N}\}$ un insieme numerabile di variabili. 
+  Per la \emph{Proposizione SISTEMARE REF} sappiamo già che $R[X]$ è un dominio di integrità, quindi è sufficiente mostrare che esso non è noetheriano. 
+  Sia $(I_k)_{k\in \mathbb{N}}$ la successione di ideali di $R[X]$ definita come $I_k=\langle x_0,...\,,x_k \rangle$. 
+  Allora $I_k\varsubsetneq I_{k+1}$, poiché $I_k\subseteq I_{k+1}$ ma $x_{k+1}\not\in \langle x_0, ...\,,x_k\rangle=I_k$. 
+  Dunque, $(I_k)_{k\in \mathbb{N}}$ è una successione ascendente di ideali che viola la \emph{Proposizione \ref{se e solo noetheriani}}, 
+  da cui concludiamo che $R[X]$ non è noetheriano$. \ \square$
+\end{exm}
+
+\noindent La proposizione seguente, molto utile negli esercizi, permette di dimostrare che un anello è noetheriano semplicemente 
+esibendo un omomorfismo suriettivo.
+
+\begin{prop}[1.6.4]{noetheriano si passa con epimorfismo}
+  Sia $R$ un anello noetheriano e sia $\phi\colon R\to S$ un omomorfismo di anelli suriettivo. Allora, anche $S$ è un anello noetheriano.
+\end{prop}
+\vspace{-4mm}
+\begin{proof} 
+  Siano $J\lhd S$ e $I=\phi^{-1}(J)=\{r\in R : \phi(r)\in J\}.$ Poiché $I$ è un ideale~di~$R$,\footnote{In generale, 
+  se $\varphi \colon A\to B$ è un omomorfismo e $J\lhd B$, allora $I=\varphi^{-1}(J)=\{a\in A: \varphi(a)\in J\}\lhd A$. 
+  Infatti, presi $a,\, b\in I$, per definizione $\varphi(a),\,\varphi(b)\in J$. Dunque, essendo $J$ un ideale e $\varphi$ un omomorfismo, 
+  $\varphi(a+b)=\varphi(a)+\varphi(b)\in J\Rightarrow a+b\in I$ e $\varphi(ra)=\varphi(r)\varphi(a)\in J\Rightarrow ra\in I$ 
+  per ogni $r\in A$, da cui $I\lhd A$.} che per ipotesi è noetheriano, esistono $a_1,...\,,a_n \in R$ tali che $I=\langle a_1,...\,,a_n \rangle$. 
+  Allora, essendo $\phi$ suriettivo, sappiamo che $J=\phi(I)=\langle \phi(a_1),...\,,\phi(a_n) \rangle$, da cui $d_S(J)\leq d_R(I)=n<\infty$. 
+  Dunque, per l'arbitrarietà di $J$ concludiamo che $S$ è noetheriano. 
+\end{proof}
+
+\begin{exm} 
+  Sia $\mathbb{Z}[\sqrt{2}\,]=\{a+b\sqrt{2} : a,b\in \mathbb{Z}\}\subseteq \mathbb{R}$. 
+  Poiché $\mathbb{Z}$ è un PID, esso è noetheriano, dunque per il \emph{Teorema REF DI CAPITOLO 1.4} anche $\mathbb{Z}[x]$ è noetheriano. 
+  Sia $\phi_{\sqrt{2}}\colon \mathbb{Z}[x]\to \mathbb{Z}[\sqrt{2}\,]$ la valutazione in $\sqrt{2}$. 
+  Poiché per ogni $a+b\sqrt{2}\in \mathbb{Z}[\sqrt{2}\,]$ si ha che $\phi_{\sqrt{2}}(a+bx)=a+b\sqrt{2}$, 
+  tale $\phi_{\sqrt{2}}$ è un omomorfismo suriettivo, quindi per la \emph{Proposizione \ref{noetheriano si passa con epimorfismo}} 
+  anche $\mathbb{Z}[\sqrt{2}\,]$ è noetheriano$. \ \square$
+\end{exm}
+
+\noindent Un caso particolare della \emph{Proposizione \ref{noetheriano si passa con epimorfismo}} vale per gli anelli quoziente.
+
+\begin{cor}[]{il noetheriano passa ai quozienti}
+  Sia $R$ un anello noetheriano e sia $I\lhd R$. Allora, anche $R/I$ è noetheriano.
+\end{cor}
+\vspace{-4mm}
+\begin{proof}
+  Sia $\pi\colon R\to R/I$, $\pi(r)=r+I$ la proiezione canonica sul quoziente. 
+  Poiché $\pi$ è un omomorfismo suriettivo, per la \emph{Proposizione \ref{noetheriano si passa con epimorfismo}} 
+  anche $R/I$ è noetheriano.
+\end{proof}
+
+\noindent Possiamo quindi mostrare che esistono anelli noetheriani che non sono domini di integrità.
+
+\begin{exm}
+  Poiché $4\mathbb{Z}$ è un ideale di $\mathbb{Z}$, per il \emph{Corollario \ref{il noetheriano passa ai quozienti}} 
+  anche $\mathbb{Z}/4\mathbb{Z}$ è noetheriano.\footnote{In realtà basta osservare che ogni anello finito è noetheriano 
+  poiché $d_R(I)\leq |R|<\infty$ per ogni $I\lhd R$.} 
+  Tuttavia, esso non è dominio di integrità perché ha divisori dello zero: infatti, $2\cdot 2=0. \ \square$
+\end{exm}
+
+\clearpage
+
+\noindent Proposizione che anello noetheriano ha un ideale massimale, discussione sulla noetherianità che gratuitamente 
+permette la dimostrazione senza il lemma di zorn, dimostrazione che ogni anello ha un ideale massimale usando zorn.
