@@ -66,16 +66,16 @@ Siamo quindi pronti a definire l'anello dei polinomi nelle variabili $x \in \mat
 	Si definisce \emph{anello dei polinomi nelle variabili} $x \in \mathcal{X}$ l'insieme:
 	\[R[\mathcal{X}] := \{f = \sum_{\alpha \in \mathcal{F}^\times}r_\alpha X^\alpha \mid r_{\_} \in \mathcal{F}(\mathcal{F}^\times,R)\}\]
   con le seguenti operazioni di somma e di prodotto. Dati $f, g \in R[\mathcal{X}]$:
-  \[f(X) = \sum_{\alpha \in \mathcal{F}^\times}r_\alpha X^\alpha, \quad g(X) = \sum_{\beta \in \mathcal{F}^\times}s_\beta X^\beta\]\\
+  \[f(X) = \sum_{\alpha \in \mathcal{F}^\times}r_\alpha X^\alpha, \quad g(X) = \sum_{\beta \in \mathcal{F}^\times}s_\beta X^\beta\]
   \begin{align*}
     %SOMMA
-    somma: \quad &+ : R[\mathcal{X}] \times R[\mathcal{X}] \longrightarrow R[\mathcal{X}] \quad 
-    f(X) + g(X) = \sum\limits_{\alpha \in \mathcal{F}^\times}(r_\alpha + s_\alpha) X^\alpha\\
+    somma: \ \ + : R[\mathcal{X}] \times R[\mathcal{X}] \longrightarrow R[\mathcal{X}] \quad 
+    f(X) + g(X) &= \sum\limits_{\alpha \in \mathcal{F}^\times}(r_\alpha + s_\alpha) X^\alpha\\
     %PRODOTTO
-    prodotto: \quad &\cdot : R[\mathcal{X}] \times R[\mathcal{X}] \longrightarrow R[\mathcal{X}] \quad 
-    f(X) \cdot g(X) = \sum\limits_{\gamma \in \mathcal{F}^\times}t_\gamma X^\gamma\\
-    dove abbiamo posto $\gamma = \alpha + \beta$ e $t_\gamma = \sum\limits_{\alpha + \beta = \gamma} r_\alpha s_\beta$.
+    prodotto: \ \ \cdot : R[\mathcal{X}] \times R[\mathcal{X}] \longrightarrow R[\mathcal{X}] \quad 
+    f(X) \cdot g(X) &= \sum\limits_{\gamma \in \mathcal{F}^\times}t_\gamma X^\gamma
   \end{align*}
+    dove abbiamo posto $\gamma = \alpha + \beta$ e $t_\gamma = \sum\limits_{\alpha + \beta = \gamma} r_\alpha s_\beta$. Inoltre,
 	%ZERO E UNO
 	\[elemento \ neutro: \quad 0_R = \sum_{\alpha \in \mathcal{F}^\times} 0_\alpha X^\alpha, \quad unita' \ moltiplicativa: \quad 1_R = X^0 \]
 \end{defn}
@@ -107,22 +107,23 @@ Anche per gli anelli di polinomi in più variabili vale la cosiddetta \textit{Pr
 	Inoltre, $\phi(X^{\delta_x}) = \varphi(x)$ e $\phi(\rho) = \rho$ per ogni $\rho \in R$, quindi $\phi$ soddisfa le condizioni richieste.
 	%FOOTNOTE
 	\footnote{$\delta_x$ è la funzione tale che per ogni $x \in X$ si abbia $X^{\delta_x} = x$. 
-	Infatti, $X^{\delta_x} = \prod\limits_{y \in X}y^{\delta_x(y)} = x^{\delta_x(x)} = x^1 = x$ perché tutti gli altri termini del prodotto hanno esponente $0$, essendo per definizione $\delta_x(y) = 0$ se $y \neq x$.}
+  Infatti, $X^{\delta_x} = \prod\limits_{y \in X}y^{\delta_x(y)} = x^{\delta_x(x)} = x^1 = x$ 
+  perché tutti gli altri termini del prodotto hanno esponente $0$, essendo per definizione $\delta_x(y) = 0$ se $y \neq x$.}
 
 	%OMOMORFISMO DI ANELLI
-	Mostriamo ora che è un omomorfismo di anelli. 
+	\noindent Mostriamo ora che è un omomorfismo di anelli. 
 	Infatti, 
 	
 	\[\phi\left(f+g\right) = \sum\limits_{\alpha \in \mathcal{F}^\times}(r_\alpha + s_\alpha) \phi(X^\alpha) = \sum\limits_{\alpha \in \mathcal{F}^\times} r_\alpha \phi(X^\alpha) + \sum\limits_{\alpha \in \mathcal{F}^\times} s_\alpha \phi(X^\alpha) = \phi(f) + \phi(g)\]
 	
-	per la proprietà distributiva del prodotto rispetto alla somma, essendo $S$ un anello, e
+	\noindent per la proprietà distributiva del prodotto rispetto alla somma, essendo $S$ un anello, e
 	 
 	\[\phi(f\cdot g) = 
 	\sum\limits_{\gamma \in \mathcal{F}^\times} \sum\limits_{\alpha + \beta = \gamma} r_\alpha s_\beta \phi(X^\gamma) = 
-	\left(\sum\limits_{\alpha \in \mathcal{F}^\times} r_\alpha \phi(X^\alpha) \right) \cdot \left(\sum\limits_{\beta \in \mathcal{F}^\times} s_\beta \phi(X^\beta) \right) = 
-	\phi(f)\cdot \phi(g)\] 
+  \left(\sum\limits_{\alpha \in \mathcal{F}^\times} r_\alpha \phi(X^\alpha) \right) \cdot \left(\sum\limits_{\beta \in \mathcal{F}^\times} s_\beta \phi(X^\beta) \right) 
+  = \phi(f)\cdot \phi(g)\] 
 	
-	perché $\phi(X^\gamma) = 
+	\noindent perché $\phi(X^\gamma) = 
 	\prod\limits_{x \in X} \varphi(x)^{\gamma(x)} = 
 	\prod\limits_{x\in X} \varphi(x)^{\alpha(x)} \cdot \prod\limits_{x \in X} \varphi(x)^{\beta(x)} = 
 	\phi(X^\alpha) \cdot \phi(X^\beta)$. 
@@ -131,7 +132,7 @@ Anche per gli anelli di polinomi in più variabili vale la cosiddetta \textit{Pr
 	\vspace{1mm}
 	
 	%UNICITA'
-	Mostriamo ora che $\phi$ è unico. 
+	\noindent Mostriamo ora che $\phi$ è unico. 
 	Sia $\psi\colon R[\mathcal{X}]\to S$ un omomorfismo di anelli tale che $\psi(X^{\delta_x})=\varphi(x)$ e $\psi \raisebox{-.5em}{$\vert_{R}$}= \operatorname{id}_R.$ 
 	Allora, per ogni monomio $X^\alpha \in M$ vale 
 	
@@ -142,7 +143,7 @@ Anche per gli anelli di polinomi in più variabili vale la cosiddetta \textit{Pr
 	\prod\limits_{x \in X} \varphi(x)^{\alpha(x)} = 
 	\phi(X^\alpha) \]. 
 	
-	Poiché $\psi$ è un omomorfismo, per ogni $f = \sum\limits_{\alpha \in \mathcal{F}^\times} r_\alpha X^\alpha \in R[\mathcal{X}]$ si ha che 
+	\noindent Poiché $\psi$ è un omomorfismo, per ogni $f = \sum\limits_{\alpha \in \mathcal{F}^\times} r_\alpha X^\alpha \in R[\mathcal{X}]$ si ha che 
 	
 	\[ \psi(f) = 
 	\psi\left(\sum\limits_{\alpha \in \mathcal{F}^\times} r_\alpha X^\alpha \right) = 
@@ -151,7 +152,7 @@ Anche per gli anelli di polinomi in più variabili vale la cosiddetta \textit{Pr
 	\sum\limits_{\alpha \in \mathcal{F}^\times} r_\alpha \phi(X^\alpha) = 
 	\phi(f)\] 
 	
-	essendo $\psi(r_\alpha) = r_\alpha$ perché $r_\alpha \in R$ e $\psi(X^\alpha) = \phi(X^\alpha)$ per quanto appena mostrato. 
+	\noindent essendo $\psi(r_\alpha) = r_\alpha$ perché $r_\alpha \in R$ e $\psi(X^\alpha) = \phi(X^\alpha)$ per quanto appena mostrato. 
 	Dunque, $\psi$ coincide con $\phi,$ che risulta quindi essere unico.
 \end{proof}
 
@@ -160,14 +161,14 @@ Possiamo considerare $R[x]$ stesso come anello dei coefficienti per l'anello dei
 
 \[(R[x])[y]=\left\{\sum\limits_{i=0}^n f_i\,y^i : f_i\in R[x],\, n\in \mathbb{N}\right\}.\] 
 
-Poiché ogni polinomio di $(R[x])[y]$ può essere visto come un polinomio in due variabili di $R[x,y]$ e ogni polinomio di $R[x,y]$ 
+\noindent Poiché ogni polinomio di $(R[x])[y]$ può essere visto come un polinomio in due variabili di $R[x,y]$ e ogni polinomio di $R[x,y]$ 
 può essere pensato come un polinomio di $(R[x])[y]$ raccogliendo i termini dello stesso grado in $y$, questo suggerisce che $(R[x])[y]\simeq R[x,y]$.
 
-\begin{exm}
+\begin{example}[]{esempio anello polinomi in piu variabili}
   Sia $f(y)=(x^2+1)y^2+(2x)y+3 \in (\mathbb{Z}[x])[y]$. Allora, possiamo vedere $f(y)$ come un polinomio in due variabili 
   $g(x,y)=x^2y^2+y^2+2xy+3 \in \mathbb{Z}[x,y]$. Viceversa, preso $p(x,y)=xy^2+2xy+3y+4\in \mathbb{Z}[x,y]$, 
-  raccogliendo i termini dello stesso grado in $y$ possiamo pensare $p(x,y)$ come un polinomio $q(y)=(x)y^2+(2x+3)y+4 \in (\mathbb{Z}[x])[y]. \ \square$
-\end{exm}
+  raccogliendo i termini dello stesso grado in $y$ possiamo pensare $p(x,y)$ come un polinomio $q(y)=(x)y^2+(2x+3)y+4 \in (\mathbb{Z}[x])[y].$
+\end{example}
 
 \noindent In generale, se $X$ e $Y$ sono insiemi non vuoti e $(R[X])[Y]$ è l'anello dei polinomi a coefficienti in $R[X]$ e a variabili in $Y$, 
 detta $X \sqcup Y$ l'unione disgiunta,\footnote{Ricordiamo che l'unione disgiunta di una famiglia di insiemi $\{A_i\}_{i\in I}$ è l'insieme 
@@ -209,7 +210,7 @@ si ha che $A_0 \sqcup A_1=\{(3,0), (4,0), (5,0), (5,1), (6,1)\}$.} vale il teore
   = \sum\limits_{\widetilde{\underline{\alpha}}\in \mathcal{F}^{\times}} r_{\widetilde{\underline{\alpha}}}\,\widetilde{\phi}(Z^{\widetilde{\underline{\alpha}}}) 
   = \sum\limits_{\underline{\alpha}\in \mathcal{F}^{\times}} r_{\underline{\alpha}} X^{\underline{\alpha}} = f \] 
   
-  perché $\widetilde{\phi}(r_{\widetilde{\underline{\alpha}}})=r_{\widetilde{\underline{\alpha}}}$ essendo 
+  \noindent perché $\widetilde{\phi}(r_{\widetilde{\underline{\alpha}}})=r_{\widetilde{\underline{\alpha}}}$ essendo 
   $\widetilde{\phi} \raisebox{-.5em}{$\vert_{R}$}= \operatorname{id}_R$, da cui $\widetilde{\phi} \raisebox{-.5em}{$\vert_{R[X]}$}=\operatorname{id}_{R[X]}$. 
   Inoltre, per ogni $y\in Y$ si ha che $\widetilde{\phi}(Z^{\underline{\delta}_y})=\widetilde{\varphi}(y)=\varphi_Y(y)$. 
   Poiché $R[X\sqcup Y]$ è un anello commutativo contenente $R[X]$ che soddisfa la proprietà universale di $(R[X])[Y]$,\footnote{Infatti, 
@@ -218,7 +219,6 @@ si ha che $A_0 \sqcup A_1=\{(3,0), (4,0), (5,0), (5,1), (6,1)\}$.} vale il teore
   per ogni $y\in Y$ e $\widetilde{\phi} \raisebox{-.5em}{$\vert_{R[X]}$}=\operatorname{id}_{R[X]}$.} per la generalizzazione del 
   \emph{Teorema REF DA SISTEMARE} possiamo effettivamente concludere che $R[X \sqcup Y]\simeq (R[X])[Y]$.
 \end{proof}
-\clearpage
 
 \noindent Nel caso in cui l'insieme delle variabili sia finito, vale il corollario seguente.
 
@@ -262,3 +262,5 @@ Infatti, se $S$ è un anello contenente $R$ e $x$, per la chiusura di $S$ rispet
 $\{x^0, x^1, x^2, ...\}$ di $x$ e tutte le combinazioni lineari tra potenze di $x$ ed elementi di $R$, cioè tutti gli elementi della forma 
 $a_nx^n + ... + a_1x+a_0$ con $a_0,...\,,a_n\in R$. In generale, se $X$ è un insieme non vuoto, 
 possiamo quindi vedere $R[X]$ come la più piccola ``estensione'' di $R$ contenente $X$, cioè come il più piccolo anello contenente sia $R$ che $X$.
+
+\clearpage
