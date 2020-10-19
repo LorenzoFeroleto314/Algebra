@@ -21,7 +21,7 @@
 
 \theoremstyle{definition}
 \newtheorem{thm}{Teorema}[subsection]
-\newtheorem*{exm}{Esempio}
+%\newtheorem*{exm}{Esempio}
 \renewcommand\qedsymbol{$\blacksquare$}
 \addto\captionsenglish{\renewcommand*{\proofname}{Dimostrazione}}
 \addto\captionsenglish{\renewcommand{\contentsname}{Indice}}
@@ -30,6 +30,36 @@
 \subsectionfont{\fontsize{14}{15}\selectfont}
 
 \renewcommand\thefootnote{\textcolor{red}{\arabic{footnote}}}
+
+%%
+\usepackage{xcolor}
+\newtheoremstyle{example}
+  {}
+  {}
+  {\itshape}
+  {}
+  {\bfseries}
+  {}
+  { }
+  {\colorbox{red!20}{#1.}}
+
+\theoremstyle{example}
+\newtheorem*{exm}{Esempio}
+%%
+%%
+\newtheoremstyle{observation}
+  {}
+  {}
+  {\itshape}
+  {}
+  {\bfseries}
+  {}
+  { }
+  {\colorbox{blue!20}{#1.}}
+
+\theoremstyle{observation}
+\newtheorem*{obs}{Osservazione}
+%%
 
 \newcommand{\id}{\operatorname{id}}
 \newcommand{\Mat}{\operatorname{Mat}}
