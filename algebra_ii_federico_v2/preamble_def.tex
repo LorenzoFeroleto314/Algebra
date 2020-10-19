@@ -34,28 +34,28 @@
 %%
 \usepackage{xcolor}
 \newtheoremstyle{example}
-  {}
-  {}
-  {\itshape}
-  {}
-  {\bfseries}
-  {}
-  { }
-  {\colorbox{red!20}{#1.}}
+  {} % above space
+  {} % below space
+  {} % body font
+  {} % indent (empty value is the same as 0pt)
+  {\bfseries} % head font
+  {} % head punctuation
+  { } % head space
+  {\colorbox{red!20}{#1.}} % custom head specs
 
 \theoremstyle{example}
 \newtheorem*{exm}{Esempio}
 %%
 %%
 \newtheoremstyle{observation}
-  {}
-  {}
-  {\itshape}
-  {}
-  {\bfseries}
-  {}
-  { }
-  {\colorbox{blue!20}{#1.}}
+{} % above space
+{} % below space
+{} % body font
+{} % indent (empty value is the same as 0pt)
+{\bfseries} % head font
+{} % head punctuation
+{ } % head space
+{\colorbox{blue!20}{#1.}} % custom head specs
 
 \theoremstyle{observation}
 \newtheorem*{obs}{Osservazione}
