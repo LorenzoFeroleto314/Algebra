@@ -1,0 +1,104 @@
+
+\subsection{Polinomi di Laurent e serie formali}
+
+\noindent Vogliamo ora introdurre alcune generalizzazioni del concetto di anello di polinomi molto usate nell'analisi reale e complessa, quali i polinomi di Laurent e le serie di potenze. 
+
+\
+
+\begin{defn}[Polinomi di Laurent e operazioni]{def polinomi Laurent}
+  Sia $R$ un anello commutativo e sia $R[x,x^{-1}]=\left\{\sum\limits_{i=-p}^n a_ix^i : a_i\in R,\, n,p\in \mathbb{N}\right\}$. 
+  Presi due elementi $f=\sum\limits_{i=-p}^m a_ix^i$ e $g=\sum\limits_{j=-q}^n b_jx^j$ di $R[x,x^{-1}]$, definiamo le operazioni di \emph{somma} 
+  \[ f+g=\sum\limits_{i=-r}^s (a_i+b_i)x^i \] 
+  \noindent dove $s=\max\{m,n\}$, $r=\max\{p,q\}$ e $a_i=b_j=0$ per $i\not\in [-p,m]$ e $j\not\in [-q,n]$, e \emph{prodotto} 
+  \[ f\cdot g=\sum\limits_{k=-p-q}^{m+n}c_k x^k\] 
+  \noindent dove abbiamo posto $c_k=\sum\limits_{i+j=k} a_i b_j$. 
+\end{defn}
+
+\begin{obs}
+  Possiamo pensare $R[x,x^{-1}]$ come l'anello dei polinomi $R[x]$ dove però l'esponente della variabile $x$ può essere anche un intero negativo.
+\end{obs}
+
+\begin{lem}[]{R[x,x-1] e' un anello commutativo}
+  $R[x, x^{-1}]$ e' un anello commutativo.
+\end{lem}
+\begin{proof}
+  Da fare.
+\end{proof}
+
+\noindent Come per i poliniomi in una variabile, andiamo a definire il grado dei polinomi di Laurent.
+
+\begin{defn}[Grado di un polinomio di Laurent]{def grado di un polinomio di Laurent}
+  Siano $R$ un anello commutativo unitario, $R[x, x^{-1}]$ come descritto in precedenza e $f = \sum_{i\geq -q}^{n}a^i x^i \in R[x, x^{-1}]$. 
+  Definiamo allora la funzione \emph{grado}
+
+    \[ \omega : R[x,x^{-1}] \rightarrow \Z \cup \{\infty\},\ \omega(f) = 
+      \begin{cases}
+        \min\{ z \in \Z \mid a_n \neq 0 \},\ &f \not\equiv 0_R\\
+        \infty, &f \equiv 0_R
+      \end{cases}
+    \]
+  
+  Dove la quantita' $\omega(f)$ e' chiamata \emph{grado del polinomio di Laurent f}.
+\end{defn}
+
+\noindent Introduciamo ora un fatto abbastanza intuitivo su questa struttura algebrica:
+
+\begin{lem}[]{R[x] sottoanello di R[x,x-1]}
+  Sia $R$ un anello commutativo unitario. Allora $R[x] \leq R[x, x^{-1}]$, cioe' $R[x]$ e' un sottoanello di $R[x,x^{-1}]$.
+  Inoltre, per ogni $f\in R[x,x^{-1}], f \not\equiv 0_R$ vale che
+
+  \[ x^{-\omega(f)} \cdot f \in R[x] \]
+\end{lem}
+\begin{proof}
+  Da fare.
+\end{proof}
+
+\noindent Definiamo ora la seconda struttura algebrica di cui vogliamo parlare.
+
+\begin{defn}[Serie di potenze formali, operazioni e grado]{def serie di potenze formali}
+  Sia $\F$ un campo. Definiamo l'insieme delle \emph{serie di potenze formali} come 
+
+  \[ \F\llbracket x \rrbracket = \left\{ \sum\limits_{i \in \N_0} a_i x^i \mid a_i \in \F \right\} \]
+
+  \noindent Siano $f = \sum_{i\in \N_0}a_i x^i,\ g = \sum_{i\in N_0}b_i x^i$ e definiamo l'operazione di \emph{somma} e \emph{prodotto}
+
+  \begin{align*}
+    +\ &: \F\llbracket x \rrbracket \times \F\llbracket x \rrbracket \rightarrow \F\llbracket x \rrbracket,\ f + g = \sum\limits_{i\in \N_0}(a_i + b_i)x^i \\ 
+    \cdot\ &: \F\llbracket x \rrbracket \times \F\llbracket x \rrbracket \rightarrow \F\llbracket x \rrbracket,\ f \cdot g = \sum\limits_{k\in \N_0} \big(\sum_{\substack{i,j\in \N_0\\i+j = k}} (a_i \cdot b_j)x^k \big)
+  \end{align*}
+
+  \noindent dove tale prodotto viene spesso denotato piu' brevemente con $\sum_{k\in \N_0} c_k x^k$. \vspace{0.5mm}\\
+  \noindent Su $\F\llbracket x \rrbracket$ e' definita $\omega$, ovvero la funzione \emph{grado}, esattamente come nella \emph{Definizione 
+  \ref{def grado di un polinomio di Laurent}} dove pero' ovviamente i nostri indici appartengono a $\N_0$.
+\end{defn}
+
+\begin{lem}[]{F[x] dominio di integrita}
+  $\F\llbracket x \rrbracket$ e' un dominio di integrità.
+\end{lem}
+\begin{proof}
+  Da fare.
+\end{proof}
+
+\noindent Elenchiamo ora alcuni fatti su tale struttura algebrica, uno dei quali richiede conoscenze su anelli locali e massimali, 
+che vedremo nei prossimi sottocapitoli.
+
+\begin{lem}[]{fatti su F[x]}
+  ($i$) La funzione grado $\omega$ soddisfa che, per ogni $f, g \in \F\llbracket x \rrbracket, \omega(f\cdot g) = \omega(f) + \omega(g)$. \\
+  \noindent ($ii$) Sia $f = \sum_{i\in \N_0} a_i x^i \in \F\llbracket x \rrbracket$. La valutazione in 0, ovvero
+      \[ \phi_0 : \F\llbracket x \rrbracket \rightarrow \F,\ \phi_0(f) = a_0 \]
+    \noindent e' l'unico omomorfismo di anelli da $\F\llbracket x \rrbracket$ a $\F$.\\
+  \noindent ($iii$) $\F\llbracket x \rrbracket^{\times} = \{ f \in \F\llbracket x \rrbracket \mid \phi_0(f) \neq 0 \} 
+    = \{ f \in \F\llbracket x \rrbracket \mid \omega(f) = 0 \}$.
+ 
+\end{lem}
+\begin{proof}
+  i e iii da fare. ii e' per \emph{Proposizione \ref{prop su ideale massimale}}
+\end{proof}
+
+AGGIUNGERE ANCHE ANELLO CROSS OVER: ANELLO DELLE SERIE DI POTENZE DI LAURENT.
+
+
+\noindent Sketch del capitolo: Polinomi di Laurent ma le dim sono trivial per il capitolo 1.3, serie formali (qui dimostro cose), 
+serie formali di Laurent (c'è una sola dim)
+
+\clearpage
