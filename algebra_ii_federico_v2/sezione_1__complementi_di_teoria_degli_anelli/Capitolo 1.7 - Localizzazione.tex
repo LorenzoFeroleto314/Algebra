@@ -352,15 +352,19 @@ Le operazioni $\oplus, \odot$ definite in precedenza su $S^{-1}R$ sono ben poste
 
   \noindent D'altra parte, esistono esempi di anelli locali che non sono domini di integrità.\\
 
-  \noindent ($v$) Esempio$. \ \square$
+  \noindent ($v$) $R = \Z/4\Z$ e' un anello locale, in quanto $R^{\times} = R$, tuttavia e' immediato notare che non e' dominio di integrità.\\
+
+  \noindent ($vi$) In generale, $R/M^{n}$, dove $M$ e' un anello massimale e $R \neq {0}, R$ e' commutativo, e' un esempio valido.
 \end{example}
 
 \noindent Esiste una caratterizzazione equivalente degli anelli locali in termini di ideali massimali.
 
 \begin{prop}[1.7.8]{prop su ideale massimale}
-  Sia $R$ un anello locale. Allora, $\mathfrak{m}=R\setminus R^{\times}$ è l'unico ideale massimale di $R$.
+  Sia $R$ un anello locale. Allora, $\mathfrak{m}=R\setminus R^{\times}$ è l'unico ideale massimale\footnotemark di $R$.
 \end{prop}
 \vspace{-4mm}
+\footnotetext{Ricordiamo che un ideale $I$ si dice \emph{massimale} in un anello $R$ se $I\neq R$ e per ogni ideale
+$J \supseteq I, J=I$ oppure $J=R$.}
 \begin{proof}
   Osserviamo innanzitutto che $\mathfrak{m}\lhd R$ è massimale perché, preso $I\lhd R$ tale che $\mathfrak{m} \varsubsetneq I$, 
   si ha che $I\setminus \mathfrak{m}\neq \emptyset$, cioè $I\cap R^{\times}\neq \emptyset$, da cui $I=R$ poiché $I$ contiene un elemento 
@@ -425,12 +429,41 @@ Sia $R$ un anello locale e sia $\mathfrak{m}=R\setminus R^{\times}$ il suo unico
 la struttura del campo dei residui dell'anello locale $S^{-1}R$ risulta essere particolarmente interessante.
 
 \begin{prop}[1.7.10]{prop su dom integrita e campo dei residui}
-Sia $R$ un dominio di integrità, $\mathfrak{p}\lhd R$ primo e $S=R\setminus \mathfrak{p}$. Allora, $\operatorname{res}(S^{-1}R)\simeq \quot(R/\mathfrak{p})$.
+  Sia $R$ un dominio di integrità, $\mathfrak{p}\lhd R$ primo e $S=R\setminus \mathfrak{p}$. Allora, $\operatorname{res}(S^{-1}R)\simeq \quot(R/\mathfrak{p})$.
 \end{prop}
 \vspace{-4mm}
 \begin{proof}
-Dim
+  Se $\frac{r}{s} \in S^{-1}R$ allora esiste l'inverso $\frac{u}{t}\in S^{-1}R$ se e solo se $ru = st \in S$. In particolare, avremo che
+  $r \not\in \mathfrak{p}$, altrimenti $r \in \mathfrak{p}$ implicherebbe $ru \in \mathfrak{p}$, quindi $ru \not\in S$. Pertanto
+
+  \[ (S^{-1}R)^{\times} = \bigg\{ \frac{r}{s} \mid r,s \in S \bigg\}, \]
+
+  \noindent da cui deduciamo che $S{-1}R = (S-{1}R)^{\times} \sqcup S^{-1}\mathfrak{p}$, cioe' $S{-1}R \setminus (S^{-1}R)^{\times} = S^{-1}\mathfrak{p}$,
+  e $S^{-1}R$ e' un anello locale, e per la \emph{Proposizione \ref{prop su ideale massimale}} l'unico ideale massimale di $S^{-1}R$ e' $S^{-1}\mathfrak{p}$. \\
+  \noindent Osserviamo che, essendo $\mathfrak{p} \lhd R$ e' un ideale primo, allora $R/\mathfrak{p}$ e' un dominio di integrità.
+  Sia $\pi : R \rightarrow R/\mathfrak{p}$ la proiezione canonica, e $\pi_* : S^{-1}R \rightarrow \operatorname{quot}(R/\mathfrak{p})$ la mappa data da
+
+  \[ \pi_*\bigg(\frac{r}{s}\bigg) = \frac{\pi(r)}{\pi(s)},\ \frac{r}{s} \in S^{-1}R. \]
+
+  \noindent Allora $\pi_*$ e' un omomorfismo suriettivo di anelli. Poiche' $\operatorname{quot}(R/\mathfrak{p})$ e' un campo,
+  $\ker(\pi_*)$ e' un ideale massimale e quindi dev'essere uguale a $S^{-1}\mathfrak{p}$. Dal teorema dell'omomorfismo, abbiamo l'asserto.
 \end{proof}
+
+\begin{obs}
+  La precedente proposizione mostra che ogni coppia $(R, \mathfrak{p})$, con $R$ dominio di integrità e $\mathfrak{p} \lhd R$ ideale primo,
+  definisce un anello locale $\mathcal{O}_\mathfrak{p} = S^{-1}R$, per $S = R \setminus \mathfrak{p}$.
+\end{obs}
+
+\noindent Vediamo subito un esempio di quanto appena affermato
+
+\begin{exm}
+  Sia $R = \Z$ e $\mathfrak{p} = p\Z$, con $p$ primo. Allora
+
+  \[ \mathcal{O}_\mathfrak{p} = (\Z \setminus p\Z)^{-1}\Z = \bigg\{ \frac{r}{s} \mid r,s \in \Z, p \nmid s \bigg\} \subseteq \Q \]
+
+  \noindent e' un anello locale e anche un P.I.D.
+\end{exm}
+
 
 \noindent Cose, sarebbe carino avere 1.7.10 con il relativo esempio in una pagina a sè stante.
 
