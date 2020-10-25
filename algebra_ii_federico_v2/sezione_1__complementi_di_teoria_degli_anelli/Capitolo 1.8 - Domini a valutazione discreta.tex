@@ -63,7 +63,7 @@ dominio a valutazione discreta che viene chiarita nella seguente proposizione.
   \mbox{$x = p^ja$}, $y = p^kb$ e $p \nmid a,b$. Segue che $xy = p^{j+k}ab \in p^{j+k}\Z$, ma $p \nmid ab$, altrimenti per definizione di primo dev'essere che
   $p \mid a$ oppure $p \mid b$, che e' assurdo. Dunque, $xy \in p^{j+k} \Z \setminus p^{j+k+1} \Z \Longrightarrow \tilde{\varepsilon}_p(xy) = 
   \tilde{\varepsilon}_p(x) + \tilde{\varepsilon}_p(y)$. \\
-  \noindent ($iii$) Considerando $x, y$ come nel punto precedentemente, abbiamo che \\
+  \noindent ($iii$) Considerando $x, y$ come nel punto precedente, abbiamo che \\
   $xy \in p^{\min\{ \tilde{\varepsilon}_p(x), \tilde{\varepsilon}_p(y) \}}\Z
   \Longrightarrow \tilde{\varepsilon}_p(x+y) \geq \min{\tilde{\varepsilon}_p(x), \tilde{\varepsilon}_p(y)}$. \\
   \noindent ($iv$) Sia $n \in \N_0$. Allora $\tilde{\varepsilon}_p(p^n) = n$, quindi $\tilde{\varepsilon}_p(y)$ e' suriettivo.\\
@@ -76,11 +76,39 @@ dominio a valutazione discreta che viene chiarita nella seguente proposizione.
 (anche se ho i miei dubbi, dopotutto un campo e' un dominio di integrita')
 
 \begin{defn}[Valutazione discreta di un campo]{def valutazione discreta campo}
-  Sia $\mathbb{b}K$ un campo. Si dice \emph{valutazione discreta di un campo} una mappa 
-  $\omega : \mathbb{K} \rightarrow \Z \setminus \{ 0_{\mathbb{K}} \}$ che soddisfa gli assiomi ($i$), ... ,($iv$) di 
+  Sia $\K$ un campo. Si dice \emph{valutazione discreta di un campo} una mappa 
+  $\omega : \K \rightarrow \Z \setminus \{ 0_{\K} \}$ che soddisfa gli assiomi ($i$), ... ,($iv$) di 
   \emph{Definzione \ref{def valutazione discreta}} 
 \end{defn}
 
 \begin{prop}[]{prop campo con valutazione discreta}
-  Sia 
+  Sia $(\K, \omega)$ un campo con valutazione discreta $\omega$. Allora
+
+  \[ \mathcal{O}_{\omega} = \{ x \in \K \mid \omega(x( \geq 0)) \} \]
+
+  \noindent e' un dominio a valutzione discreta.
 \end{prop}
+\begin{proof}
+  Per la \emph{Proposizione \ref{R dom integrita dvd se ha valutazione discreta}} e' sufficiente dimostrare che $\mathcal{O}_{\omega}$ e' 
+  un dominio di integrità.
+  ASPETTA DIM WEIGEL
+\end{proof}
+
+\begin{example}[Valutazione discreta su un campo]{esempio valutazione discreta su campo}
+  Sia $\tilde{\varepsilon}_p$ definita come nell' \emph{Esempio \ref{esempio valutazione discreta}}, e proviamo a definire
+  $\ul{\tilde{\varepsilon}}_p : \Q \rightarrow \Z \cup \{ \infty \}$ basandoci su $\tilde{\varepsilon}_p$. Dovremo in qualche modo gestire i vari quozienti, 
+  in quanto la condizione critica da soddisfare e' la ($ii$). Infatti, sia $\frac{1}{s} \in \Q$, allora vorremmo che 
+  $\ul{\tilde{\varepsilon}}_p(\frac{1}{s}) + \ul{\tilde{\varepsilon}}_p(s) = \tilde{\varepsilon}_p(1) = 0$. Dato $\frac{r}{s} \in \Q$, poniamo allora
+  \mbox{$\ul{\tilde{\varepsilon}}_p(\frac{r}{s}) := \tilde{\varepsilon}_p(r) - \tilde{\varepsilon}_p(s)$}. Cosi' facendo gli assiomi sono 
+  soddisfatti e otteniamo una valutazione discreta.
+\end{example}
+
+\begin{teo}[]{teorema su dvd e quot}
+  Siano $R$ un dominio a valutazione discreta, $\K := \quot(R)$. Allora esiste una valutazione discreta $\omega : \K \rightarrow \Z \cup \{ \infty \}$ 
+  tale che 
+
+  \[ R \simeq \mathcal{O}_{\omega} = \{ x \in \K \mid \omega(k) \geq 0 \} \]
+\end{teo}
+\begin{proof}
+  ASPETTA APPUNTI WEIGEL
+\end{proof}
