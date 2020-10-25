@@ -1,5 +1,86 @@
 \subsection{Domini a valutazione discreta}
 
-Controllare la correttezza degli appunti delle lezioni del 22-23/10/2019 prima di copiare qui quella parte (incluso l'esempio sulla metrica p-adica).
+Introduciamo subito la definizione dell'oggetto in questione, il cui nome viene spesso abbrevviato in 
+\emph{d.v.d} (\emph{discrete valutation domain}).
+(Magari inserire un introduzione dell'argomento)
 
-asdf
+\begin{defn}[Dominio a valutazione discreta]{def dvd}
+  Sia $R$ un dominio di integrità. Allora $R$ si dice \emph{dominio a valutazione discreta} se: \\
+  \noindent ($i$) \ $R$ e' un dominio a ideali principali ($P.I.D$) \\
+  \noindent ($ii$) $R$ e' un anello locale
+\end{defn}
+
+\noindent Vediamone subito un esempio
+
+\begin{exm}
+  Sia $p\in \Z$, $p$ primo. Allora 
+
+  \[ \mathcal{O}_p = \bigg\{ \frac{r}{s} \mid r \in \Z \land s \in \Z \setminus p\Z \bigg\} \]
+
+  \noindent e' un dominio a valutazione discreta (dimostrarne il perche' magari). Si noti che tale condizione
+  e' equivalente ad $\operatorname{mcd}(s, p) = 1$.
+\end{exm}
+
+\noindent Come possiamo intuire dal nome di questa struttura algebrica, e' presente un funzione di valutazione. \\
+\noindent Consideriamo $(\N_0 \cup \{\infty\}, +)$, che e' un monoide commutativo (ovvero un semigruppo con $1$ ?) con
+l'operazione '+' definita nel capitolo dei polinomi in una variabile. Possiamo quindi definire:
+
+\begin{defn}[Valutazione discreta di $R$]{def valutazione discreta}
+  Siano $R$ un dominio di integrità, Si dice \emph{valutazione discreta di R} una mappa $\omega : R \rightarrow \N_0 \cup \{\infty\}$ che, 
+  dati $a,b \in R$, soddisfa
+  \begin{tabbing}
+      ($i$)\quad\quad \=$\omega(a) = \infty \iff a = 0_R$, \\
+      ($ii$)     \>$\omega(a\cdot b) = \omega(a) + \omega(b)$, \\
+      ($iii$)    \>$\omega(a+b) \geq \min\{ \omega(a), \omega(b) \}$, \\
+      ($iv$)     \>$\omega$ e' suriettivo.
+  \end{tabbing}
+\end{defn}
+
+\noindent L'ipotesi di $R$ dominio di integrità nella definizione precedente fa intuire una relazione tra tale struttura algebrica e quella di
+dominio a valutazione discreta che viene chiarita nella seguente proposizione.
+
+\begin{prop}[]{R dom integrita dvd se ha valutazione discreta}
+  Sia $(R, \omega)$ un dominio di integrità dotato di una valutazione discreta $\omega$. Supponiamo inoltre che
+
+  \[ R^{\times} = \big\{ r\in R \mid \omega(r) = 0 \big\} =: R_0,  \] 
+
+  \noindent allora $R$ e' un dominio a valutazione discreta.
+\end{prop}
+\begin{proof}
+  ASPETTARE APPUNTI WEIGEL.
+\end{proof}
+
+\begin{example}[Valutazione discreta]{esempio valutazione discreta}
+  Siano $R = \Z, p\in \Z$ un numero primo. Sappiamo allora che (algebra I?) per ogni $z$ in $\Z \setminus \{\pm 1, 0\}$ esiste $\varepsilon_p(z) 
+  \in \N_0$ tale che $p^{\varepsilon_p}$ e' la massima potenza che divide $z$, cioe' $p^{\varepsilon_p} ||\ z$, \emph{se e solo se} 
+  $z \in p^{\varepsilon_p}\Z \setminus p^{\varepsilon_p + 1}\Z$.\\
+
+  \noindent Definiamo allora $\tilde{\varepsilon}_p : \Z \rightarrow \N_0 \cup \{\infty\}$ ponendo $\tilde{\varepsilon}_p(0) := \infty,\ 
+  \tilde{\varepsilon}_p(z) := \varepsilon_p(z)$ per ogni $z \in \Z\setminus \{0\}$. Proviamo allora che $\tilde{\varepsilon}_p$ soddisfa i quattro
+  assiomi di valutazione discreta. \\
+  ($i$) E' dato dalla definizione di $\tilde{\varepsilon}_p$. \\
+  \noindent ($ii$) Siano $x,y \in \Z,\ \tilde{\varepsilon}_p(x) = j,\ \tilde{\varepsilon}_p(y) = k.$ Allora esistono $a,b \in \Z$ tali che
+  \mbox{$x = p^ja$}, $y = p^kb$ e $p \nmid a,b$. Segue che $xy = p^{j+k}ab \in p^{j+k}\Z$, ma $p \nmid ab$, altrimenti per definizione di primo dev'essere che
+  $p \mid a$ oppure $p \mid b$, che e' assurdo. Dunque, $xy \in p^{j+k} \Z \setminus p^{j+k+1} \Z \Longrightarrow \tilde{\varepsilon}_p(xy) = 
+  \tilde{\varepsilon}_p(x) + \tilde{\varepsilon}_p(y)$. \\
+  \noindent ($iii$) Considerando $x, y$ come nel punto precedentemente, abbiamo che \\
+  $xy \in p^{\min\{ \tilde{\varepsilon}_p(x), \tilde{\varepsilon}_p(y) \}}\Z
+  \Longrightarrow \tilde{\varepsilon}_p(x+y) \geq \min{\tilde{\varepsilon}_p(x), \tilde{\varepsilon}_p(y)}$. \\
+  \noindent ($iv$) Sia $n \in \N_0$. Allora $\tilde{\varepsilon}_p(p^n) = n$, quindi $\tilde{\varepsilon}_p(y)$ e' suriettivo.\\
+
+  \noindent Pertanto la nostra funzione e' una valutazione discreta anche $\Z$ non e' un anello locale. Pertanto tale costruzione non e' una prerogativa
+  ristretta solamente ai domini a valutazione discreta.
+\end{example}
+
+\noindent Nel caso in cui avessimo a che fare con un campo, possiamo intuire che la funzione di valutazione discreta vada leggermente modificata
+(anche se ho i miei dubbi, dopotutto un campo e' un dominio di integrita')
+
+\begin{defn}[Valutazione discreta di un campo]{def valutazione discreta campo}
+  Sia $\mathbb{b}K$ un campo. Si dice \emph{valutazione discreta di un campo} una mappa 
+  $\omega : \mathbb{K} \rightarrow \Z \setminus \{ 0_{\mathbb{K}} \}$ che soddisfa gli assiomi ($i$), ... ,($iv$) di 
+  \emph{Definzione \ref{def valutazione discreta}} 
+\end{defn}
+
+\begin{prop}[]{prop campo con valutazione discreta}
+  Sia 
+\end{prop}
