@@ -1,53 +1,74 @@
+\clearpage
+
 \subsection{Domini a valutazione discreta}
 
-Introduciamo subito la definizione dell'oggetto in questione, il cui nome viene spesso abbrevviato in 
-\emph{d.v.d} (\emph{discrete valutation domain}).
-(Magari inserire un introduzione dell'argomento)
+Introduciamo subito la definizione dell'oggetto in questione, il cui nome viene spesso abbreviato in 
+\emph{d.v.d} (\emph{discrete valuation domain}). La definizione seguente e' un po' misteriosa ma verra'
+chiarita successivamente con una alternativa che rispecchia davvero il suo nome.
+
 
 \begin{defn}[Dominio a valutazione discreta]{def dvd}
   Sia $R$ un dominio di integrità. Allora $R$ si dice \emph{dominio a valutazione discreta} se: \\
-  \noindent ($i$) \ $R$ e' un dominio a ideali principali ($P.I.D$) \\
-  \noindent ($ii$) $R$ e' un anello locale
+  \noindent ($i$) \ \ $R$ e' un dominio a ideali principali ($P.I.D$) \\
+  \noindent ($ii$) \ $R$ e' un anello locale\\
+  \noindent ($iii$) $R$ non e' un campo.
 \end{defn}
-
-\noindent Vediamone subito un esempio
 
 \begin{exm}
   Sia $p\in \Z$, $p$ primo. Allora 
 
-  \[ \mathcal{O}_p = \bigg\{ \frac{r}{s} \mid r \in \Z \land s \in \Z \setminus p\Z \bigg\} \]
+  \[ \mathcal{O}_p = \bigg\{ \frac{r}{s} \mid r \in \Z \land s \in \Z \setminus p\Z\footnotemark \bigg\} \]
 
-  \noindent e' un dominio a valutazione discreta (dimostrarne il perche' magari). Si noti che tale condizione
-  e' equivalente ad $\operatorname{mcd}(s, p) = 1$.
+  \noindent e' un dominio a valutazione discreta (dimostrarne il perche' magari).  
 \end{exm}
+\footnotetext{Si noti che tale condizione e' equivalente ad $\operatorname{mcd}(s, p) = 1$.}
 
-\noindent Come possiamo intuire dal nome di questa struttura algebrica, e' presente un funzione di valutazione. \\
-\noindent Consideriamo $(\N_0 \cup \{\infty\}, +)$, che e' un monoide commutativo (ovvero un semigruppo con $1$ ?) con
-l'operazione '+' definita nel capitolo dei polinomi in una variabile. Possiamo quindi definire:
-
-\begin{defn}[Valutazione discreta di $R$]{def valutazione discreta}
-  Siano $R$ un dominio di integrità, Si dice \emph{valutazione discreta di R} una mappa $\omega : R \rightarrow \N_0 \cup \{\infty\}$ che, 
-  dati $a,b \in R$, soddisfa
+\noindent Introduciamo ora formalmente il concetto di \emph{valutazione di un campo} che risultera' chiave per questa sezione.
+\begin{defn}[Valutazione di un campo]{def valutazione}
+  Siano $K$ un campo, $(G, +, \leq)$ un gruppo abeliano parzialmente ordinato 
+  (ovvero dotato di relazione d'ordine parziale che preserva l'operazione di gruppo). \\
+  \noindent Si dice \emph{valutazione} una mappa $\omega : K \setminus \{0\} \rightarrow G$ tale che, per ogni $a,b \in G$,
   \begin{tabbing}
-      ($i$)\quad\quad \=$\omega(a) = \infty \iff a = 0_R$, \\
-      ($ii$)     \>$\omega(a\cdot b) = \omega(a) + \omega(b)$, \\
-      ($iii$)    \>$\omega(a+b) \geq \min\{ \omega(a), \omega(b) \}$, \\
-      ($iv$)     \>$\omega$ e' suriettivo.
+    ($i$)\quad\quad \=$\omega$ e' suriettivo, \\
+    ($ii$)     \>$\omega(a\cdot b) = \omega(a) + \omega(b)$, \\
+    ($iii$)    \>$\omega(a+b) \geq \min\{ \omega(a), \omega(b) \}$, 
   \end{tabbing}
+
+  \noindent Se $G$ e' discreto (cioe' numerabile finito o infinito) si dice \emph{valutazione discreta}.
 \end{defn}
 
-\noindent L'ipotesi di $R$ dominio di integrità nella definizione precedente fa intuire una relazione tra tale struttura algebrica e quella di
-dominio a valutazione discreta che viene chiarita nella seguente proposizione.
+\noindent Se vogliamo includere lo $0$ nella nostra valutazione, otteniamo la seguente:
 
-\begin{prop}[]{R dom integrita dvd se ha valutazione discreta}
-  Sia $(R, \omega)$ un dominio di integrità dotato di una valutazione discreta $\omega$. Supponiamo inoltre che
+\begin{defn}[Valutazione di un campo (estesa)]{def valutazione estesa}
+  Siano $K$ un campo, $(G, +, \leq)$ un gruppo abeliano parzialmente ordinato e consideriamo $G \cup \{\infty\}$ dove, per ogni $a \in G$,
+  $a+\infty = \infty + a=\infty,$ e $a \leq \infty$. Allora possiamo estendere la precedente definendo 
+  $\omega : K \rightarrow G$ dove vale inoltre
 
-  \[ R^{\times} = \big\{ r\in R \mid \omega(r) = 0 \big\} =: R_0,  \] 
+  \[ \omega(a) = \infty \iff a=0 \]
+\end{defn}
 
-  \noindent allora $R$ e' un dominio a valutazione discreta.
-\end{prop}
+\begin{obs}
+  Come nel \emph{Capitolo 1} per $\N_0$, consideriamo l'insieme $\overline{\Z} := \Z \cup \{ \infty \}$ 
+  dotato della somma usuale tra interi dove inoltre, per ogni $a \in \overline{\Z}$
+
+  \[ a + \infty = \infty + a = \infty. \]
+
+  \noindent Allora $(\overline{\Z}, +)$ e' un monoide commutativo, ovvero un semigruppo abeliano con $0$.
+\end{obs}
+
+\noindent Il seguente teorema descrive il legame tra i domini a valutazione discreta e i campi con una valutazione discreta.
+
+\begin{teo}[]{teo dvd e campi}
+  Sia $R$ un dominio di integrità, con campo quoziente $K$. Allora\\
+  ($i$) \ Se $(K,\omega)$ e' un campo con una valutazione discreta, l'insieme
+    \[ \mathcal{O}_{\omega} = \{ x \in K \mid \omega(x) \geq 0 \} \]
+  \noindent e' un dominio a valutazione discreta tale che $K = \quot(\mathcal{O}_{\omega})$\\
+
+  \noindent ($ii$) Se $R$ e' un dominio a valutazione discreta, allora esiste una valutazione discreta $\omega : K \rightarrow \overline{\Z}$
+  tale che $R = \mathcal{O}_{\omega}$.
+\end{teo}
 \begin{proof}
-  ASPETTARE APPUNTI WEIGEL.
+  Da fare.
 \end{proof}
 
 \begin{example}[Valutazione discreta]{esempio valutazione discreta}
@@ -75,25 +96,6 @@ dominio a valutazione discreta che viene chiarita nella seguente proposizione.
 \noindent Nel caso in cui avessimo a che fare con un campo, possiamo intuire che la funzione di valutazione discreta vada leggermente modificata
 (anche se ho i miei dubbi, dopotutto un campo e' un dominio di integrita')
 
-\begin{defn}[Valutazione discreta di un campo]{def valutazione discreta campo}
-  Sia $\K$ un campo. Si dice \emph{valutazione discreta di un campo} una mappa 
-  $\omega : \K \rightarrow \Z \setminus \{ 0_{\K} \}$ che soddisfa gli assiomi ($i$), ... ,($iv$) di 
-  \emph{Definzione \ref{def valutazione discreta}} 
-\end{defn}
-
-\begin{prop}[]{prop campo con valutazione discreta}
-  Sia $(\K, \omega)$ un campo con valutazione discreta $\omega$. Allora
-
-  \[ \mathcal{O}_{\omega} = \{ x \in \K \mid \omega(x( \geq 0)) \} \]
-
-  \noindent e' un dominio a valutzione discreta.
-\end{prop}
-\begin{proof}
-  Per la \emph{Proposizione \ref{R dom integrita dvd se ha valutazione discreta}} e' sufficiente dimostrare che $\mathcal{O}_{\omega}$ e' 
-  un dominio di integrità.
-  ASPETTA DIM WEIGEL
-\end{proof}
-
 \begin{example}[Valutazione discreta su un campo]{esempio valutazione discreta su campo}
   Sia $\tilde{\varepsilon}_p$ definita come nell' \emph{Esempio \ref{esempio valutazione discreta}}, e proviamo a definire
   $\ul{\tilde{\varepsilon}}_p : \Q \rightarrow \Z \cup \{ \infty \}$ basandoci su $\tilde{\varepsilon}_p$. Dovremo in qualche modo gestire i vari quozienti, 
@@ -102,13 +104,3 @@ dominio a valutazione discreta che viene chiarita nella seguente proposizione.
   \mbox{$\ul{\tilde{\varepsilon}}_p(\frac{r}{s}) := \tilde{\varepsilon}_p(r) - \tilde{\varepsilon}_p(s)$}. Cosi' facendo gli assiomi sono 
   soddisfatti e otteniamo una valutazione discreta.
 \end{example}
-
-\begin{teo}[]{teorema su dvd e quot}
-  Siano $R$ un dominio a valutazione discreta, $\K := \quot(R)$. Allora esiste una valutazione discreta $\omega : \K \rightarrow \Z \cup \{ \infty \}$ 
-  tale che 
-
-  \[ R \simeq \mathcal{O}_{\omega} = \{ x \in \K \mid \omega(k) \geq 0 \} \]
-\end{teo}
-\begin{proof}
-  ASPETTA APPUNTI WEIGEL
-\end{proof}
